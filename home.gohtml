@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            width: 275px;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <pre>
+  __  __
+ |  \/  |
+ | \  / | __ ___  __
+ | |\/| |/ _` \ \/ /
+ | |  | | (_| |>  <
+ |_|__|_|\__,_/_/\_\
+ |__   __|        | |
+    | | __ _ _   _| | ___  _ __    ______
+    | |/ _` | | | | |/ _ \| '__|  |______|
+    | | (_| | |_| | | (_) | |
+  __|_|\__,_|\__, |_|\___/|_|
+ |  __ \      __/ | (_)
+ | |  | | __ |___/ ___  ___  ___
+ | |  | |/ _` \ \ / / |/ _ \/ __|
+ | |__| | (_| |\ V /| |  __/\__ \
+ |_____/ \__,_| \_/ |_|\___||___/
+            </pre>
+            <p>
+                I am a full-stack developer
+                and undergraduate bioengineering
+                student at Imperial College London.
+                Feel free to say hi!
+            </p>
+            <div>
+                <a href="/">email</a>
+                <a href="/">github</a>
+                <a href="/">cv</a>
+            </div>
+        </div>
+        <div>
+            <h3>Projects</h3>
+            <ul>
+                {{range .Projects}}
+                <li>
+                    <a href="/project?id={{.Id}}">{{.Title}}</a>
+                </li>
+                {{end}}
+            </ul>
+            <a href="/projects">see more ></a>
+            <h3>Posts</h3>
+            <ul>
+                {{range .Posts}}
+                    <li>
+                        <a href="/post?id={{.Id}}">{{.Title}}</a>
+                    </li>
+                {{end}}
+            </ul>
+            <a href="/posts">see more ></a>
+        </div>
+    </div>
+</body>
+</html>

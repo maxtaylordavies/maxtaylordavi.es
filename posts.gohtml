@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Home</a>
+    </div>
+    <div>
+        <h1>All Posts</h1>
+        <ul>
+            {{range .}}
+                <div>
+                    <a href="/post?id={{.Id}}">{{.Title}}</a>
+                    <p>{{.Body}}</p>
+                </div>
+            {{end}}
+        </ul>
+    </div>
+</div>
+</body>
