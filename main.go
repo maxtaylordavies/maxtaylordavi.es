@@ -1,9 +1,9 @@
 package main
 
 import (
-	"./repository"
 	"database/sql"
 	_ "github.com/lib/pq"
+	"github.com/maxtaylordavies/PersonalSite/repository"
 	"log"
 	"net/http"
 	"os"
