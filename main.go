@@ -129,6 +129,14 @@ func registerRoutes(db *sql.DB) http.Handler {
 	return mux
 }
 
+func getPort() string {
+	p := os.Getenv("PORT")
+	if p != "" {
+		return ":" + p
+	}
+	return ":8080"
+}
+
 func main() {
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
@@ -138,7 +146,7 @@ func main() {
 	mux := registerRoutes(db)
 
 	server := http.Server{
-		Addr:         ":8080",
+		Addr:         getPort(),
 		Handler:      mux,
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
