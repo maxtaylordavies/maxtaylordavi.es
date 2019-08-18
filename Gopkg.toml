@@ -35,5 +35,5 @@
 
 [metadata.heroku]
   root-package = "PersonalSite"
-  go-version = "1.12.9"
+  go-version = "1.12.5"
   install = [ "./..." ]
