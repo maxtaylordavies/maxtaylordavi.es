@@ -4,12 +4,11 @@ import (
 	"./repository"
 	"database/sql"
 	_ "github.com/lib/pq"
-	"text/template"
 	"log"
 	"net/http"
+	"os"
 	"strings"
-
-	//"os"
+	"text/template"
 	"time"
 )
 
@@ -131,8 +130,7 @@ func registerRoutes(db *sql.DB) http.Handler {
 }
 
 func main() {
-	//db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	db, err := sql.Open("postgres", "postgres://gkzookusrdbgxu:138144b37117524ff5dbc174e3892dbd057013e2090893f14bcbafdc4d264b8a@ec2-54-75-230-253.eu-west-1.compute.amazonaws.com:5432/df4tsjn8a68qgo")
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}

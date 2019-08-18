@@ -10,6 +10,7 @@
             width: 100vw;
             height: 100vh;
             font-family: "Roboto Mono for Powerline";
+            overflow: scroll;
         }
 
         .header {
@@ -36,11 +37,23 @@
             font-size: 36pt;
             font-family: "Roboto Mono for Powerline";
             margin-top: 0;
+        }
+
+        .github-link {
+            font-size: 10pt;
+            color: #808080;
             margin-bottom: 123px;
         }
 
         .body-text {
             white-space: pre-line;
+        }
+
+        .copyright {
+            font-size: 10pt;
+            color: #808080;
+            margin-top: 50px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -52,7 +65,9 @@
     </div>
     <div class="body">
         <h1 class="title">{{.Title}}</h1>
+        <a class="github-link" href="https://github.com/maxtaylordavies/{{.Title}}" target="_blank">GitHub</a>
         <p class="body-text">{{.Body}}</p>
+        <p class="copyright">© 2019 Max Taylor-Davies</p>
     </div>
 </div>
 </body>

@@ -11,6 +11,7 @@
             justify-content: center;
             align-items: center;
             font-family: "Roboto Mono for Powerline";
+            overflow: scroll;
         }
 
         .header {
@@ -49,18 +50,35 @@
 
         .list {
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .list-item {
-            font-size: 18pt;
+            font-size: 20pt;
             color: #808080;
             margin-bottom: 15px;
+        }
+
+        .list-item-link {
+            margin-top: 0;
+            font-size: 18pt;
+            color: #808080;
+            margin-bottom: 18px;
         }
 
         .see-more {
             font-size: 10pt;
             color: black;
             margin-left: 18px;
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 0;
+            font-size: 10pt;
+            color: #808080;
+            margin: 0;
         }
     </style>
 </head>
@@ -92,9 +110,9 @@
                 Feel free to say hi!
             </p>
             <div>
-                <a class="contact-link" href="/">email</a>
-                <a class="contact-link" href="/">github</a>
-                <a class="contact-link" href="/">cv</a>
+                <a class="contact-link" href="mailto:maxtaylordavies@gmail.com" target="_blank">email</a>
+                <a class="contact-link" href="https://github.com/maxtaylordavies" target="_blank">github</a>
+                <a class="contact-link" href="/" target="_blank">cv</a>
             </div>
         </div>
         <div>
@@ -103,7 +121,7 @@
                 <ul class="list">
                     {{range .Projects}}
                     <li class="list-item">
-                        <a class="list-item" href="/project?id={{.Id}}">{{.Title}}</a>
+                        <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
                     </li>
                     {{end}}
                 </ul>
@@ -114,13 +132,14 @@
                 <ul class="list">
                     {{range .Posts}}
                         <li class="list-item">
-                            <a  class=list-item href="/post?id={{.Id}}">{{.Title}}</a>
+                            <a class="list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
                         </li>
                     {{end}}
                 </ul>
                 <a class="see-more" href="/posts">see more ></a>
             </div>
         </div>
+        <p class="copyright">© 2019 Max Taylor-Davies</p>
     </div>
 </body>
 </html>
