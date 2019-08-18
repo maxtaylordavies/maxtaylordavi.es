@@ -4,21 +4,92 @@
     <meta charset="UTF-8">
     <title>Posts</title>
     <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            font-family: "Roboto Mono for Powerline";
+        }
 
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .home-link {
+            font-size: 10pt;
+            color: #808080;
+        }
+
+        .body {
+            position: absolute;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 36pt;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .list {
+            margin-top: 137px;
+        }
+
+        .list-item {
+            width: 500px;
+            margin-bottom: 38px;
+        }
+
+        .date-title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .date-text {
+            font-family: "Roboto Mono Light for Powerline";
+            font-size: 22pt;
+            font-weight: lighter;
+            color: #808080;
+            margin: 0;
+        }
+
+        .post-title {
+            font-size: 22pt;
+            color: black;
+            margin: 0;
+        }
+
+        .post-intro {
+            font-size: 11pt;
+            color: #808080;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <a href="/">Home</a>
+        <a class="home-link" href="/">Home</a>
     </div>
-    <div>
-        <h1>All Posts</h1>
-        <ul>
+    <div class="body">
+        <h1 class="title">All Posts</h1>
+        <ul class="list">
             {{range .}}
-                <div>
-                    <a href="/post?id={{.Id}}">{{.Title}}</a>
-                    <p>{{.Body}}</p>
+                <div class="list-item">
+                    <div class="date-title">
+                        <P class="date-text">{{.CreatedAt | fdate}}</P>
+                        <a class="post-title" href="/post?id={{.Id}}">{{.Title}}</a>
+                    </div>
+                    <p class="post-intro">{{.Body | intro}}</p>
                 </div>
             {{end}}
         </ul>

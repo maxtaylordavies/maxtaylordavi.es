@@ -4,9 +4,11 @@ import (
 	"./repository"
 	"database/sql"
 	_ "github.com/lib/pq"
-	"html/template"
+	"text/template"
 	"log"
 	"net/http"
+	"strings"
+
 	//"os"
 	"time"
 )
@@ -21,7 +23,14 @@ func formatDate(t time.Time) string {
 	return t.Format("02-01-2006")
 }
 
-var fm = template.FuncMap{"fdate": formatDate}
+func getIntro(body string) string {
+	slc := strings.SplitAfter(body, ". ")[0:3]
+	str := strings.Join(slc, "")
+	str = str[0:len(str)-1] + ".."
+	return str
+}
+
+var fm = template.FuncMap{"fdate": formatDate, "intro": getIntro}
 
 func registerRoutes(db *sql.DB) http.Handler {
 	mux := http.NewServeMux()

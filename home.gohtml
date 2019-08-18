@@ -6,24 +6,68 @@
     <style>
         .container {
             display: flex;
+            width: 100vw;
+            height: 100vh;
             justify-content: center;
             align-items: center;
+            font-family: "Roboto Mono for Powerline";
         }
 
         .header {
             position: absolute;
-            top: 40px;
-            left: 40px;
+            top: 20px;
+            left: 20px;
             width: 275px;
             display: flex;
             flex-direction: column;
+        }
+
+        .name {
+            font-size: 7pt;
+        }
+
+        .bio {
+            color: #808080;
+            font-size: 10pt;
+            margin-top: 0;
+        }
+
+        .contact-link {
+            font-size: 10pt;
+            color: black;
+        }
+
+        .recent-projects {
+            margin-bottom: 126px
+        }
+
+        .list-title {
+            font-size: 24pt;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .list {
+            margin: 0;
+        }
+
+        .list-item {
+            font-size: 18pt;
+            color: #808080;
+            margin-bottom: 15px;
+        }
+
+        .see-more {
+            font-size: 10pt;
+            color: black;
+            margin-left: 18px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <pre>
+            <pre class="name">
   __  __
  |  \/  |
  | \  / | __ ___  __
@@ -41,37 +85,41 @@
  | |__| | (_| |\ V /| |  __/\__ \
  |_____/ \__,_| \_/ |_|\___||___/
             </pre>
-            <p>
+            <p class="bio">
                 I am a full-stack developer
                 and undergraduate bioengineering
                 student at Imperial College London.
                 Feel free to say hi!
             </p>
             <div>
-                <a href="/">email</a>
-                <a href="/">github</a>
-                <a href="/">cv</a>
+                <a class="contact-link" href="/">email</a>
+                <a class="contact-link" href="/">github</a>
+                <a class="contact-link" href="/">cv</a>
             </div>
         </div>
         <div>
-            <h3>Projects</h3>
-            <ul>
-                {{range .Projects}}
-                <li>
-                    <a href="/project?id={{.Id}}">{{.Title}}</a>
-                </li>
-                {{end}}
-            </ul>
-            <a href="/projects">see more ></a>
-            <h3>Posts</h3>
-            <ul>
-                {{range .Posts}}
-                    <li>
-                        <a href="/post?id={{.Id}}">{{.Title}}</a>
+            <div class="recent-projects">
+                <h3 class="list-title">Recent projects</h3>
+                <ul class="list">
+                    {{range .Projects}}
+                    <li class="list-item">
+                        <a class="list-item" href="/project?id={{.Id}}">{{.Title}}</a>
                     </li>
-                {{end}}
-            </ul>
-            <a href="/posts">see more ></a>
+                    {{end}}
+                </ul>
+                <a class="see-more" href="/projects">see more ></a>
+            </div>
+            <div class="recent-posts">
+                <h3 class="list-title">Recent posts</h3>
+                <ul class="list">
+                    {{range .Posts}}
+                        <li class="list-item">
+                            <a  class=list-item href="/post?id={{.Id}}">{{.Title}}</a>
+                        </li>
+                    {{end}}
+                </ul>
+                <a class="see-more" href="/posts">see more ></a>
+            </div>
         </div>
     </div>
 </body>
