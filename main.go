@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	_ "github.com/lib/pq"
 	"github.com/maxtaylordavies/PersonalSite/repository"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -129,6 +130,16 @@ func registerRoutes(db *sql.DB) http.Handler {
 			return
 		}
 		w.Write([]byte(f))
+	})
+
+	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
+		img, err := os.Open("." + strings.TrimSuffix(r.URL.Path, "/"))
+		if err != nil {
+			log.Fatal(err) // perhaps handle this nicer
+		}
+		defer img.Close()
+		w.Header().Set("Content-Type", "image/png") // <-- set the content-type header
+		io.Copy(w, img)
 	})
 
 	return mux

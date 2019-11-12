@@ -65,6 +65,13 @@
             color: #808080;
             margin: 0;
         }
+
+        .list-item-title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +84,10 @@
         <ul class="list">
             {{range .}}
                 <div class="list-item">
-                    <a class="project-title" href="/project?id={{.Id}}">{{.Title}}</a>
+                    <div class="list-item-title">
+                        <a class="project-title" href="/project?id={{.Id}}">{{.Title}}</a>
+                        <img height="40" width="40" src={{.ThumbnailPath}} />
+                    </div>
                     <p class="project-intro">{{.Body | intro}}</p>
                 </div>
             {{end}}
