@@ -2,7 +2,12 @@ package repository
 
 import (
 	"database/sql"
+	"github.com/PuerkitoBio/goquery"
 	_ "github.com/lib/pq"
+	"log"
+	"os"
+	"path/filepath"
+	"strconv"
 )
 
 type ProjectRepository struct {
@@ -19,39 +24,51 @@ type Project struct {
 func (pr *ProjectRepository) All() ([]Project, error) {
 	var projects []Project
 
-	rows, err := pr.DatabaseConnection.Query(`SELECT * FROM projects`)
-	if err != nil {
-		return projects, err
-	}
-
-	for rows.Next() {
-		p := Project{}
-		if err := rows.Scan(&p.Id, &p.Title, &p.Body, &p.Status); err != nil {
-			return projects, err
+	err := filepath.Walk("./projects", func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() || info.Name() == ".DS_Store" {
+			return nil
 		}
-		projects = append(projects, p)
-	}
 
-	return projects, nil
+		r, err := os.Open(path)
+		doc, err := goquery.NewDocumentFromReader(r)
+
+		if err != nil {
+			log.Println("a")
+			return err
+		}
+
+		str := info.Name()
+		idStr := str[0]
+		id, _ := strconv.Atoi(string(idStr))
+
+		projects = append(projects, Project{
+			id,
+			doc.Find("h1").Text(),
+			doc.Find("p").Text()[10:],
+			"Done",
+		})
+
+		return nil
+	})
+
+	return reverseSlice(projects), err
 }
 
 func (pr * ProjectRepository) Recent() ([]Project, error) {
-	var projects []Project
+	var recentProjects []Project
 
-	rows, err := pr.DatabaseConnection.Query(`SELECT * FROM posts ORDER BY id DESC limit 3`)
+	allProjects, err := pr.All()
 	if err != nil {
-		return projects, err
+		return recentProjects, err
 	}
 
-	for rows.Next() {
-		p := Project{}
-		if err := rows.Scan(&p.Id, &p.Title, &p.Body, &p.Status); err != nil {
-			return projects, err
-		}
-		projects = append(projects, p)
+	if len(allProjects) > 3 {
+		recentProjects = allProjects[:3]
+	} else {
+		recentProjects = allProjects
 	}
 
-	return projects, nil
+	return recentProjects, nil
 }
 
 func (pr * ProjectRepository) One(id string) (Project, error) {
@@ -63,6 +80,13 @@ func (pr * ProjectRepository) One(id string) (Project, error) {
 	}
 
 	return project, nil
+}
+
+func reverseSlice(slc []Project) []Project {
+	for i, j := 0, len(slc)-1; i < j; i, j = i+1, j-1 {
+		slc[i], slc[j] = slc[j], slc[i]
+	}
+	return slc
 }
 
 

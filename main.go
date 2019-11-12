@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	_ "github.com/lib/pq"
 	"github.com/maxtaylordavies/PersonalSite/repository"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -96,15 +97,12 @@ func registerRoutes(db *sql.DB) http.Handler {
 			return
 		}
 
-		postr := repository.PostRepository{db}
-		post, err := postr.One(id)
+		f, err := ioutil.ReadFile("./posts/" + id + ".html")
 		if err != nil {
-			log.Println(err)
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-
-		_ = tpl.ExecuteTemplate(w, "post.gohtml", post)
+		w.Write([]byte(f))
 	})
 
 	mux.HandleFunc("/project", func(w http.ResponseWriter, r *http.Request) {
@@ -116,14 +114,12 @@ func registerRoutes(db *sql.DB) http.Handler {
 			return
 		}
 
-		projr := repository.ProjectRepository{db}
-		project, err := projr.One(id)
+		f, err := ioutil.ReadFile("./projects/" + id + ".html")
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-
-		_ = tpl.ExecuteTemplate(w, "project.gohtml", project)
+		w.Write([]byte(f))
 	})
 
 	return mux

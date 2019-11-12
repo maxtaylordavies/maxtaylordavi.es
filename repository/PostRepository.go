@@ -2,6 +2,10 @@ package repository
 
 import (
 	"database/sql"
+	"github.com/PuerkitoBio/goquery"
+	"os"
+	"path/filepath"
+	"strconv"
 	"time"
 )
 
@@ -19,39 +23,55 @@ type Post struct {
 func (pr * PostRepository) All() ([]Post, error) {
 	var posts []Post
 
-	rows, err := pr.DatabaseConnection.Query(`SELECT * FROM posts`)
-	if err != nil {
-		return posts, err
-	}
-
-	for rows.Next() {
-		p := Post{}
-		if err := rows.Scan(&p.Id, &p.Title, &p.Body, &p.CreatedAt); err != nil {
-			return posts, err
+	err := filepath.Walk("./posts", func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() || info.Name() == ".DS_Store" {
+			return nil
 		}
-		posts = append(posts, p)
-	}
 
-	return posts, nil
+		r, err := os.Open(path)
+		doc, err := goquery.NewDocumentFromReader(r)
+
+		if err != nil {
+			return err
+		}
+
+		str := info.Name()
+		idStr := str[0]
+		id, _ := strconv.Atoi(string(idStr))
+
+		date, err := time.Parse("2006-01-02", doc.Find("p").Text()[:10])
+		if err != nil {
+			return err
+		}
+
+		posts = append(posts, Post{
+			id,
+			doc.Find("h1").Text(),
+			doc.Find("p").Text()[10:],
+			date,
+		})
+
+		return nil
+	})
+
+	return reversePostSlice(posts), err
 }
 
 func (pr * PostRepository) Recent() ([]Post, error) {
-	var posts []Post
+	var recentPosts []Post
 
-	rows, err := pr.DatabaseConnection.Query(`SELECT * FROM posts ORDER BY id DESC limit 3`)
+	allPosts, err := pr.All()
 	if err != nil {
-		return posts, err
+		return recentPosts, err
 	}
 
-	for rows.Next() {
-		p := Post{}
-		if err := rows.Scan(&p.Id, &p.Title, &p.Body, &p.CreatedAt); err != nil {
-			return posts, err
-		}
-		posts = append(posts, p)
+	if len(allPosts) > 3 {
+		recentPosts = allPosts[:3]
+	} else {
+		recentPosts = allPosts
 	}
 
-	return posts, nil
+	return recentPosts, nil
 }
 
 func (pr * PostRepository) One(id string) (Post, error) {
@@ -63,4 +83,11 @@ func (pr * PostRepository) One(id string) (Post, error) {
 	}
 
 	return post, nil
+}
+
+func reversePostSlice(slc []Post) []Post {
+	for i, j := 0, len(slc)-1; i < j; i, j = i+1, j-1 {
+		slc[i], slc[j] = slc[j], slc[i]
+	}
+	return slc
 }
