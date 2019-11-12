@@ -122,6 +122,15 @@ func registerRoutes(db *sql.DB) http.Handler {
 		w.Write([]byte(f))
 	})
 
+	mux.HandleFunc("/cv", func(w http.ResponseWriter, r *http.Request) {
+		f, err := ioutil.ReadFile("./CV.pdf")
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		w.Write([]byte(f))
+	})
+
 	return mux
 }
 
