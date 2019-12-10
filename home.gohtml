@@ -14,9 +14,26 @@
             overflow: scroll;
         }
 
+        .banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ff5890;
+            font-family: "Roboto Mono for Powerline";
+        }
+
+        .banner-link {
+            color: white;
+        }
+
         .header {
             position: absolute;
-            top: 20px;
+            top: 50px;
             left: 20px;
             width: 275px;
             display: flex;
@@ -39,7 +56,17 @@
         }
 
         .recent-projects {
-            margin-bottom: 126px
+            margin-bottom: 126px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .recent-posts {
+            /*margin-bottom: 126px;*/
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .list-title {
@@ -48,29 +75,63 @@
             margin-bottom: 15px;
         }
 
-        .list {
+        .project-list {
+            padding: 0;
             margin: 0;
             display: flex;
             flex-direction: column;
+            list-style: none;
+        }
+
+        .post-list {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
         }
 
         .list-item {
             font-size: 20pt;
             color: #808080;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            margin-top: 10px;
         }
 
         .list-item-link {
-            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 18pt;
             color: #808080;
-            margin-bottom: 18px;
+            margin-bottom: 7px;
+            margin-top: 7px;
+            margin-left: 10px;
+        }
+
+        .post-list-item {
+            font-size: 20pt;
+            color: #808080;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .post-list-item-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18pt;
+            color: #808080;
+            margin-bottom: 7px;
+            margin-top: 7px;
         }
 
         .see-more {
             font-size: 10pt;
             color: black;
-            margin-left: 18px;
+            margin-top: 10px;
         }
 
         .copyright {
@@ -84,11 +145,18 @@
         .list-item-title {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            /*justify-content: space-between;*/
             align-items: flex-start;
+        }
+
+        .dashes {
+            color: grey;
         }
     </style>
 </head>
+<div class="banner">
+    <a class="banner-link" href="mailto:maxtaylordavies@gmail.com">Currently seeking an internship for summer 2020!</a>
+</div>
 <body>
     <div class="container">
         <div class="header">
@@ -125,25 +193,29 @@
         <div>
             <div class="recent-projects">
                 <h3 class="list-title">Recent projects</h3>
-                <ul class="list">
+                <span class="dashes">-------------------------------</span>
+                <ul class="project-list">
                     {{range .Projects}}
                     <li class="list-item">
                         <div class="list-item-title">
-                            <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
                             <img height="40" width="40" src={{.ThumbnailPath}} />
+                            <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
                         </div>
                     </li>
+                    <span class="dashes">-------------------------------</span>
                     {{end}}
                 </ul>
                 <a class="see-more" href="/projects">see more ></a>
             </div>
             <div class="recent-posts">
                 <h3 class="list-title">Recent posts</h3>
-                <ul class="list">
+                <span class="dashes">-------------------------------</span>
+                <ul class="post-list">
                     {{range .Posts}}
-                        <li class="list-item">
-                            <a class="list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
+                        <li class="post-list-item">
+                            <a class="post-list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
                         </li>
+                    <span class="dashes">-------------------------------</span>
                     {{end}}
                 </ul>
                 <a class="see-more" href="/posts">see more ></a>
