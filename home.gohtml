@@ -193,7 +193,7 @@
         <div>
             <div class="recent-projects">
                 <h3 class="list-title">Recent projects</h3>
-                <span class="dashes">-------------------------------</span>
+                <span class="dashes">------------------------------</span>
                 <ul class="project-list">
                     {{range .Projects}}
                     <li class="list-item">
@@ -202,20 +202,20 @@
                             <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
                         </div>
                     </li>
-                    <span class="dashes">-------------------------------</span>
+                    <span class="dashes">------------------------------</span>
                     {{end}}
                 </ul>
                 <a class="see-more" href="/projects">see more ></a>
             </div>
             <div class="recent-posts">
                 <h3 class="list-title">Recent posts</h3>
-                <span class="dashes">-------------------------------</span>
+                <span class="dashes">------------------------------</span>
                 <ul class="post-list">
                     {{range .Posts}}
                         <li class="post-list-item">
                             <a class="post-list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
                         </li>
-                    <span class="dashes">-------------------------------</span>
+                    <span class="dashes">------------------------------</span>
                     {{end}}
                 </ul>
                 <a class="see-more" href="/posts">see more ></a>
