@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	_ "github.com/lib/pq"
+	"github.com/maxtaylordavies/PersonalSite/insert"
 	"github.com/maxtaylordavies/PersonalSite/repository"
 	"io"
 	"io/ioutil"
@@ -98,7 +99,15 @@ func registerRoutes(db *sql.DB) http.Handler {
 			return
 		}
 
+		err := insert.AddLinksToPost(id)
+		if err != nil {
+			log.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
 		f, err := ioutil.ReadFile("./posts/" + id + ".html")
+
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
@@ -112,6 +121,13 @@ func registerRoutes(db *sql.DB) http.Handler {
 		id := r.URL.Query().Get("id")
 		if id == "" {
 			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		err := insert.AddLinksToProject(id)
+		if err != nil {
+			log.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 
