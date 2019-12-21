@@ -11,14 +11,28 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <style>
+        hr {
+            color: #9147ff;
+            background-color: #9147ff;
+            display: block;
+            margin: 0.5em auto;
+            border-style: inset;
+            border-width: 1px;
+            height: 2px;
+            width: 100%;
+        }
+
         .container {
             display: flex;
-            width: 100vw;
-            height: 100vh;
+            flex-direction: column;
+            width: 99vw;
+            height: 97vh;
             justify-content: center;
             align-items: center;
             font-family: "Roboto Mono for Powerline";
             overflow: scroll;
+            margin: 0;
+            padding: 0;
         }
 
         .banner {
@@ -38,31 +52,51 @@
             color: white;
         }
 
-        .header {
-            position: absolute;
-            top: 50px;
-            left: 20px;
-            width: 275px;
-            display: flex;
-            flex-direction: column;
-        }
-
         .name {
-            font-size: 7pt;
+            font-size: 24pt;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .bio {
             color: #808080;
-            font-size: 10pt;
-            margin-top: 0;
+            font-size: 12pt;
+            margin-top: 10px;
         }
 
         .contact-link {
+            display: inline-block;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100px;
             font-size: 10pt;
-            color: black;
+            color: white;
+            background-color: #9147ff;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.5s
+        }
+
+        .contact-link:hover {
+            background-color: #772ce8;
+        }
+
+        .me {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+            margin-bottom: 25px;
+        }
+
+        .stuff {
+            display: flex;
+            width: 45%;
+            justify-content: space-between;
         }
 
         .recent-projects {
+            width: 45%;
             margin-bottom: 126px;
             display: flex;
             flex-direction: column;
@@ -70,6 +104,7 @@
         }
 
         .recent-posts {
+            width: 45%;
             /*margin-bottom: 126px;*/
             display: flex;
             flex-direction: column;
@@ -79,7 +114,19 @@
         .list-title {
             font-size: 24pt;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: black;
+            margin-top: 16px;
+        }
+
+        .list-title[descr]::after {
+            content: attr(descr);
+            transition: 0.5s;
+        }
+
+        .list-title:hover::after {
+            content: "See more >";
         }
 
         .project-list {
@@ -88,6 +135,7 @@
             display: flex;
             flex-direction: column;
             list-style: none;
+            width: 100%;
         }
 
         .post-list {
@@ -96,6 +144,7 @@
             display: flex;
             flex-direction: column;
             list-style: none;
+            width: 100%;
         }
 
         .list-item {
@@ -166,25 +215,9 @@
 </div>
 <body>
     <div class="container">
-        <div class="header">
-            <pre class="name">
-  __  __
- |  \/  |
- | \  / | __ ___  __
- | |\/| |/ _` \ \/ /
- | |  | | (_| |>  <
- |_|__|_|\__,_/_/\_\
- |__   __|        | |
-    | | __ _ _   _| | ___  _ __    ______
-    | |/ _` | | | | |/ _ \| '__|  |______|
-    | | (_| | |_| | | (_) | |
-  __|_|\__,_|\__, |_|\___/|_|
- |  __ \      __/ | (_)
- | |  | | __ |___/ ___  ___  ___
- | |  | |/ _` \ \ / / |/ _ \/ __|
- | |__| | (_| |\ V /| |  __/\__ \
- |_____/ \__,_| \_/ |_|\___||___/
-            </pre>
+        <div class="me">
+            <h3 class="name">Max Taylor-Davies</h3>
+            <hr>
             <p class="bio">
                 I am a full-stack developer
                 and undergraduate bioengineering
@@ -197,10 +230,10 @@
                 <a class="contact-link" href="/cv" target="_blank">cv</a>
             </div>
         </div>
-        <div>
+        <div class="stuff">
             <div class="recent-projects">
-                <h3 class="list-title">Recent projects</h3>
-                <span class="dashes">------------------------------</span>
+                <a href="/projects" class="list-title" descr="Recent Projects"></a>
+                <hr>
                 <ul class="project-list">
                     {{range .Projects}}
                     <li class="list-item">
@@ -209,23 +242,23 @@
                             <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
                         </div>
                     </li>
-                    <span class="dashes">------------------------------</span>
+                    <hr>
                     {{end}}
                 </ul>
-                <a class="see-more" href="/projects">see more ></a>
+{{/*                <a class="see-more" href="/projects">see more ></a>*/}}
             </div>
             <div class="recent-posts">
-                <h3 class="list-title">Recent posts</h3>
-                <span class="dashes">------------------------------</span>
+                <a href="/posts" class="list-title" descr="Recent Posts"></a>
+                <hr>
                 <ul class="post-list">
                     {{range .Posts}}
                         <li class="post-list-item">
                             <a class="post-list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
                         </li>
-                    <span class="dashes">------------------------------</span>
+                        <hr>
                     {{end}}
                 </ul>
-                <a class="see-more" href="/posts">see more ></a>
+{{/*                <a class="see-more" href="/posts">see more ></a>*/}}
             </div>
         </div>
 {{/*        <p class="copyright">© 2019 Max Taylor-Davies</p>*/}}
