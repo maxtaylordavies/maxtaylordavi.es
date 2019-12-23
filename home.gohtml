@@ -122,11 +122,25 @@
 
         .list-title[descr]::after {
             content: attr(descr);
-            transition: 0.5s;
+            /*transition: 0.5s;*/
         }
 
         .list-title:hover::after {
             content: "See more >";
+            /*background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);*/
+            background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-animation: hue 2s infinite linear;
+        }
+
+        @-webkit-keyframes hue {
+            from {
+                -webkit-filter: hue-rotate(0deg);
+            }
+            to {
+                -webkit-filter: hue-rotate(-360deg);
+            }
         }
 
         .project-list {
