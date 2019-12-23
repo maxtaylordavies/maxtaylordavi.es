@@ -75,11 +75,13 @@
             border-radius: 5px;
             text-align: center;
             text-decoration: none;
-            transition: 0.5s
+            /*transition: 0.5s*/
         }
 
         .contact-link:hover {
-            background-color: #772ce8;
+            /*background-color: #772ce8;*/
+            background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);
+            -webkit-animation: hue 3s infinite linear;
         }
 
         .me {
@@ -122,16 +124,14 @@
 
         .list-title[descr]::after {
             content: attr(descr);
-            /*transition: 0.5s;*/
         }
 
         .list-title:hover::after {
             content: "See more >";
-            /*background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);*/
-            background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+            background-image: -webkit-linear-gradient(0deg, #f35626, #feab3a);
             -webkit-background-clip: text;
             color: transparent;
-            -webkit-animation: hue 2s infinite linear;
+            -webkit-animation: hue 3s infinite linear;
         }
 
         @-webkit-keyframes hue {
