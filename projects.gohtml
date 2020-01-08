@@ -43,12 +43,19 @@
         .title {
             font-size: 42pt;
             font-weight: bold;
-            margin-top: 100px;
+            margin-top: 60px;
             margin-bottom: 0;
+            text-underline: none;
+            border-bottom: 10px solid #9147ff;
+            padding-bottom: 5px;
+
         }
         .list {
             margin-top: 60px;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .list-item {
             margin-bottom: 20px;
@@ -85,8 +92,8 @@
 <div class="container">
     <div class='nav-links'><a class='nav-link' href='/'>home</a></div>
     <div class="body">
-        <h1 class="title">All Projects</h1>
-        <hr>
+        <p class="title">All Projects</p>
+{{/*        <hr>*/}}
         <ul class="list">
             {{range .}}
                 <div class="list-item">

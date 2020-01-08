@@ -43,6 +43,8 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 		idStr := str[0]
 		id, _ := strconv.Atoi(string(idStr))
 
+		log.Println(doc.Find("p").Text())
+
 		projects = append(projects, Project{
 			id,
 			doc.Find("h1").Text(),

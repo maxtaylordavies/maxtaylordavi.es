@@ -44,7 +44,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #9147ff;
+            /*background-color: #9147ff;*/
+            background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
         }
 
@@ -120,6 +121,8 @@
             text-decoration: none;
             color: black;
             margin-top: 16px;
+            border-bottom: 7px solid #9147ff;
+            padding-bottom: 5px;
         }
 
         .list-title[descr]::after {
@@ -238,7 +241,6 @@
         <div class="stuff">
             <div class="recent-projects">
                 <a href="/projects" class="list-title" descr="Recent Projects"></a>
-                <hr>
                 <ul class="project-list">
                     {{range .Projects}}
                     <li class="list-item">
@@ -254,7 +256,6 @@
             </div>
             <div class="recent-posts">
                 <a href="/posts" class="list-title" descr="Recent Posts"></a>
-                <hr>
                 <ul class="post-list">
                     {{range .Posts}}
                         <li class="post-list-item">

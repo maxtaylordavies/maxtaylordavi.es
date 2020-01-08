@@ -43,16 +43,19 @@
         .title {
             font-size: 42pt;
             font-weight: bold;
-            margin-top: 100px;
+            margin-top: 60px;
             margin-bottom: 0;
+            text-underline: none;
+            border-bottom: 10px solid #9147ff;
+            padding-bottom: 5px;
         }
         .list {
             margin-top: 60px;
             padding: 0
         }
         .list-item {
-            width: 350px;
-            margin-bottom: 38px;
+            width: 550px;
+            margin-bottom: 30px;
         }
         .date-title {
             display: flex;
@@ -93,8 +96,7 @@
 <div class="container">
     <div class='nav-links'><a class='nav-link' href='/'>home</a></div>
     <div class="body">
-        <h1 class="title">All Posts</h1>
-        <hr>
+        <p class="title">All Posts</p>
         <ul class="list">
             {{range .}}
                 <div class="list-item">
