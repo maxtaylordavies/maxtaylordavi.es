@@ -55,7 +55,7 @@
         .name {
             font-size: 28pt;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
 
         .bio {
@@ -164,8 +164,6 @@
         .list-item {
             font-size: 20pt;
             color: #808080;
-            margin-bottom: 10px;
-            margin-top: 10px;
         }
 
         .list-item-link {
@@ -176,14 +174,11 @@
             color: #808080;
             margin-bottom: 7px;
             margin-top: 7px;
-            margin-left: 10px;
         }
 
         .post-list-item {
             font-size: 20pt;
             color: #808080;
-            margin-bottom: 10px;
-            margin-top: 10px;
             display: flex;
             justify-content: flex-start;
         }
@@ -231,7 +226,6 @@
     <div class="container">
         <div class="me">
             <h3 class="name">Hi, I'm Max! 👋</h3>
-            <hr>
             <p class="bio">
                 I am a full-stack developer and current MEng student in the Imperial College London Bioengineering department. Feel free to say hi!
             </p>
@@ -249,11 +243,11 @@
                     {{range .Projects}}
                     <li class="list-item">
                         <div class="list-item-title">
-                            <img height="40" width="40" src={{.ThumbnailPath}} />
+{{/*                            <img height="40" width="40" src={{.ThumbnailPath}} />*/}}
                             <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
                         </div>
                     </li>
-                    <hr>
+{{/*                    <hr>*/}}
                     {{end}}
                 </ul>
 {{/*                <a class="see-more" href="/projects">see more ></a>*/}}
@@ -266,7 +260,7 @@
                         <li class="post-list-item">
                             <a class="post-list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
                         </li>
-                        <hr>
+{{/*                        <hr>*/}}
                     {{end}}
                 </ul>
 {{/*                <a class="see-more" href="/posts">see more ></a>*/}}

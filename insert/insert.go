@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"strings"
 )
@@ -17,6 +18,7 @@ func AddLinksToProject(id string) error {
 		return err
 	}
 	if areLinksInProject {
+		log.Println("links are in", fn)
 		return nil
 	}
 
@@ -24,23 +26,22 @@ func AddLinksToProject(id string) error {
 	if err != nil {
 		return err
 	}
-
 	bodyIndex, err := GetLineNum(fn, "</body>")
 	if err != nil {
 		return err
 	}
 
-	err = InsertLine(fn, ".nav-links { position: absolute; top: 15px; left: 15px; }", styleIndex-2)
+	s0 := ".nav-links { position: fixed; top: 0px; left: 0px; padding: 15px; width: 100%; background-color: white; z-index: 100 } "
+	s1 := ".nav-link { display: inline-block; padding-top: 10px; padding-bottom: 10px; width: 100px; font-size: 12pt; color: white; background-color: #9147ff; border-radius: 5px; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; margin-right: 10px; } "
+	s2 := ".nav-link:hover { background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb); -webkit-animation: hue 3s infinite linear; text-decoration: none; } "
+	s3 := "@-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } } "
+	s4 := ".page-title {display: flex; justify-content: center; width: 100%; margin-top: 100px;} "
+	err = InsertLine(fn, s0+s1+s2+s3+s4, styleIndex - 1)
 	if err != nil {
 		return err
 	}
 
-	err = InsertLine(fn, ".nav-link { font-size: 10pt; color: #bda0a0; margin-left: 5px; text-decoration: none; }", styleIndex-1)
-	if err != nil {
-		return err
-	}
-
-	err = InsertLine(fn, "<div class='nav-links'><a class='nav-link' href='https://www.maxtaylordavi.es'><u>home</u></a><a class='nav-link' href='https://www.maxtaylordavi.es/projects'><u>all projects</u></a></div>", bodyIndex-1)
+	err = InsertLine(fn, "<div class='nav-links'><a class='nav-link' href='/'>home</a><a class='nav-link' href='/projects'>all projects</a></div>", bodyIndex)
 	if err != nil {
 		return err
 	}
@@ -63,23 +64,22 @@ func AddLinksToPost(id string) error {
 	if err != nil {
 		return err
 	}
-
 	bodyIndex, err := GetLineNum(fn, "</body>")
 	if err != nil {
 		return err
 	}
 
-	err = InsertLine(fn, ".nav-links { position: absolute; top: 15px; left: 15px; }", styleIndex-2)
+	s0 := ".nav-links { position: fixed; top: 0px; left: 0px; padding: 15px; width: 100%; background-color: white; z-index: 100 } "
+	s1 := ".nav-link { display: inline-block; padding-top: 10px; padding-bottom: 10px; width: 100px; font-size: 12pt; color: white; background-color: #9147ff; border-radius: 5px; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; margin-right: 10px; } "
+	s2 := ".nav-link:hover { background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb); -webkit-animation: hue 3s infinite linear; text-decoration: none; } "
+	s3 := "@-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } } "
+	s4 := ".page-title {display: flex; justify-content: center; width: 100%; margin-top: 100px;} "
+	err = InsertLine(fn, s0+s1+s2+s3+s4, styleIndex - 1)
 	if err != nil {
 		return err
 	}
 
-	err = InsertLine(fn, ".nav-link { font-size: 10pt; color: #bda0a0; margin-left: 5px; text-decoration: none; }", styleIndex-1)
-	if err != nil {
-		return err
-	}
-
-	err = InsertLine(fn, "<div class='nav-links'><a class='nav-link' href='https://www.maxtaylordavi.es'><u>home</u></a><a class='nav-link' href='https://www.maxtaylordavi.es/posts'><u>all posts</u></a></div>", bodyIndex-1)
+	err = InsertLine(fn, "<div class='nav-links'><a class='nav-link' href='/'>home</a><a class='nav-link' href='/posts'>all posts</a></div>", bodyIndex - 1)
 	if err != nil {
 		return err
 	}
