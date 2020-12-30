@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"crypto/tls"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -166,9 +165,9 @@ func registerRoutes() http.Handler {
 }
 
 func getPort() string {
-	p := os.Getenv("PORT")
-	if p != "" {
-		return ":" + p
+	p := os.Getenv("PRODUCTION")
+	if p == "TRUE" {
+		return ":443"
 	}
 	return ":80"
 }
@@ -177,17 +176,18 @@ func main() {
 	m := &autocert.Manager{
 		Prompt: autocert.AcceptTOS,
 		HostPolicy: func(ctx context.Context, host string) error {
-			allowedHost := "www.maxtaylordavi.es"
-			if host == allowedHost {
-				return nil
-			}
-			return fmt.Errorf("acme/autocert: only %s host is allowed", allowedHost)
+			return nil
+			// allowedHost := "www.maxtaylordavi.es"
+			// if host == allowedHost {
+			// 	return nil
+			// }
+			// return fmt.Errorf("acme/autocert: only %s host is allowed", allowedHost)
 		},
 		Cache: autocert.DirCache("."),
 	}
 
 	server := http.Server{
-		Addr:         ":443",
+		Addr:         getPort(),
 		Handler:      registerRoutes(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
@@ -197,5 +197,9 @@ func main() {
 
 	log.Printf("Listening on port %s...\n", getPort())
 
-	log.Fatal(server.ListenAndServeTLS("", ""))
+	if server.Addr == ":443" {
+		log.Fatal(server.ListenAndServeTLS("", ""))
+	} else {
+		log.Fatal(server.ListenAndServe())
+	}
 }
