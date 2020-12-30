@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"crypto/tls"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -13,6 +16,7 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/maxtaylordavies/PersonalSite/insert"
 	"github.com/maxtaylordavies/PersonalSite/repository"
+	"golang.org/x/crypto/acme/autocert"
 )
 
 var tpl *template.Template
@@ -170,17 +174,28 @@ func getPort() string {
 }
 
 func main() {
-	mux := registerRoutes()
+	m := &autocert.Manager{
+		Prompt: autocert.AcceptTOS,
+		HostPolicy: func(ctx context.Context, host string) error {
+			allowedHost := "www.maxtaylordavi.es"
+			if host == allowedHost {
+				return nil
+			}
+			return fmt.Errorf("acme/autocert: only %s host is allowed", allowedHost)
+		},
+		Cache: autocert.DirCache("."),
+	}
 
 	server := http.Server{
-		Addr:         getPort(),
-		Handler:      mux,
+		Addr:         ":443",
+		Handler:      registerRoutes(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
 		IdleTimeout:  120 * time.Second,
+		TLSConfig:    &tls.Config{GetCertificate: m.GetCertificate},
 	}
 
 	log.Printf("Listening on port %s...\n", getPort())
 
-	log.Fatal(server.ListenAndServe())
+	log.Fatal(server.ListenAndServeTLS("", ""))
 }
