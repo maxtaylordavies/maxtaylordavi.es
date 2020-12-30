@@ -8,7 +8,7 @@ WorkingDirectory=/home/pi/go/src/github.com/maxtaylordavies/PersonalSite/
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
-User=pi
+User=root
 
 [Install]
 WantedBy=multi-user.target
