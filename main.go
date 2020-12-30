@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"io"
 	"io/ioutil"
 	"log"
@@ -35,14 +34,14 @@ func getIntro(body string) string {
 
 var fm = template.FuncMap{"fdate": formatDate, "intro": getIntro}
 
-func registerRoutes(db *sql.DB) http.Handler {
+func registerRoutes() http.Handler {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
-		postr := repository.PostRepository{db}
-		projr := repository.ProjectRepository{db}
+		postr := repository.PostRepository{}
+		projr := repository.ProjectRepository{}
 		recentPosts, err := postr.Recent()
 		if err != nil {
 			log.Fatalln("error getting recent posts: ", err)
@@ -67,7 +66,7 @@ func registerRoutes(db *sql.DB) http.Handler {
 	mux.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
-		postr := repository.PostRepository{db}
+		postr := repository.PostRepository{}
 		posts, err := postr.All()
 		if err != nil {
 			log.Fatalln("error getting recent projects: ", err)
@@ -80,7 +79,7 @@ func registerRoutes(db *sql.DB) http.Handler {
 	mux.HandleFunc("/projects", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
-		projr := repository.ProjectRepository{db}
+		projr := repository.ProjectRepository{}
 		projects, err := projr.All()
 		if err != nil {
 			log.Fatalln("error getting recent projects: ", err)
@@ -171,12 +170,7 @@ func getPort() string {
 }
 
 func main() {
-	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	mux := registerRoutes(db)
+	mux := registerRoutes()
 
 	server := http.Server{
 		Addr:         getPort(),

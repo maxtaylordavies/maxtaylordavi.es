@@ -1,26 +1,25 @@
 package repository
 
 import (
-	"database/sql"
-	"github.com/PuerkitoBio/goquery"
 	"os"
 	"path/filepath"
 	"strconv"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 type PostRepository struct {
-	DatabaseConnection *sql.DB
 }
 
 type Post struct {
-	Id int
-	Title string
-	Body string
+	Id        int
+	Title     string
+	Body      string
 	CreatedAt time.Time
 }
 
-func (pr * PostRepository) All() ([]Post, error) {
+func (pr *PostRepository) All() ([]Post, error) {
 	var posts []Post
 
 	err := filepath.Walk("./posts", func(path string, info os.FileInfo, err error) error {
@@ -57,7 +56,7 @@ func (pr * PostRepository) All() ([]Post, error) {
 	return reversePostSlice(posts), err
 }
 
-func (pr * PostRepository) Recent() ([]Post, error) {
+func (pr *PostRepository) Recent() ([]Post, error) {
 	var recentPosts []Post
 
 	allPosts, err := pr.All()
@@ -72,17 +71,6 @@ func (pr * PostRepository) Recent() ([]Post, error) {
 	}
 
 	return recentPosts, nil
-}
-
-func (pr * PostRepository) One(id string) (Post, error) {
-	var post Post
-
-	err := pr.DatabaseConnection.QueryRow("SELECT * FROM posts where id = $1", id).Scan(&post.Id, &post.Title, &post.Body, &post.CreatedAt)
-	if err != nil {
-		return post, err
-	}
-
-	return post, nil
 }
 
 func reversePostSlice(slc []Post) []Post {

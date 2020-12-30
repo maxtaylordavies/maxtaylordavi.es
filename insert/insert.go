@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 	"strings"
 )
@@ -18,7 +17,6 @@ func AddLinksToProject(id string) error {
 		return err
 	}
 	if areLinksInProject {
-		log.Println("links are in", fn)
 		return nil
 	}
 
@@ -36,7 +34,7 @@ func AddLinksToProject(id string) error {
 	s2 := ".nav-link:hover { background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb); -webkit-animation: hue 3s infinite linear; text-decoration: none; } "
 	s3 := "@-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } } "
 	s4 := ".page-title {display: flex; justify-content: center; width: 100%; margin-top: 100px;} "
-	err = InsertLine(fn, s0+s1+s2+s3+s4, styleIndex - 1)
+	err = InsertLine(fn, s0+s1+s2+s3+s4, styleIndex-1)
 	if err != nil {
 		return err
 	}
@@ -74,12 +72,12 @@ func AddLinksToPost(id string) error {
 	s2 := ".nav-link:hover { background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb); -webkit-animation: hue 3s infinite linear; text-decoration: none; } "
 	s3 := "@-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } } "
 	s4 := ".page-title {display: flex; justify-content: center; width: 100%; margin-top: 100px;} "
-	err = InsertLine(fn, s0+s1+s2+s3+s4, styleIndex - 1)
+	err = InsertLine(fn, s0+s1+s2+s3+s4, styleIndex-1)
 	if err != nil {
 		return err
 	}
 
-	err = InsertLine(fn, "<div class='nav-links'><a class='nav-link' href='/'>home</a><a class='nav-link' href='/posts'>all posts</a></div>", bodyIndex - 1)
+	err = InsertLine(fn, "<div class='nav-links'><a class='nav-link' href='/'>home</a><a class='nav-link' href='/posts'>all posts</a></div>", bodyIndex-1)
 	if err != nil {
 		return err
 	}
