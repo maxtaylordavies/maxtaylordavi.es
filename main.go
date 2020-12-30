@@ -2,9 +2,7 @@ package main
 
 import (
 	"database/sql"
-	_ "github.com/lib/pq"
-	"github.com/maxtaylordavies/PersonalSite/insert"
-	"github.com/maxtaylordavies/PersonalSite/repository"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -13,6 +11,10 @@ import (
 	"strings"
 	"text/template"
 	"time"
+
+	_ "github.com/lib/pq"
+	"github.com/maxtaylordavies/PersonalSite/insert"
+	"github.com/maxtaylordavies/PersonalSite/repository"
 )
 
 var tpl *template.Template
@@ -51,11 +53,11 @@ func registerRoutes(db *sql.DB) http.Handler {
 			log.Fatalln("error getting recent projects: ", err)
 		}
 
-		data := struct{
-			Posts []repository.Post
+		data := struct {
+			Posts    []repository.Post
 			Projects []repository.Project
 		}{
-			Posts: recentPosts,
+			Posts:    recentPosts,
 			Projects: recentProjects,
 		}
 
@@ -184,6 +186,8 @@ func main() {
 		WriteTimeout: 5 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
+
+	fmt.Fprintln("listening on port %s...", getPort())
 
 	log.Fatal(server.ListenAndServe())
 }
