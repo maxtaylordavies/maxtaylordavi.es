@@ -1,0 +1,14 @@
+[Unit]
+Description=personal site
+After=network.target
+
+[Service]
+ExecStart=go build && ./PersonalSite
+WorkingDirectory=/home/pi/go/src/github.com/maxtaylordavies/PersonalSite
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
