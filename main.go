@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -187,7 +186,7 @@ func main() {
 		IdleTimeout:  120 * time.Second,
 	}
 
-	fmt.Fprintln("listening on port %s...", getPort())
+	log.Printf("Listening on port %s...\n", getPort())
 
 	log.Fatal(server.ListenAndServe())
 }
