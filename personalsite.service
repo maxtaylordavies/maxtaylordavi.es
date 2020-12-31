@@ -3,7 +3,7 @@ Description=personal site
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/go get && /usr/bin/go build && /home/pi/go/src/github.com/maxtaylordavies/PersonalSite/PersonalSite
+ExecStart=/usr/bin/go get . && /usr/bin/go build && /home/pi/go/src/github.com/maxtaylordavies/PersonalSite/PersonalSite
 WorkingDirectory=/home/pi/go/src/github.com/maxtaylordavies/PersonalSite/
 StandardOutput=inherit
 StandardError=inherit
