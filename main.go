@@ -164,15 +164,8 @@ func registerRoutes() http.Handler {
 	return mux
 }
 
-func getPort() string {
-	p := os.Getenv("PRODUCTION")
-	if p == "TRUE" {
-		return ":443"
-	}
-	return ":80"
-}
-
 func main() {
+
 	m := &autocert.Manager{
 		Prompt: autocert.AcceptTOS,
 		HostPolicy: func(ctx context.Context, host string) error {
@@ -187,19 +180,22 @@ func main() {
 	}
 
 	server := http.Server{
-		Addr:         getPort(),
+		Addr: ":https",
+		TLSConfig: &tls.Config{
+			GetCertificate: m.GetCertificate,
+		},
 		Handler:      registerRoutes(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
 		IdleTimeout:  120 * time.Second,
-		TLSConfig:    &tls.Config{GetCertificate: m.GetCertificate},
 	}
 
-	log.Printf("Listening on port %s...\n", getPort())
+	go func() {
+		// serve HTTP, which will redirect automatically to HTTPS
+		h := m.HTTPHandler(nil)
+		log.Fatal(http.ListenAndServe(":http", h))
+	}()
 
-	if server.Addr == ":443" {
-		log.Fatal(server.ListenAndServeTLS("", ""))
-	} else {
-		log.Fatal(server.ListenAndServe())
-	}
+	// serve HTTPS!
+	log.Fatal(server.ListenAndServeTLS("", ""))
 }
