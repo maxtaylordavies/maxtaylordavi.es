@@ -18,6 +18,7 @@ type Post struct {
 	Title     string
 	Body      string
 	CreatedAt time.Time
+	Tags      []string
 }
 
 func (pr *PostRepository) All() ([]Post, error) {
@@ -39,9 +40,16 @@ func (pr *PostRepository) All() ([]Post, error) {
 		idStr := str[0]
 		id, _ := strconv.Atoi(string(idStr))
 
-		date, err := time.Parse("2006-01-02", doc.Find("p").Text()[:10])
+		pText := doc.Find("p").Text()
+
+		date, err := time.Parse("2006-01-02", pText[:10])
 		if err != nil {
 			return err
+		}
+
+		var tags []string
+		if len(pText) > 10 {
+			tags = strings.Split(pText[11:], " ")
 		}
 
 		posts = append(posts, Post{
@@ -49,6 +57,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 			strings.ToLower(doc.Find("h1").Text()),
 			doc.Find("p").Text()[10:],
 			date,
+			tags,
 		})
 
 		return nil

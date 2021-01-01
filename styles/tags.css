@@ -1,0 +1,26 @@
+.tag {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #575757;
+}
+
+.tag.university {
+    
+}
+
+.tag.side {
+
+}
+
+.tag.tech {
+
+}
+
+.tag.culture {
+    background-color: #D0FFE5;
+}
+
+.tag.personal {
+    background-color: #FFCE6B;
+}
