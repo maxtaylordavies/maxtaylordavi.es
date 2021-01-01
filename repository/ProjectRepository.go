@@ -13,11 +13,10 @@ type ProjectRepository struct {
 }
 
 type Project struct {
-	Id            int
-	Title         string
-	Body          string
-	Status        string
-	ThumbnailPath string
+	Id     int
+	Title  string
+	Body   string
+	Status string
 }
 
 func (pr *ProjectRepository) All() ([]Project, error) {
@@ -44,7 +43,6 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 			strings.ToLower(doc.Find("h1").Text()),
 			doc.Find("p").Text()[19:],
 			"Done",
-			"images/" + strings.ToLower(doc.Find("h1").Text()) + "0.png",
 		})
 
 		return nil

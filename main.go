@@ -13,7 +13,6 @@ import (
 	"text/template"
 	"time"
 
-	_ "github.com/lib/pq"
 	"github.com/maxtaylordavies/PersonalSite/insert"
 	"github.com/maxtaylordavies/PersonalSite/repository"
 	"golang.org/x/crypto/acme/autocert"
@@ -22,21 +21,14 @@ import (
 var tpl *template.Template
 
 func init() {
-	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("home.gohtml", "projects.gohtml", "posts.gohtml", "project.gohtml", "post.gohtml"))
+	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("home.gohtml", "projects.gohtml", "posts.gohtml"))
 }
 
 func formatDate(t time.Time) string {
 	return t.Format("2006-01-02")
 }
 
-func getIntro(body string) string {
-	slc := strings.SplitAfter(body, ". ")[0:3]
-	str := strings.Join(slc, "")
-	str = str[0:len(str)-1] + ".."
-	return str
-}
-
-var fm = template.FuncMap{"fdate": formatDate, "intro": getIntro}
+var fm = template.FuncMap{"fdate": formatDate}
 
 func registerRoutes() http.Handler {
 	mux := http.NewServeMux()
