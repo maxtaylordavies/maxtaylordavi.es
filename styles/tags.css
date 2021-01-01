@@ -1,5 +1,7 @@
 .tags {
     padding: 0;
+    display: flex;
+    flex-direction: row;
 }
 
 .tag {
@@ -19,7 +21,7 @@
 }
 
 .tag.tech {
-
+    background-color: #BABFE9;
 }
 
 .tag.culture {
