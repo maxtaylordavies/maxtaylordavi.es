@@ -42,6 +42,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		id, _ := strconv.Atoi(string(idStr))
 
 		pText := doc.Find("p").Text()
+		fmt.Println(pText)
 
 		date, err := time.Parse("2006-01-02", pText[:10])
 		if err != nil {
@@ -52,8 +53,6 @@ func (pr *PostRepository) All() ([]Post, error) {
 		if len(pText) > 10 {
 			tags = strings.Split(pText[11:], " ")
 		}
-
-		fmt.Println(tags)
 
 		posts = append(posts, Post{
 			id,
