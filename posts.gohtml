@@ -55,14 +55,12 @@
         }
         .list-item {
             width: 550px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .date-title {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 22px;
         }
         .date-text {
             font-size: 22pt;
@@ -74,17 +72,10 @@
             font-size: 22pt;
             color: black;
             margin: 0;
+            text-decoration: none;
         }
-        .post-intro {
-            font-size: 11pt;
-            color: #808080;
-            margin: 0;
-        }
-        .copyright {
-            font-size: 10pt;
-            color: #808080;
-            margin-top: 12px;
-            margin-bottom: 20px;
+        .post-title:hover {
+            text-decoration: underline;
         }
         @-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } }
         .nav-link:hover { background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb); -webkit-animation: hue 3s infinite linear; text-decoration: none; }
@@ -101,13 +92,12 @@
             {{range .}}
                 <div class="list-item">
                     <div class="date-title">
-                        <P class="date-text">{{.CreatedAt | fdate}}</P>
+                        <p class="date-text">{{.CreatedAt | fdate}}</p>
                         <a class="post-title" href="/post?id={{.Id}}">{{.Title}}</a>
                     </div>
                 </div>
             {{end}}
         </ul>
-{{/*        <p class="copyright">© 2019 Max Taylor-Davies</p>*/}}
     </div>
 </div>
 </body>
