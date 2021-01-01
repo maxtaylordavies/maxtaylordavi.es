@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -52,8 +51,6 @@ func (pr *PostRepository) All() ([]Post, error) {
 		if len(pText) > 10 {
 			tags = strings.Split(pText[11:], " ")
 		}
-
-		fmt.Println(tags)
 
 		posts = append(posts, Post{
 			id,

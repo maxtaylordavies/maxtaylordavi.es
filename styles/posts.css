@@ -49,6 +49,9 @@ hr {
 .list-item {
     width: 550px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .date-title {
     display: flex;
