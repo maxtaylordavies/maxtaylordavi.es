@@ -26,7 +26,7 @@ func init() {
 }
 
 func formatDate(t time.Time) string {
-	return t.Format("02-01-2006")
+	return t.Format("2006-01-02")
 }
 
 func getIntro(body string) string {
