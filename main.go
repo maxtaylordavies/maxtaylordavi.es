@@ -150,8 +150,18 @@ func registerRoutes() http.Handler {
 			log.Fatal(err) // perhaps handle this nicer
 		}
 		defer img.Close()
-		w.Header().Set("Content-Type", "image/png") // <-- set the content-type header
+		w.Header().Set("Content-Type", "image/png")
 		io.Copy(w, img)
+	})
+
+	mux.HandleFunc("/styles/", func(w http.ResponseWriter, r *http.Request) {
+		css, err := os.Open("." + strings.TrimSuffix(r.URL.Path, "/"))
+		if err != nil {
+			log.Fatal(err) // perhaps handle this nicer
+		}
+		defer css.Close()
+		w.Header().Set("Content-Type", "text/css")
+		io.Copy(w, css)
 	})
 
 	return mux
