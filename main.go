@@ -64,6 +64,7 @@ func registerRoutes() http.Handler {
 
 		postr := repository.PostRepository{}
 		posts, err := postr.All()
+		fmt.Println(posts)
 		if err != nil {
 			log.Fatalln("error getting recent projects: ", err)
 		}
