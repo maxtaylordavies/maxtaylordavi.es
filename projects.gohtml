@@ -55,15 +55,17 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
         .list-item {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .project-title {
-            font-size: 22pt;
+            font-size: 20pt;
             color: black;
-            margin-bottom: 22px;
+            text-decoration: none;
+        }
+        .project-title:hover {
+            text-decoration: underline;
         }
         .project-intro {
             font-size: 11pt;
@@ -93,7 +95,6 @@
     <div class='nav-links'><a class='nav-link' href='/'>home</a></div>
     <div class="body">
         <p class="title">All Projects</p>
-{{/*        <hr>*/}}
         <ul class="list">
             {{range .}}
                 <div class="list-item">
@@ -101,7 +102,6 @@
                 </div>
             {{end}}
         </ul>
-{{/*        <p class="copyright">© 2019 Max Taylor-Davies</p>*/}}
     </div>
 </div>
 </body>
