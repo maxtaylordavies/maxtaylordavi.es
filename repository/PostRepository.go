@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
@@ -45,7 +46,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 
 		posts = append(posts, Post{
 			id,
-			doc.Find("h1").Text(),
+			strings.ToLower(doc.Find("h1").Text()),
 			doc.Find("p").Text()[10:],
 			date,
 		})

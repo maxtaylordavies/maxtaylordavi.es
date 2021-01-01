@@ -41,7 +41,7 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 
 		projects = append(projects, Project{
 			id,
-			doc.Find("h1").Text(),
+			strings.ToLower(doc.Find("h1").Text()),
 			doc.Find("p").Text()[19:],
 			"Done",
 			"images/" + strings.ToLower(doc.Find("h1").Text()) + "0.png",
