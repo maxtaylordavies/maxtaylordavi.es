@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"crypto/tls"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -169,12 +170,11 @@ func main() {
 	m := &autocert.Manager{
 		Prompt: autocert.AcceptTOS,
 		HostPolicy: func(ctx context.Context, host string) error {
-			return nil
-			// allowedHost := "www.maxtaylordavi.es"
-			// if host == allowedHost {
-			// 	return nil
-			// }
-			// return fmt.Errorf("acme/autocert: only %s host is allowed", allowedHost)
+			allowedHost := "www.maxtaylordavi.es"
+			if host == allowedHost {
+				return nil
+			}
+			return fmt.Errorf("acme/autocert: only %s host is allowed", allowedHost)
 		},
 		Cache: autocert.DirCache("."),
 	}
