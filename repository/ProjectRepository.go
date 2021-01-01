@@ -17,6 +17,7 @@ type Project struct {
 	Title  string
 	Body   string
 	Status string
+	Tags   []string
 }
 
 func (pr *ProjectRepository) All() ([]Project, error) {
@@ -38,11 +39,19 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 		idStr := str[0]
 		id, _ := strconv.Atoi(string(idStr))
 
+		lines := strings.Split(doc.Find("p").Text(), "\n")
+
+		var tags []string
+		if len(lines[0]) > 21 {
+			tags = strings.Split(lines[0][22:], " ")
+		}
+
 		projects = append(projects, Project{
 			id,
 			strings.ToLower(doc.Find("h1").Text()),
-			doc.Find("p").Text()[19:],
+			strings.Join(lines[1:len(lines)], "\n"),
 			"Done",
+			tags,
 		})
 
 		return nil

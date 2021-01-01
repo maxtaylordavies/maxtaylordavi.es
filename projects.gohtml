@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Projects</title>
     <link rel="stylesheet" href="/styles/projects.css">
+    <link rel="stylesheet" href="/styles/tags.css">
 </head>
 <body>
 <div class="container">
@@ -14,6 +15,11 @@
             {{range .}}
                 <div class="list-item">
                     <a class="project-title" href="/project?id={{.Id}}">{{.Title}}</a>
+                    <ul class="tags">
+                        {{range .Tags}}
+                            <div class="tag {{.}}">{{.}}</div>
+                        {{end}}
+                    </ul>
                 </div>
             {{end}}
         </ul>
