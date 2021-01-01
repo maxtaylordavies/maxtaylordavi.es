@@ -17,9 +17,11 @@
                         <p class="date-text">{{.CreatedAt | fdate}}</p>
                         <a class="post-title" href="/post?id={{.Id}}">{{.Title}}</a>
                     </div>
-                    {{range .Tags}}
-                        <div class="tag">{{.}}</div>
-                    {{end}}
+                    <ul>
+                        {{range .Tags}}
+                            <div class="tag">{{.}}</div>
+                        {{end}}
+                    </ul>
                 </div>
             {{end}}
         </ul>
