@@ -16,7 +16,6 @@ type PostRepository struct {
 type Post struct {
 	Id        int
 	Title     string
-	Body      string
 	CreatedAt time.Time
 	Tags      []string
 }
@@ -44,14 +43,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		i := strings.Index(s, "<h1>")
 		j := strings.Index(s, "</h1>")
 		title := strings.ToLower(s[i+23 : j])
-
-		// parse body
-		i = strings.Index(s, `</p><p`)
-		fmt.Println("i:", i)
-		tempS := s[i+6:]
-		i = strings.Index(tempS, ">")
-		j = strings.Index(tempS, "</p")
-		body := tempS[i+1 : j]
+		fmt.Println(title)
 
 		// parse date
 		i = strings.Index(s, "<em>")
@@ -64,7 +56,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		var tags []string
 		i = strings.Index(s, "name='tags'")
 		if i != -1 {
-			tempS = s[i:]
+			tempS := s[i:]
 			j := strings.Index(tempS, "'/>")
 			tags = strings.Split(tempS[21:j], " ")
 		}
@@ -72,7 +64,6 @@ func (pr *PostRepository) All() ([]Post, error) {
 		posts = append(posts, Post{
 			id,
 			title,
-			body,
 			date,
 			tags,
 		})
