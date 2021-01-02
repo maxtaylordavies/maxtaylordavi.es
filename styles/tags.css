@@ -1,3 +1,8 @@
+em {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
 .tags {
     padding: 0;
     display: flex;
