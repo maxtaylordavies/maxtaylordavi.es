@@ -50,6 +50,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 
 		var tags []string
 		meta := doc.Find("meta").Text()
+		fmt.Println(meta)
 		i := strings.Index(meta, "name='tags'")
 		if i != -1 {
 			meta = meta[i:]
