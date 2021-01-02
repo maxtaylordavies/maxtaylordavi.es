@@ -46,7 +46,8 @@ func (pr *PostRepository) All() ([]Post, error) {
 		title := strings.ToLower(s[i+23 : j])
 
 		// parse body
-		i = strings.Index(s, "</p><p")
+		i = strings.Index(s, `class="">\n</p><p`)
+		fmt.Println("i:", i)
 		tempS := s[i+6:]
 		i = strings.Index(tempS, ">")
 		j = strings.Index(tempS, "</p")
@@ -68,8 +69,6 @@ func (pr *PostRepository) All() ([]Post, error) {
 			tags = strings.Split(tempS[21:j], " ")
 		}
 
-		fmt.Println(tags)
-
 		posts = append(posts, Post{
 			id,
 			title,
@@ -81,7 +80,6 @@ func (pr *PostRepository) All() ([]Post, error) {
 		return nil
 	})
 
-	fmt.Println(posts)
 	return reversePostSlice(posts), err
 }
 
