@@ -3,6 +3,7 @@ package insert
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -45,6 +46,18 @@ func AddTagsToPostOrProject(id, category string) error {
 
 	i := strings.Index(s, "</head>")
 	s = s[:i] + "<link rel='stylesheet' href='/styles/tags.css'/>" + s[i:]
+
+	i = strings.Index(s, "<em>") + 15
+	j := strings.Index(s, "</em>")
+	tags := strings.Split(s[i:j], " ")
+
+	l := 0
+	for _, tag := range tags {
+		el := fmt.Sprintf("<div class='tag %s'>%s</div>", tag, tag)
+		s = s[:i+l] + el + s[i+l+len(tag):]
+		l += len(el)
+	}
+
 	return ioutil.WriteFile(fn, []byte(s), 0644)
 }
 
