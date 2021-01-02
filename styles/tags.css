@@ -1,6 +1,8 @@
 em {
-    display: flex !important;
-    flex-direction: row !important;
+    font-style: normal !important;
+    color: black;
+    opacity: 30%;
+    font-size: 18px;
 }
 
 .tags {
