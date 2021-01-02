@@ -81,6 +81,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		return nil
 	})
 
+	fmt.Println(posts)
 	return reversePostSlice(posts), err
 }
 
