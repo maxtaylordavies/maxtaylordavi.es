@@ -2,13 +2,12 @@ package repository
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/PuerkitoBio/goquery"
 )
 
 type PostRepository struct {
@@ -30,40 +29,51 @@ func (pr *PostRepository) All() ([]Post, error) {
 			return nil
 		}
 
-		r, err := os.Open(path)
-		doc, err := goquery.NewDocumentFromReader(r)
-
-		if err != nil {
-			return err
-		}
-
-		str := info.Name()
-		idStr := str[0]
+		// parse id
+		fn := info.Name()
+		idStr := fn[0]
 		id, _ := strconv.Atoi(string(idStr))
 
-		pText := strings.Split(doc.Find("p").Text(), "\n")[0]
+		b, err := ioutil.ReadFile(fn)
+		if err != nil {
+			return err
+		}
+		s := string(b)
 
-		date, err := time.Parse("2006-01-02", pText[:10])
+		// parse title
+		i := strings.Index(s, "<h1>")
+		j := strings.Index(s, "</h1>")
+		title := strings.ToLower(s[i+23 : j])
+
+		// parse body
+		i = strings.Index(s, "</p><p")
+		tempS := s[i+6:]
+		i = strings.Index(tempS, ">")
+		j = strings.Index(tempS, "</p")
+		body := tempS[i+1 : j]
+
+		// parse date
+		i = strings.Index(s, "<em>")
+		date, err := time.Parse("2006-01-02", s[i+4:i+14])
 		if err != nil {
 			return err
 		}
 
+		// parse tags
 		var tags []string
-		meta := doc.Find("meta").Text()
-		fmt.Println(doc.Text())
-		i := strings.Index(meta, "name='tags'")
+		i = strings.Index(s, "name='tags'")
 		if i != -1 {
-			meta = meta[i:]
-			j := strings.Index(meta, "'/>")
-			tags = strings.Split(meta[21:j], " ")
+			tempS = s[i:]
+			j := strings.Index(tempS, "'/>")
+			tags = strings.Split(tempS[21:j], " ")
 		}
 
 		fmt.Println(tags)
 
 		posts = append(posts, Post{
 			id,
-			strings.ToLower(doc.Find("h1").Text()),
-			doc.Find("p").Text()[10:],
+			title,
+			body,
 			date,
 			tags,
 		})
