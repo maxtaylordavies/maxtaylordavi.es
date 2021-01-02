@@ -36,6 +36,7 @@ func AddTagsToPostOrProject(id, category string) error {
 	if areTagsThere {
 		return nil
 	}
+
 }
 
 func AddLinksToProject(id string) error {
