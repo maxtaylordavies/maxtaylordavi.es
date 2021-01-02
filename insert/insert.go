@@ -44,10 +44,7 @@ func AddTagsToPostOrProject(id, category string) error {
 	}
 	s := string(b)
 
-	i := strings.Index(s, "</head>")
-	s = s[:i] + "<link rel='stylesheet' href='/styles/tags.css'/>" + s[i:]
-
-	i = strings.Index(s, "<em>") + 15
+	i := strings.Index(s, "<em>") + 15
 	j := strings.Index(s, "</em>")
 	rawTags := strings.Split(s[i:j], " ")
 	styledTags := "<div class='tags'>"
@@ -55,8 +52,11 @@ func AddTagsToPostOrProject(id, category string) error {
 		styledTags += fmt.Sprintf("<div class='tag %s'>%s</div>", tag, tag)
 	}
 	styledTags += "</div>"
-
 	s = s[:i] + styledTags + s[j:]
+
+	i = strings.Index(s, "</head>")
+	s = s[:i] + fmt.Sprintf("<link rel='stylesheet' href='/styles/tags.css'/><meta name='tags' content='%s'/>", strings.Join(rawTags, " ")) + s[i:]
+
 	return ioutil.WriteFile(fn, []byte(s), 0644)
 }
 

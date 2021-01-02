@@ -48,8 +48,12 @@ func (pr *PostRepository) All() ([]Post, error) {
 		}
 
 		var tags []string
-		if len(pText) > 10 {
-			tags = strings.Split(pText[11:], " ")
+		meta := doc.Find("meta").Text()
+		i := strings.Index(meta, "name='tags'")
+		if i != -1 {
+			meta = meta[i:]
+			j := strings.Index(meta, "'/>")
+			tags = strings.Split(meta[21:j], " ")
 		}
 
 		posts = append(posts, Post{
