@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -55,6 +56,8 @@ func (pr *PostRepository) All() ([]Post, error) {
 			j := strings.Index(meta, "'/>")
 			tags = strings.Split(meta[21:j], " ")
 		}
+
+		fmt.Println(tags)
 
 		posts = append(posts, Post{
 			id,
