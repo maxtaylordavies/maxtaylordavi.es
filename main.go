@@ -103,6 +103,13 @@ func registerRoutes() http.Handler {
 			return
 		}
 
+		err = insert.AddTagsToPostOrProject(id, "post")
+		if err != nil {
+			log.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
 		f, err := ioutil.ReadFile("./posts/" + id + ".html")
 
 		if err != nil {
@@ -122,6 +129,13 @@ func registerRoutes() http.Handler {
 		}
 
 		err := insert.AddLinksToProject(id)
+		if err != nil {
+			log.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
+		err = insert.AddTagsToPostOrProject(id, "project")
 		if err != nil {
 			log.Println(err)
 			w.WriteHeader(http.StatusInternalServerError)

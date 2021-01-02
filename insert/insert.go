@@ -37,6 +37,15 @@ func AddTagsToPostOrProject(id, category string) error {
 		return nil
 	}
 
+	b, err := ioutil.ReadFile(fn)
+	if err != nil {
+		return err
+	}
+	s := string(b)
+
+	i := strings.Index(s, "</head>")
+	s = s[:i] + "<link rel='stylesheet' href='/styles/tags.css'/>" + s[i:]
+	return ioutil.WriteFile(fn, []byte(s), 0644)
 }
 
 func AddLinksToProject(id string) error {
