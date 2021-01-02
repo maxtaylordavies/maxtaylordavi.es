@@ -46,7 +46,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		title := strings.ToLower(s[i+23 : j])
 
 		// parse body
-		i = strings.Index(s, `class="">\n</p><p`)
+		i = strings.Index(s, `</p><p`)
 		fmt.Println("i:", i)
 		tempS := s[i+6:]
 		i = strings.Index(tempS, ">")
