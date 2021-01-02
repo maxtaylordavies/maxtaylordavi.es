@@ -46,13 +46,13 @@ func AddTagsToPostOrProject(id, category string) error {
 
 	i := strings.Index(s, "<em>")
 	j := strings.Index(s, "</em>")
-	rawTags := strings.Split(s[i:j], " ")
+	rawTags := strings.Split(s[i+15:j], " ")
 	styledTags := fmt.Sprintf("<div class='tags'> <em>%s</em>", s[i+4:i+14])
 	for _, tag := range rawTags {
 		styledTags += fmt.Sprintf("<div class='tag %s'>%s</div>", tag, tag)
 	}
 	styledTags += "</div>"
-	s = s[:i+4] + styledTags + s[j+5:]
+	s = s[:i] + styledTags + s[j+5:]
 
 	i = strings.Index(s, "</head>")
 	s = s[:i] + fmt.Sprintf("<link rel='stylesheet' href='/styles/tags.css'/><meta name='tags' content='%s'/>", strings.Join(rawTags, " ")) + s[i:]
