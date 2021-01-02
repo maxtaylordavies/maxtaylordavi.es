@@ -187,13 +187,9 @@ func main() {
 	m := &autocert.Manager{
 		Prompt: autocert.AcceptTOS,
 		HostPolicy: func(ctx context.Context, host string) error {
-			allowedHost := "www.maxtaylordavi.es"
-			if host == allowedHost {
-				return nil
-			}
-			return fmt.Errorf("acme/autocert: only %s host is allowed", allowedHost)
+			return nil
 		},
-		Cache: autocert.DirCache("."),
+		Cache: autocert.DirCache("/tmp"),
 	}
 
 	server := http.Server{
@@ -212,6 +208,8 @@ func main() {
 		h := m.HTTPHandler(nil)
 		log.Fatal(http.ListenAndServe(":http", h))
 	}()
+
+	fmt.Println("listening...")
 
 	// serve HTTPS!
 	log.Fatal(server.ListenAndServeTLS("", ""))
