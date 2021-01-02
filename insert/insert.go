@@ -9,6 +9,35 @@ import (
 	"strings"
 )
 
+func AreTagsInPostOrProject(fn string) (bool, error) {
+	_, err := GetLineNum(fn, "<div class='tag")
+
+	if err == nil {
+		return true, nil
+	}
+
+	if err.Error() == "line not found" {
+		return false, nil
+	}
+
+	return false, err
+}
+
+func AddTagsToPostOrProject(id, category string) error {
+	fn := "./projects/" + id + ".html"
+	if category == "post" {
+		fn = "./posts/" + id + ".html"
+	}
+
+	areTagsThere, err := AreTagsInPostOrProject(fn)
+	if err != nil {
+		return err
+	}
+	if areTagsThere {
+		return nil
+	}
+}
+
 func AddLinksToProject(id string) error {
 	fn := "./projects/" + id + ".html"
 
