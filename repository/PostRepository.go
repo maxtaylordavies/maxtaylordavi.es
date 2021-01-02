@@ -34,7 +34,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		idStr := fn[0]
 		id, _ := strconv.Atoi(string(idStr))
 
-		b, err := ioutil.ReadFile(fn)
+		b, err := ioutil.ReadFile("./posts/" + fn)
 		if err != nil {
 			return err
 		}
