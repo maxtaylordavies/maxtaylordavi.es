@@ -15,7 +15,6 @@ type ProjectRepository struct {
 type Project struct {
 	Id     int
 	Title  string
-	Body   string
 	Status string
 	Tags   []string
 }
@@ -49,7 +48,6 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 		projects = append(projects, Project{
 			id,
 			strings.ToLower(doc.Find("h1").Text()),
-			strings.Join(lines[1:len(lines)], "\n"),
 			"Done",
 			tags,
 		})

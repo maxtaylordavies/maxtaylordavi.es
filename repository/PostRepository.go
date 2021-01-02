@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -43,7 +42,6 @@ func (pr *PostRepository) All() ([]Post, error) {
 		i := strings.Index(s, "<h1")
 		j := strings.Index(s, "</h1>")
 		title := strings.ToLower(s[i+23 : j])
-		fmt.Println(title)
 
 		// parse date
 		i = strings.Index(s, "<em>")
