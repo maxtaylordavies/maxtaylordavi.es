@@ -49,6 +49,7 @@ hr {
     background-color: pink;
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 
 .theme-colour.one {
