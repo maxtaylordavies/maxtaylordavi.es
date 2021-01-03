@@ -35,6 +35,34 @@ hr {
     box-shadow: 3.5px 3.5px 0 lightgrey;
 }
 
+.theme-colours {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.theme-colour {
+    background-color: pink;
+    width: 10px;
+    height: 10px;
+}
+
+.theme-colour.one {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.theme-colour.two {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.theme-colour.three {
+    grid-row: 1;
+    grid-column: 3;
+}
+
 summary {
     outline: none;
     cursor: pointer;
