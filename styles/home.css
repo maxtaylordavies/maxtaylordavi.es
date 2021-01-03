@@ -17,9 +17,16 @@ hr {
     position: absolute;
     top: 20px;
     right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    text-align: right;
+}
+
+summary {
+    outline: none;
+    cursor: pointer;
+}
+
+summary::marker {
+    opacity: 0;
 }
 
 .container {
