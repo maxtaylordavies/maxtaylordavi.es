@@ -28,6 +28,11 @@ em {
     box-shadow: 2px 2px 0 lightgrey;
 }
 
+.tag:hover {
+    cursor: pointer;
+    box-shadow: 4px 4px 0 lightgrey;
+}
+
 .tag.university {
     
 }
