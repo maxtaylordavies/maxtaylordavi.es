@@ -36,7 +36,7 @@ hr {
 }
 
 .theme-colours {
-    margin-top: 5px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -63,6 +63,37 @@ hr {
     grid-row: 1;
     grid-column: 3;
 }
+
+.theme-colour.four {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.theme-colour.five {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.theme-colour.six {
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.theme-colour.seven {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.theme-colour.eight {
+    grid-row: 3;
+    grid-column: 2;
+}
+
+.theme-colour.nine {
+    grid-row: 3;
+    grid-column: 3;
+}
+
 
 summary {
     outline: none;
