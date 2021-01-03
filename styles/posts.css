@@ -62,12 +62,13 @@ hr {
     font-size: 18pt;
     color: black;
     opacity: 0.3;
-    margin: 0;
+    margin-right: 5px;
 }
 .post-title {
     font-size: 18pt;
     color: black;
     margin-left: 5px;
+    margin-right: 5px;
     text-decoration: none;
 }
 .post-title:hover {
