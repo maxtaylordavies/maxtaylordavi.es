@@ -193,8 +193,8 @@ func main() {
 	}
 
 	server := http.Server{
-		// Addr: ":https",
-		Addr: ":80",
+		Addr: ":https",
+		// Addr: ":80",
 		TLSConfig: &tls.Config{
 			GetCertificate: m.GetCertificate,
 		},
@@ -204,15 +204,15 @@ func main() {
 		IdleTimeout:  120 * time.Second,
 	}
 
-	// go func() {
-	// 	// serve HTTP, which will redirect automatically to HTTPS
-	// 	h := m.HTTPHandler(nil)
-	// 	log.Fatal(http.ListenAndServe(":http", h))
-	// }()
+	go func() {
+		// serve HTTP, which will redirect automatically to HTTPS
+		h := m.HTTPHandler(nil)
+		log.Fatal(http.ListenAndServe(":http", h))
+	}()
 
 	fmt.Println("listening...")
-	log.Fatal(server.ListenAndServe())
+	// log.Fatal(server.ListenAndServe())
 
 	// serve HTTPS!
-	// log.Fatal(server.ListenAndServeTLS("", ""))
+	log.Fatal(server.ListenAndServeTLS("", ""))
 }
