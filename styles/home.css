@@ -13,6 +13,12 @@ hr {
     width: 100%;
 }
 
+.theme-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
