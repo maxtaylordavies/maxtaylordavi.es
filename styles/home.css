@@ -29,6 +29,7 @@ hr {
     justify-content: center;
     align-items: center;
     box-shadow: 2px 2px 0 lightgrey;
+    font-size: 13px;
 }
 
 .theme-selector:hover {
@@ -37,6 +38,7 @@ hr {
 
 .theme-colours {
     margin-top: 10px;
+    margin-right: -5px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
