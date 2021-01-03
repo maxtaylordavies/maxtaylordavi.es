@@ -28,6 +28,11 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 2px 2px 0 lightgrey;
+}
+
+.theme-selector:hover {
+    box-shadow: 3.5px 3.5px 0 lightgrey;
 }
 
 summary {
