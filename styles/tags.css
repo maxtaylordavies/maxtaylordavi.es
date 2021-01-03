@@ -1,3 +1,7 @@
+p {
+    margin-top: -20px;
+}
+
 em {
     font-style: normal !important;
     color: black;
