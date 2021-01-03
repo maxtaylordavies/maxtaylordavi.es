@@ -59,6 +59,7 @@ hr {
     font-size: 18pt;
     color: #808080;
     text-decoration: none;
+    margin-right: 5px;
 }
 .project-title:hover {
     text-decoration: underline;
