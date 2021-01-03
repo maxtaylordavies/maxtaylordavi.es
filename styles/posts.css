@@ -73,6 +73,7 @@ hr {
     text-decoration: none;
 }
 .post-title:hover {
+    font-style: italic;
     text-decoration: underline;
 }
 @-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } }
