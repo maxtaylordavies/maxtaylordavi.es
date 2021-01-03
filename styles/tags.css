@@ -25,6 +25,7 @@ em {
     font-size: 12px;
     font-weight: 600;
     margin-left: 5px;
+    box-shadow: 2px 2px 0 lightgrey;
 }
 
 .tag.university {
