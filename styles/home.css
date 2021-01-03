@@ -23,7 +23,7 @@ hr {
 .theme-selector {
     background-color: wheat;
     width: 80px !important;
-    height: 25px;
+    height: 30px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
