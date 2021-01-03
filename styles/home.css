@@ -13,11 +13,18 @@ hr {
     width: 100%;
 }
 
-.theme-selector {
+.theme-selector-container {
     position: absolute;
     top: 20px;
     right: 20px;
     text-align: right;
+}
+
+.theme-selector {
+    margin-top: -20px;
+    background-color: wheat;
+    padding: 5px 15px;
+    border-radius: 5px;
 }
 
 summary {
