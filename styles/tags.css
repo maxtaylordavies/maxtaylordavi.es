@@ -30,7 +30,7 @@ em {
 
 .tag:hover {
     cursor: pointer;
-    box-shadow: 4px 4px 0 lightgrey;
+    box-shadow: 3px 3px 0 lightgrey;
 }
 
 .tag.university {
