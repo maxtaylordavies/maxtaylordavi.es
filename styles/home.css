@@ -49,6 +49,11 @@ hr {
     width: 25px;
     height: 25px;
     cursor: pointer;
+    transition: all 500ms;;
+}
+
+.theme-colour:hover {
+    border-radius: 12.5px;
 }
 
 .theme-colour.one {
