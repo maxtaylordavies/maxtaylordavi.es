@@ -46,7 +46,6 @@ hr {
 }
 
 .theme-colour {
-    background-color: pink;
     width: 25px;
     height: 25px;
     cursor: pointer;
@@ -55,48 +54,38 @@ hr {
 .theme-colour.one {
     grid-row: 1;
     grid-column: 1;
+    background-color: #DEFFED;
 }
 
 .theme-colour.two {
     grid-row: 1;
     grid-column: 2;
+    background-color: #FFE9B9;
 }
 
 .theme-colour.three {
     grid-row: 1;
     grid-column: 3;
+    background-color: #E0E3FF;
 }
 
 .theme-colour.four {
     grid-row: 2;
     grid-column: 1;
+    background-color: #FFEAE3;
 }
 
 .theme-colour.five {
     grid-row: 2;
     grid-column: 2;
+    background-color: #FFE3F9;
 }
 
 .theme-colour.six {
     grid-row: 2;
     grid-column: 3;
+    background-color: #F0E3FF;
 }
-
-.theme-colour.seven {
-    grid-row: 3;
-    grid-column: 1;
-}
-
-.theme-colour.eight {
-    grid-row: 3;
-    grid-column: 2;
-}
-
-.theme-colour.nine {
-    grid-row: 3;
-    grid-column: 3;
-}
-
 
 summary {
     outline: none;
@@ -117,8 +106,7 @@ summary::marker {
     height: 97vh;
     justify-content: center;
     align-items: center;
-    font-family: 'Apple Garamond';
-    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; */
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; 
     overflow: scroll;
     margin: 0;
     padding: 0;
