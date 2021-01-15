@@ -31,6 +31,7 @@ hr {
     align-items: center;
     box-shadow: 2px 2px 0 lightgrey;
     font-size: 13px;
+    user-select: none;
 }
 
 .theme-selector:hover {
@@ -49,7 +50,7 @@ hr {
     width: 25px;
     height: 25px;
     cursor: pointer;
-    transition: all 500ms;;
+    transition: all 500ms;
 }
 
 .theme-colour:hover {
