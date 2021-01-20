@@ -13,8 +13,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/maxtaylordavies/PersonalSite/insert"
-	"github.com/maxtaylordavies/PersonalSite/repository"
+	"github.com/maxtaylordavies/maxtaylordavi.es/insert"
+	"github.com/maxtaylordavies/maxtaylordavi.es/repository"
 	"golang.org/x/crypto/acme/autocert"
 )
 
