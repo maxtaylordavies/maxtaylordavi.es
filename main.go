@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"crypto/tls"
 	"io"
 	"io/ioutil"
@@ -183,19 +182,16 @@ func registerRoutes() http.Handler {
 
 func main() {
 
-	m := &autocert.Manager{
+	certManager := autocert.Manager{
 		Prompt: autocert.AcceptTOS,
-		HostPolicy: func(ctx context.Context, host string) error {
-			return nil
-		},
-		Cache: autocert.DirCache("/tmp"),
+		Cache:  autocert.DirCache("certs"),
 	}
 
 	server := http.Server{
 		Addr: ":https",
 		// Addr: ":80",
 		TLSConfig: &tls.Config{
-			GetCertificate: m.GetCertificate,
+			GetCertificate: certManager.GetCertificate,
 		},
 		Handler:      registerRoutes(),
 		ReadTimeout:  5 * time.Second,
@@ -203,15 +199,6 @@ func main() {
 		IdleTimeout:  120 * time.Second,
 	}
 
-	go func() {
-		// serve HTTP, which will redirect automatically to HTTPS
-		h := m.HTTPHandler(nil)
-		log.Fatal(http.ListenAndServe(":http", h))
-	}()
-
-	// fmt.Println("listening...")
-	// log.Fatal(server.ListenAndServe())
-
-	// serve HTTPS!
-	log.Fatal(server.ListenAndServeTLS("", ""))
+	go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
+	server.ListenAndServeTLS("", "")
 }
