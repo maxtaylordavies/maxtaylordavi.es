@@ -34,6 +34,8 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
+		theme := r.URL.Query().Get("theme")
+
 		postr := repository.PostRepository{}
 		projr := repository.ProjectRepository{}
 		recentPosts, err := postr.Recent()
@@ -48,9 +50,11 @@ func registerRoutes() http.Handler {
 		data := struct {
 			Posts    []repository.Post
 			Projects []repository.Project
+			Theme    string
 		}{
 			Posts:    recentPosts,
 			Projects: recentProjects,
+			Theme:    theme,
 		}
 
 		// serve the homepage
