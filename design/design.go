@@ -8,7 +8,7 @@ type Theme = struct {
 func GetTheme(name string) Theme {
 	themes := map[string]Theme{
 		"purple": {
-			Background: "rgba(145, 71, 255, 0.2)",
+			Background: "rgba(145, 71, 255, 0.1)",
 			Color:      "rgb(145, 71, 255)",
 		},
 	}
