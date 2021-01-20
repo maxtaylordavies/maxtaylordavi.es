@@ -1,307 +1,304 @@
-html {
-    /* background-color: #E3FFF0; */
-}
-
 hr {
-    color: #9147ff;
-    background-color: #9147ff;
-    display: block;
-    margin: 0.5em auto;
-    border-style: inset;
-    border-width: 1px;
-    height: 2px;
-    width: 100%;
+  background-color: #9147ff;
+  display: block;
+  margin: 0.5em auto;
+  border-style: inset;
+  border-width: 1px;
+  height: 2px;
+  width: 100%;
 }
 
 .theme-selector-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    text-align: right;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-align: right;
 }
 
 .theme-selector {
-    background-color: wheat;
-    color: #808080;
-    width: 100px !important;
-    height: 30px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 0 lightgrey;
-    font-size: 13px;
-    user-select: none;
+  background-color: wheat;
+  color: #808080;
+  width: 100px !important;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 0 lightgrey;
+  font-size: 13px;
+  user-select: none;
 }
 
 .theme-selector:hover {
-    box-shadow: 3.5px 3.5px 0 lightgrey;
+  box-shadow: 3.5px 3.5px 0 lightgrey;
 }
 
 .theme-colours {
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
 }
 
 .theme-colour {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    transition: all 500ms;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: all 500ms;
 }
 
 .theme-colour:hover {
-    border-radius: 12.5px;
+  border-radius: 12.5px;
 }
 
 .theme-colour.one {
-    grid-row: 1;
-    grid-column: 1;
-    background-color: #DEFFED;
+  grid-row: 1;
+  grid-column: 1;
+  background-color: #deffed;
 }
 
 .theme-colour.two {
-    grid-row: 1;
-    grid-column: 2;
-    background-color: #FFE9B9;
+  grid-row: 1;
+  grid-column: 2;
+  background-color: #ffe9b9;
 }
 
 .theme-colour.three {
-    grid-row: 1;
-    grid-column: 3;
-    background-color: #E0E3FF;
+  grid-row: 1;
+  grid-column: 3;
+  background-color: #e0e3ff;
 }
 
 .theme-colour.four {
-    grid-row: 2;
-    grid-column: 1;
-    background-color: #FFEAE3;
+  grid-row: 2;
+  grid-column: 1;
+  background-color: #ffeae3;
 }
 
 .theme-colour.five {
-    grid-row: 2;
-    grid-column: 2;
-    background-color: #FFE3F9;
+  grid-row: 2;
+  grid-column: 2;
+  background-color: #ffe3f9;
 }
 
 .theme-colour.six {
-    grid-row: 2;
-    grid-column: 3;
-    background-color: #F0E3FF;
+  grid-row: 2;
+  grid-column: 3;
+  background-color: #f0e3ff;
 }
 
 summary {
-    outline: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 summary::marker {
-   color: transparent;
+  color: transparent;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 99vw;
-    height: 97vh;
-    justify-content: center;
-    align-items: center;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; 
-    overflow: scroll;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 99vw;
+  height: 97vh;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  overflow: scroll;
+  margin: 0;
+  padding: 0;
 }
 
 .banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*background-color: #9147ff;*/
-    background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: #9147ff;*/
+  background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 .banner-link {
-    color: white;
+  color: white;
 }
 
 .name {
-    font-size: 28pt;
-    font-weight: bold;
-    margin-bottom: 0;
+  font-size: 28pt;
+  font-weight: bold;
+  margin-bottom: 0;
 }
 
 .bio {
-    color: #808080;
-    font-size: 14pt;
-    margin-top: 10px;
+  color: #808080;
+  font-size: 14pt;
+  margin-top: 10px;
 }
 
 .contact-link {
-    display: inline-block;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 100px;
-    font-size: 10pt;
-    color: white;
-    background-color: #9147ff;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    /*transition: 0.5s*/
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100px;
+  font-size: 10pt;
+  color: white;
+  background-color: #9147ff;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*transition: 0.5s*/
 }
 
 .contact-link:hover {
-    /*background-color: #772ce8;*/
-    background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);
-    -webkit-animation: hue 3s infinite linear;
+  /*background-color: #772ce8;*/
+  background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);
+  -webkit-animation: hue 3s infinite linear;
 }
 
 .me {
-    display: flex;
-    flex-direction: column;
-    width: 45%;
-    margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin-bottom: 25px;
 }
 
 .stuff {
-    display: flex;
-    width: 45%;
-    justify-content: space-between;
+  display: flex;
+  width: 45%;
+  justify-content: space-between;
 }
 
 .recent-projects {
-    width: 45%;
-    margin-bottom: 126px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  width: 45%;
+  margin-bottom: 126px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .recent-posts {
-    width: 45%;
-    /*margin-bottom: 126px;*/
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  width: 45%;
+  /*margin-bottom: 126px;*/
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .list-title {
-    font-size: 24pt;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-decoration: none;
-    color: black;
-    margin-top: 16px;
-    border-bottom: 7px solid #9147ff;
-    padding-bottom: 5px;
+  font-size: 24pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: black;
+  margin-top: 16px;
+  border-bottom: 7px solid #9147ff;
+  padding-bottom: 5px;
 }
 
 .list-title[descr]::after {
-    content: attr(descr);
+  content: attr(descr);
 }
 
 .list-title:hover::after {
-    content: "See more >";
-    background-image: -webkit-linear-gradient(0deg, #f35626, #feab3a);
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-animation: hue 3s infinite linear;
+  content: "See more >";
+  background-image: -webkit-linear-gradient(0deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-animation: hue 3s infinite linear;
 }
 
 @-webkit-keyframes hue {
-    from {
-        -webkit-filter: hue-rotate(0deg);
-    }
-    to {
-        -webkit-filter: hue-rotate(-360deg);
-    }
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
 }
 
 .project-list {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
 }
 
 .post-list {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
 }
 
 .list-item {
-    font-size: 20pt;
-    color: #808080;
+  font-size: 20pt;
+  color: #808080;
 }
 
 .list-item-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16pt;
-    color: #808080;
-    margin-bottom: 4px;
-    margin-top: 4px;
-    text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16pt;
+  color: #808080;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  text-decoration: none;
 }
 
 .post-list-item {
-    font-size: 20pt;
-    color: #808080;
-    display: flex;
-    justify-content: flex-start;
+  font-size: 20pt;
+  color: #808080;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .post-list-item-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16pt;
-    color: #808080;
-    margin-bottom: 4px;
-    margin-top: 4px;
-    text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16pt;
+  color: #808080;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  text-decoration: none;
 }
 
 .see-more {
-    font-size: 10pt;
-    color: black;
-    margin-top: 10px;
+  font-size: 10pt;
+  color: black;
+  margin-top: 10px;
 }
 
 .copyright {
-    position: absolute;
-    bottom: 0;
-    font-size: 10pt;
-    color: #808080;
-    margin: 0;
+  position: absolute;
+  bottom: 0;
+  font-size: 10pt;
+  color: #808080;
+  margin: 0;
 }
 
 .list-item-title {
-    display: flex;
-    flex-direction: row;
-    /*justify-content: space-between;*/
-    align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  /*justify-content: space-between;*/
+  align-items: flex-start;
 }
 
 .dashes {
-    color: grey;
+  color: grey;
 }

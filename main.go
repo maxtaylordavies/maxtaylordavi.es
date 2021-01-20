@@ -11,6 +11,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/maxtaylordavies/maxtaylordavi.es/design"
 	"github.com/maxtaylordavies/maxtaylordavi.es/insert"
 	"github.com/maxtaylordavies/maxtaylordavi.es/repository"
 	"golang.org/x/crypto/acme/autocert"
@@ -34,7 +35,8 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
-		theme := r.URL.Query().Get("theme")
+		themeName := r.URL.Query().Get("theme")
+		theme := design.GetTheme(themeName)
 
 		postr := repository.PostRepository{}
 		projr := repository.ProjectRepository{}
@@ -50,7 +52,7 @@ func registerRoutes() http.Handler {
 		data := struct {
 			Posts    []repository.Post
 			Projects []repository.Project
-			Theme    string
+			Theme    design.Theme
 		}{
 			Posts:    recentPosts,
 			Projects: recentProjects,
