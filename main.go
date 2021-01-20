@@ -17,6 +17,12 @@ import (
 	"golang.org/x/crypto/acme/autocert"
 )
 
+type Payload = struct {
+	Posts    []repository.Post
+	Projects []repository.Project
+	Theme    design.Theme
+}
+
 var tpl *template.Template
 
 func init() {
@@ -35,8 +41,7 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
-		themeName := r.URL.Query().Get("theme")
-		theme := design.GetTheme(themeName)
+		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
 		postr := repository.PostRepository{}
 		projr := repository.ProjectRepository{}
@@ -49,11 +54,7 @@ func registerRoutes() http.Handler {
 			log.Fatalln("error getting recent projects: ", err)
 		}
 
-		data := struct {
-			Posts    []repository.Post
-			Projects []repository.Project
-			Theme    design.Theme
-		}{
+		data := Payload{
 			Posts:    recentPosts,
 			Projects: recentProjects,
 			Theme:    theme,
@@ -66,6 +67,8 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
+		theme := design.GetTheme(r.URL.Query().Get("theme"))
+
 		postr := repository.PostRepository{}
 		posts, err := postr.All()
 
@@ -74,11 +77,18 @@ func registerRoutes() http.Handler {
 		}
 
 		// serve the posts page
-		_ = tpl.ExecuteTemplate(w, "posts.gohtml", posts)
+		data := Payload{
+			Posts: posts,
+			Theme: theme,
+		}
+
+		_ = tpl.ExecuteTemplate(w, "posts.gohtml", data)
 	})
 
 	mux.HandleFunc("/projects", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
+
+		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
 		projr := repository.ProjectRepository{}
 		projects, err := projr.All()
@@ -87,7 +97,12 @@ func registerRoutes() http.Handler {
 		}
 
 		// serve the projects page
-		_ = tpl.ExecuteTemplate(w, "projects.gohtml", projects)
+		data := Payload{
+			Projects: projects,
+			Theme:    theme,
+		}
+
+		_ = tpl.ExecuteTemplate(w, "projects.gohtml", data)
 	})
 
 	mux.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
