@@ -6,8 +6,8 @@ type Theme = struct {
 	Color      string
 }
 
-func GetTheme(name string) Theme {
-	themes := []Theme{
+func GetAllThemes() []Theme {
+	return []Theme{
 		{
 			Name:       "teal",
 			Background: "rgba(152, 255, 212, 0.15)",
@@ -39,6 +39,10 @@ func GetTheme(name string) Theme {
 			Color:      "rgb(242, 114, 215)",
 		},
 	}
+}
+
+func GetTheme(name string) Theme {
+	themes := GetAllThemes()
 
 	for _, theme := range themes {
 		if theme.Name == name {

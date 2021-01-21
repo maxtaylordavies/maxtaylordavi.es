@@ -55,37 +55,31 @@ hr {
 .theme-colour.one {
   grid-row: 1;
   grid-column: 1;
-  background-color: #deffed;
 }
 
 .theme-colour.two {
   grid-row: 1;
   grid-column: 2;
-  background-color: #ffe9b9;
 }
 
 .theme-colour.three {
   grid-row: 1;
   grid-column: 3;
-  background-color: #e0e3ff;
 }
 
 .theme-colour.four {
   grid-row: 2;
   grid-column: 1;
-  background-color: #ffeae3;
 }
 
 .theme-colour.five {
   grid-row: 2;
   grid-column: 2;
-  background-color: #ffe3f9;
 }
 
 .theme-colour.six {
   grid-row: 2;
   grid-column: 3;
-  background-color: #f0e3ff;
 }
 
 summary {

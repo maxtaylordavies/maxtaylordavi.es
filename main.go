@@ -18,9 +18,10 @@ import (
 )
 
 type Payload = struct {
-	Posts    []repository.Post
-	Projects []repository.Project
-	Theme    design.Theme
+	Posts     []repository.Post
+	Projects  []repository.Project
+	Theme     design.Theme
+	AllThemes []design.Theme
 }
 
 var tpl *template.Template
@@ -41,6 +42,7 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
+		allThemes := design.GetAllThemes()
 		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
 		postr := repository.PostRepository{}
@@ -55,9 +57,10 @@ func registerRoutes() http.Handler {
 		}
 
 		data := Payload{
-			Posts:    recentPosts,
-			Projects: recentProjects,
-			Theme:    theme,
+			Posts:     recentPosts,
+			Projects:  recentProjects,
+			Theme:     theme,
+			AllThemes: allThemes,
 		}
 
 		// serve the homepage
