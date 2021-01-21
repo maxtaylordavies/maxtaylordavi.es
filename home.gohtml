@@ -23,7 +23,7 @@
             border-bottom-color: {{ .Theme.Color }};
         }
         .theme-color-one {
-            background: {{ index .AllThemes 0 }};
+            background: {{ (index .AllThemes 0).Color }};
         }
     </style>
 </head>
