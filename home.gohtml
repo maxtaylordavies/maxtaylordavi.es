@@ -23,22 +23,22 @@
             border-bottom-color: {{ .Theme.Color }};
         }
         .theme-color-one {
-            background: {{ .AllThemes[0].Color }}
+            background: {{ index .AllThemes 0 .Color }}
         }
         .theme-color-two {
-            background: {{ .AllThemes[1].Color }}
+            background: {{ index .AllThemes 1 .Color }}
         }
         .theme-color-three {
-            background: {{ .AllThemes[2].Color }}
+            background: {{ index .AllThemes 2 .Color }}
         }
         .theme-color-four {
-            background: {{ .AllThemes[3].Color }}
+            background: {{ index .AllThemes 3 .Color }}
         }
         .theme-color-five {
-            background: {{ .AllThemes[4].Color }}
+            background: {{ index .AllThemes 4 .Color }}
         }
         .theme-color-six {
-            background: {{ .AllThemes[5].Color }}
+            background: {{ index .AllThemes 5 .Color }}
         }
     </style>
 </head>
