@@ -18,7 +18,7 @@
     <div class="body">
         <p class="title">All Posts</p>
         <ul class="list">
-            {{range .}}
+            {{range .Posts}}
                 <div class="list-item">
                     <div class="date-title">
                         <p class="date-text">{{.CreatedAt | fdate}}</p>

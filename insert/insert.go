@@ -80,7 +80,7 @@ func AddLinksToProject(id string) error {
 		return err
 	}
 
-	s0 := ".nav-links { position: fixed; top: 0px; left: 0px; padding: 15px; width: 100%; background-color: white; z-index: 100 } "
+	s0 := ".nav-links { position: fixed; top: 0px; left: 0px; padding: 15px; width: 100%; z-index: 100 } "
 	s1 := ".nav-link { display: inline-block; padding-top: 10px; padding-bottom: 10px; width: 100px; font-size: 12pt; color: white; background-color: #9147ff; border-radius: 5px; text-align: center; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; margin-right: 10px; } "
 	s2 := ".nav-link:hover { background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb); -webkit-animation: hue 3s infinite linear; text-decoration: none; } "
 	s3 := "@-webkit-keyframes hue { from { -webkit-filter: hue-rotate(0deg); } to { -webkit-filter: hue-rotate(-360deg); } } "
