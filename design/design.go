@@ -7,22 +7,44 @@ type Theme = struct {
 }
 
 func GetTheme(name string) Theme {
-	themes := map[string]Theme{
-		"teal": {
+	themes := []Theme{
+		{
 			Name:       "teal",
 			Background: "rgba(152, 255, 212, 0.15)",
 			Color:      "#50E0A4",
 		},
-		"purple": {
+		{
 			Name:       "purple",
 			Background: "rgba(145, 71, 255, 0.15)",
 			Color:      "rgb(145, 71, 255)",
 		},
+		{
+			Name:       "yellow",
+			Background: "rgba(255, 175, 0, 0.15)",
+			Color:      "rgb(255,175,0)",
+		},
+		{
+			Name:       "blue",
+			Background: "rgba(72, 88, 234, 0.15)",
+			Color:      "rgb(72, 88, 234)",
+		},
+		{
+			Name:       "coral",
+			Background: "rgba(255, 156, 123, 0.15)",
+			Color:      "rgb(255, 156, 123)",
+		},
+		{
+			Name:       "pink",
+			Background: "rgba(242, 114, 215, 0.15)",
+			Color:      "rgb(242, 114, 215)",
+		},
 	}
 
-	if theme, ok := themes[name]; ok {
-		return theme
+	for _, theme := range themes {
+		if theme.Name == name {
+			return theme
+		}
 	}
 
-	return themes["teal"]
+	return themes[0]
 }
