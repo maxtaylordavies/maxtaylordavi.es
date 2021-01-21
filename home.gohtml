@@ -55,7 +55,7 @@
         </div>
         <div class="stuff">
             <div class="recent-projects">
-                <a href="/projects?theme={{ .Theme }}" class="list-title" descr="Recent Projects"></a>
+                <a href="/projects?theme={{ .Theme.Name }}" class="list-title" descr="Recent Projects"></a>
                 <ul class="project-list">
                     {{range .Projects}}
                     <li class="list-item">
@@ -67,7 +67,7 @@
                 </ul>
             </div>
             <div class="recent-posts">
-                <a href="/posts?theme={{ .Theme }}" class="list-title" descr="Recent Posts"></a>
+                <a href="/posts?theme={{ .Theme.Name }}" class="list-title" descr="Recent Posts"></a>
                 <ul class="post-list">
                     {{range .Posts}}
                         <li class="post-list-item">
