@@ -21,5 +21,5 @@ func GetTheme(name string) Theme {
 		return theme
 	}
 
-	return themes["purple"]
+	return themes["teal"]
 }
