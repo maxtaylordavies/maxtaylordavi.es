@@ -34,7 +34,11 @@ func formatDate(t time.Time) string {
 	return t.Format("2006-01-02")
 }
 
-var fm = template.FuncMap{"fdate": formatDate}
+func idxToLetter(i int) string {
+	return string('A' + i)
+}
+
+var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter}
 
 func registerRoutes() http.Handler {
 	mux := http.NewServeMux()

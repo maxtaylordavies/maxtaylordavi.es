@@ -22,22 +22,22 @@
         .list-title {
             border-bottom-color: {{ .Theme.Color }};
         }
-        .theme-colour.one {
+        .theme-colour.A {
             background: {{ (index .AllThemes 0).Color }};
         }
-        .theme-colour.two {
+        .theme-colour.B {
             background: {{ (index .AllThemes 1).Color }};
         }
-        .theme-colour.three {
+        .theme-colour.C {
             background: {{ (index .AllThemes 2).Color }};
         }
-        .theme-colour.four {
+        .theme-colour.D {
             background: {{ (index .AllThemes 3).Color }};
         }
-        .theme-colour.five {
+        .theme-colour.E {
             background: {{ (index .AllThemes 4).Color }};
         }
-        .theme-colour.six {
+        .theme-colour.F {
             background: {{ (index .AllThemes 5).Color }};
         }
     </style>
@@ -51,12 +51,9 @@
                 </div>
             </summary>
             <div class="theme-colours">
-                <a class="theme-colour one"></a>
-                <div class="theme-colour two"></div>
-                <div class="theme-colour three"></div>
-                <div class="theme-colour four"></div>
-                <div class="theme-colour five"></div>
-                <div class="theme-colour six"></div>
+                {{range $i, $t := .AllThemes}}
+                    <a class="theme-colour {{$i | i2l}}" href="/?theme={{$t.Name}}"></a>
+                {{end}}
             </div>
         </details>
         <div class="me">
