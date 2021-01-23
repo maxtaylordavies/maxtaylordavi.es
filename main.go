@@ -116,64 +116,30 @@ func registerRoutes() http.Handler {
 		w.Header().Set("Content-Type", "text/html")
 
 		id := r.URL.Query().Get("id")
-		if id == "" {
-			log.Println("no id")
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}
+		themeName := r.URL.Query().Get("theme")
 
-		err := insert.AddLinksToPost(id)
-		if err != nil {
-			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-
-		err = insert.AddTagsToPostOrProject(id, "post")
-		if err != nil {
-			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-
-		f, err := ioutil.ReadFile("./posts/" + id + ".html")
+		b, err := insert.ReadFileAndInjectStuff("./posts/"+id+".html", themeName)
 
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-		w.Write([]byte(f))
+		w.Write(b)
 	})
 
 	mux.HandleFunc("/project", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
 		id := r.URL.Query().Get("id")
-		if id == "" {
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}
+		themeName := r.URL.Query().Get("theme")
 
-		err := insert.AddLinksToProject(id)
-		if err != nil {
-			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
+		b, err := insert.ReadFileAndInjectStuff("./projects/"+id+".html", themeName)
 
-		err = insert.AddTagsToPostOrProject(id, "project")
-		if err != nil {
-			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-
-		f, err := ioutil.ReadFile("./projects/" + id + ".html")
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-		w.Write([]byte(f))
+		w.Write(b)
 	})
 
 	mux.HandleFunc("/cv", func(w http.ResponseWriter, r *http.Request) {
