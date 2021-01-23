@@ -43,14 +43,14 @@ func AddTags(s string) string {
 }
 
 func AddNavLinks(s string, project bool, themeName string) string {
-	backLink := "/posts"
+	backLink := fmt.Sprintf("/posts?theme=%s", themeName)
 	if project {
-		backLink = "/projects"
+		backLink = fmt.Sprintf("/projects?theme=%s", themeName)
 	}
 
 	// add elements
 	i := strings.Index(s, "</body>")
-	s = s[:i] + fmt.Sprintf("<div class='nav-links'><a class='nav-link' href='/'>home</a><a class='nav-link' href=%s>all projects</a></div>", backLink) + s[i:]
+	s = s[:i] + fmt.Sprintf("<div class='nav-links'><a class='nav-link' href='/?theme=%s'>home</a><a class='nav-link' href=%s>all projects</a></div>", themeName, backLink) + s[i:]
 
 	// add css
 	i = strings.Index(s, "</head>")
@@ -59,7 +59,7 @@ func AddNavLinks(s string, project bool, themeName string) string {
 	// add theme-specific styles
 	theme := design.GetTheme(themeName)
 	i = strings.Index(s, "</style>")
-	s = s[:i] + fmt.Sprintf(".nav-link {background: %s}", theme.Color) + s[i:]
+	s = s[:i] + fmt.Sprintf("html {background: %s} .nav-link {background: %s}", theme.Background, theme.Color) + s[i:]
 
 	return s
 }
