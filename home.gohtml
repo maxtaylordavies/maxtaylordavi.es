@@ -68,6 +68,7 @@
                 <a class="contact-link" href="/cv" target="_blank">cv</a>
             </div>
         </div>
+        {{$theme := .Theme.Name}}
         <div class="stuff">
             <div class="recent-projects">
                 <a href="/projects?theme={{ .Theme.Name }}" class="list-title" descr="Recent Projects"></a>
@@ -75,7 +76,7 @@
                     {{range .Projects}}
                     <li class="list-item">
                         <div class="list-item-title">
-                            <a class="list-item-link" href="/project?id={{.Id}}">{{.Title}}</a>
+                            <a class="list-item-link" href="/project?id={{.Id}}&theme={{$theme}}">{{.Title}}</a>
                         </div>
                     </li>
                     {{end}}
@@ -86,7 +87,7 @@
                 <ul class="post-list">
                     {{range .Posts}}
                         <li class="post-list-item">
-                            <a class="post-list-item-link" href="/post?id={{.Id}}">{{.Title}}</a>
+                            <a class="post-list-item-link" href="/post?id={{.Id}}&theme={{$theme}}">{{.Title}}</a>
                         </li>
                     {{end}}
                 </ul>
