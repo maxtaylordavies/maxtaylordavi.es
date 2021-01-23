@@ -48,9 +48,14 @@ func AddNavLinks(s string, project bool, themeName string) string {
 		backLink = fmt.Sprintf("/projects?theme=%s", themeName)
 	}
 
+	backLinkText := "all posts"
+	if project {
+		backLinkText = "all projects"
+	}
+
 	// add elements
 	i := strings.Index(s, "</body>")
-	s = s[:i] + fmt.Sprintf("<div class='nav-links'><a class='nav-link' href='/?theme=%s'>home</a><a class='nav-link' href=%s>all projects</a></div>", themeName, backLink) + s[i:]
+	s = s[:i] + fmt.Sprintf("<div class='nav-links'><a class='nav-link' href='/?theme=%s'>home</a><a class='nav-link' href=%s>%s</a></div>", themeName, backLink, backLinkText) + s[i:]
 
 	// add css
 	i = strings.Index(s, "</head>")
