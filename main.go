@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"io"
 	"io/ioutil"
 	"log"
@@ -13,6 +14,7 @@ import (
 	"github.com/maxtaylordavies/maxtaylordavi.es/design"
 	"github.com/maxtaylordavies/maxtaylordavi.es/insert"
 	"github.com/maxtaylordavies/maxtaylordavi.es/repository"
+	"golang.org/x/crypto/acme/autocert"
 )
 
 type Payload = struct {
@@ -208,25 +210,25 @@ func registerRoutes() http.Handler {
 
 func main() {
 
-	// certManager := autocert.Manager{
-	// 	Prompt: autocert.AcceptTOS,
-	// 	Cache:  autocert.DirCache("certs"),
-	// }
+	certManager := autocert.Manager{
+		Prompt: autocert.AcceptTOS,
+		Cache:  autocert.DirCache("certs"),
+	}
 
 	server := http.Server{
-		// Addr: ":https",
-		Addr: ":80",
-		// TLSConfig: &tls.Config{
-		// 	GetCertificate: certManager.GetCertificate,
-		// },
+		Addr: ":https",
+		// Addr: ":80",
+		TLSConfig: &tls.Config{
+			GetCertificate: certManager.GetCertificate,
+		},
 		Handler:      registerRoutes(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
 
-	server.ListenAndServe()
+	// server.ListenAndServe()
 
-	// go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
-	// server.ListenAndServeTLS("", "")
+	go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
+	server.ListenAndServeTLS("", "")
 }
