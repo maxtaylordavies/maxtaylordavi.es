@@ -51,13 +51,9 @@ func (pr *PostRepository) All() ([]Post, error) {
 		}
 
 		// parse tags
-		var tags []string
-		i = strings.Index(s, "name='tags'")
-		if i != -1 {
-			tempS := s[i:]
-			j := strings.Index(tempS, "'/>")
-			tags = strings.Split(tempS[21:j], " ")
-		}
+		i = strings.Index(s, "<em>")
+		j = strings.Index(s, "</em>")
+		tags := strings.Split(s[i+15:j], " ")
 
 		posts = append(posts, Post{
 			id,
