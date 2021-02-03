@@ -127,21 +127,6 @@ func registerRoutes() http.Handler {
 		w.Write(b)
 	})
 
-	mux.HandleFunc("/project", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/html")
-
-		id := r.URL.Query().Get("id")
-		themeName := r.URL.Query().Get("theme")
-
-		b, err := insert.ReadFileAndInjectStuff("./projects/"+id+".html", themeName)
-
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-		w.Write(b)
-	})
-
 	mux.HandleFunc("/cv", func(w http.ResponseWriter, r *http.Request) {
 		f, err := ioutil.ReadFile("./CV.pdf")
 		if err != nil {
