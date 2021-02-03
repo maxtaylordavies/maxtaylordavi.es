@@ -17,8 +17,8 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 			ID:     1,
 			Title:  "products.gallery",
 			Status: "finished",
-			Tags:   []string{"Side", "Web"},
-			Link:   "https://products.gallery",
+			Tags:   []string{"side", "web"},
+			Link:   "http://products.gallery",
 		},
 	}
 
