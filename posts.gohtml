@@ -24,11 +24,12 @@
     <div class="body">
         <p class="title">All Posts</p>
         <ul class="list">
+            {{$theme := .Theme.Name}}
             {{range .Posts}}
                 <div class="list-item">
                     <div class="date-title">
                         <p class="date-text">{{.CreatedAt | fdate}}</p>
-                        <a class="post-title" href="/post?id={{.Id}}">{{.Title}}</a>
+                        <a class="post-title" href="/post?id={{.Id}}&theme={{$theme}}">{{.Title}}</a>
                     </div>
                     <ul class="tags">
                         {{range .Tags}}
