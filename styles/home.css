@@ -161,13 +161,13 @@ summary::marker {
 .me {
   display: flex;
   flex-direction: column;
-  width: 55%;
+  width: 60%;
   margin-bottom: 25px;
 }
 
 .stuff {
   display: flex;
-  width: 55%;
+  width: 60%;
 }
 
 .recent-projects {
@@ -191,7 +191,7 @@ summary::marker {
   text-decoration: none;
   color: #808080;
   margin-top: 16px;
-  border-bottom: 4px solid;
+  border-bottom: 5px solid;
   padding-bottom: 3px;
   min-width: 275px;
 }
