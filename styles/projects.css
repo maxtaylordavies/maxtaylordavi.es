@@ -36,13 +36,12 @@ hr {
   align-items: center;
 }
 .title {
-  color: black;
-  font-size: 42pt;
-  font-weight: bold;
+  font-size: 60px;
+  font-weight: 600;
   margin-top: 60px;
   margin-bottom: 0;
   border-bottom: 10px solid;
-  padding-bottom: 5px;
+  padding-bottom: 3px;
 }
 .list {
   margin-top: 60px;
