@@ -185,14 +185,15 @@ summary::marker {
 }
 
 .list-title {
-  font-size: 24pt;
-  font-weight: bold;
+  font-size: 40px;
+  font-weight: 450;
   margin-bottom: 10px;
   text-decoration: none;
   color: black;
   margin-top: 16px;
   border-bottom: 7px solid;
   padding-bottom: 5px;
+  min-width: 120px;
 }
 
 .list-title[descr]::after {
