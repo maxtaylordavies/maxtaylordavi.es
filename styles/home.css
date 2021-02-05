@@ -128,14 +128,14 @@ summary::marker {
 }
 
 .name {
-  font-size: 28pt;
-  font-weight: bold;
+  font-size: 60px;
+  font-weight: 450;
   margin-bottom: 0;
 }
 
 .bio {
   color: #808080;
-  font-size: 14pt;
+  font-size: 28px;
   margin-top: 10px;
 }
 
@@ -161,27 +161,24 @@ summary::marker {
 .me {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 55%;
   margin-bottom: 25px;
 }
 
 .stuff {
   display: flex;
-  width: 45%;
-  justify-content: space-between;
+  width: 55%;
 }
 
 .recent-projects {
-  width: 45%;
   margin-bottom: 126px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 40px;
 }
 
 .recent-posts {
-  width: 45%;
-  /*margin-bottom: 126px;*/
   display: flex;
   flex-direction: column;
   align-items: flex-start;
