@@ -191,8 +191,8 @@ summary::marker {
   text-decoration: none;
   color: #808080;
   margin-top: 16px;
-  border-bottom: 7px solid;
-  padding-bottom: 5px;
+  border-bottom: 4px solid;
+  padding-bottom: 3px;
   min-width: 275px;
 }
 
