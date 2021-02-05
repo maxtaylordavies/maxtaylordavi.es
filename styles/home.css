@@ -187,12 +187,8 @@ summary::marker {
 .list-title {
   font-size: 40px;
   font-weight: 450;
-  margin-bottom: 10px;
   text-decoration: none;
-  color: #808080;
   margin-top: 16px;
-  border-bottom: 5px solid;
-  padding-bottom: 3px;
   min-width: 275px;
 }
 
