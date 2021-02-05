@@ -189,11 +189,11 @@ summary::marker {
   font-weight: 450;
   margin-bottom: 10px;
   text-decoration: none;
-  color: black;
+  color: #808080;
   margin-top: 16px;
   border-bottom: 7px solid;
   padding-bottom: 5px;
-  min-width: 120px;
+  min-width: 275px;
 }
 
 .list-title[descr]::after {
