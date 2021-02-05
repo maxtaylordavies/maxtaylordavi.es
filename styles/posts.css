@@ -58,16 +58,15 @@ hr {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 28px;
 }
 .date-text {
-  font-size: 18pt;
   color: black;
   opacity: 0.3;
   margin: 0;
   margin-right: 5px;
 }
 .post-title {
-  font-size: 18pt;
   color: black;
   margin-left: 5px;
   margin-right: 5px;

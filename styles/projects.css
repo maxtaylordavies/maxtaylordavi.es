@@ -56,7 +56,7 @@ hr {
   align-items: center;
 }
 .project-title {
-  font-size: 18pt;
+  font-size: 28px;
   color: #808080;
   text-decoration: none;
   margin-right: 5px;
@@ -64,10 +64,6 @@ hr {
 .project-title:hover {
   text-decoration: underline;
   font-style: italic;
-}
-.project-intro {
-  font-size: 11pt;
-  color: #808080;
 }
 .copyright {
   position: absolute;
