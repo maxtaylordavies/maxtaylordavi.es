@@ -236,7 +236,7 @@ summary::marker {
 }
 
 .list-item {
-  font-size: 20pt;
+  font-size: 28px;
   color: #808080;
 }
 
@@ -244,7 +244,6 @@ summary::marker {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16pt;
   color: #808080;
   margin-bottom: 4px;
   margin-top: 4px;
@@ -252,17 +251,16 @@ summary::marker {
 }
 
 .post-list-item {
-  font-size: 20pt;
   color: #808080;
   display: flex;
   justify-content: flex-start;
+  font-size: 28px;
 }
 
 .post-list-item-link {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16pt;
   color: #808080;
   margin-bottom: 4px;
   margin-top: 4px;
