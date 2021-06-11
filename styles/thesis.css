@@ -11,7 +11,8 @@ code.language-python {
   background: transparent;
 }
 
-code.language-python > div {
+pre > code > code > div,
+pre > code.code-line > div {
   background: #002b36;
 }
 
