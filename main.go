@@ -149,6 +149,7 @@ func registerRoutes() http.Handler {
 			log.Fatal(err) // perhaps handle this nicer
 		}
 		defer img.Close()
+		w.Header().Set("Content-Type", "image/svg+xml")
 		io.Copy(w, img)
 	})
 
