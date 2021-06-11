@@ -16,6 +16,7 @@ pre > code.code-line > div {
   background: #151144;
   border-radius: 15px;
   padding: 20px;
+  color: #00c172;
 }
 
 .hljs ::selection {
@@ -89,7 +90,7 @@ pre > code.code-line > div {
 .hljs-section,
 .hljs-title.function_,
 .ruby .hljs-property {
-  color: #00c172;
+  color: #d33682;
 }
 
 .diff .hljs-meta,
