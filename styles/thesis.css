@@ -14,6 +14,8 @@ code.language-python {
 pre > code > code > div,
 pre > code.code-line > div {
   background: #151144;
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .hljs ::selection {
