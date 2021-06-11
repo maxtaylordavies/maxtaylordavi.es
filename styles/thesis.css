@@ -1,15 +1,12 @@
 code {
-  background: rgb(223, 223, 223) !important;
-  padding: 3px 5px !important;
-  border-radius: 4px !important;
-  color: blue !important;
+  background: rgb(223, 223, 223);
+  padding: 3px 5px;
+  border-radius: 4px;
+  color: blue;
 }
 
 code.language-python {
   padding: 3px 5px;
-}
-
-.hljs {
   color: #93a1a1;
   background: #002b36;
 }
