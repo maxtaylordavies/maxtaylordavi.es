@@ -140,6 +140,10 @@ func registerRoutes() http.Handler {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
+		
+		b = []byte(f)
+		fmt.Println(b[:882])
+
 		w.Write([]byte(f))
 	})
 
