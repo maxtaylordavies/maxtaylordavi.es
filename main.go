@@ -143,7 +143,7 @@ func registerRoutes() http.Handler {
 		}
 
 		b := []byte(f)
-		fmt.Println(b[:882])
+		fmt.Println(f[:882])
 
 		w.Write([]byte(f))
 	})
