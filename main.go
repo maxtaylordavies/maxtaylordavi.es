@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -140,8 +141,8 @@ func registerRoutes() http.Handler {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-		
-		b = []byte(f)
+
+		b := []byte(f)
 		fmt.Println(b[:882])
 
 		w.Write([]byte(f))
