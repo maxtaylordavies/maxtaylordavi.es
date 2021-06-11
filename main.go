@@ -134,6 +134,15 @@ func registerRoutes() http.Handler {
 		w.Write([]byte(f))
 	})
 
+	mux.HandleFunc("/thesis", func(w http.ResponseWriter, r *http.Request) {
+		f, err := ioutil.ReadFile("./thesis.html")
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		w.Write([]byte(f))
+	})
+
 	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
 		img, err := os.Open("." + strings.TrimSuffix(r.URL.Path, "/"))
 		if err != nil {
