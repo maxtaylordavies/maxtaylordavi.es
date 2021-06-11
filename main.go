@@ -135,12 +135,21 @@ func registerRoutes() http.Handler {
 	})
 
 	mux.HandleFunc("/thesis", func(w http.ResponseWriter, r *http.Request) {
-		f, err := ioutil.ReadFile("./thesis.html")
+		f, err := ioutil.ReadFile("./thesis/thesis.html")
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 		w.Write([]byte(f))
+	})
+
+	mux.HandleFunc("/figures/", func(w http.ResponseWriter, r *http.Request) {
+		img, err := os.Open("./thesis" + strings.TrimSuffix(r.URL.Path, "/"))
+		if err != nil {
+			log.Fatal(err) // perhaps handle this nicer
+		}
+		defer img.Close()
+		io.Copy(w, img)
 	})
 
 	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
