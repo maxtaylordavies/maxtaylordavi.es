@@ -145,7 +145,7 @@ func registerRoutes() http.Handler {
 		b := []byte(f)
 		fmt.Println(f[:882])
 
-		w.Write([]byte(f))
+		w.Write(b)
 	})
 
 	mux.HandleFunc("/figures/", func(w http.ResponseWriter, r *http.Request) {
