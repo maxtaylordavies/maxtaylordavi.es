@@ -143,7 +143,7 @@ func registerRoutes() http.Handler {
 		}
 
 		b := []byte(f)
-		fmt.Println(f[:882])
+		b = b[:882] + []byte('<link rel="stylesheet" href="styles/thesis.css"') + b[883:]
 
 		w.Write(b)
 	})
