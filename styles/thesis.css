@@ -1,3 +1,8 @@
+hr {
+  width: 100%;
+  margin: 0;
+}
+
 code {
   background: rgb(223, 223, 223);
   padding: 3px 5px;
