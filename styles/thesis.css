@@ -8,6 +8,10 @@ code {
 code.language-python {
   padding: 3px 5px;
   color: #93a1a1;
+  background: transparent;
+}
+
+code.language-python > div {
   background: #002b36;
 }
 
