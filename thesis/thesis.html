@@ -287,7 +287,7 @@ d_k = -\nabla f(x_k) + \beta_{k-1}d_{k-1}, &amp; k \neq 0
     freq = average(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(spectrum)), weights=spectrum)
     <span class="hljs-keyword">return</span> qmi(x) / freq
 </div></code></pre>
-<figcaption>Modified objective function accounting for smoothness</figcaption>
+<figcaption>Listing 2: Modified objective function accounting for smoothness</figcaption>
 <p>Care must be taken, however, not to suppress the signal of the QMI within the objective function - we don't want to end up with a nearly uniform RF estimate that yields a low QMI value but is nonetheless determined to be &quot;optimal&quot; on account of its smoothness.</p>
 <h3 id="d-testing-against-simple-model-neurons">D. Testing against simple model neurons</h3>
 <p>In order to validate the results of this optimisation procedure, we need to try estimating a known <q>ground-truth</q> RF, using a synthetic neural response. To generate the response, we return to the Poisson model described briefly in section <a href="#a-receptive-fields-and-their-estimation">1A</a>. For the first ground-truth RF, we use a purely spatial, 1-frame circular Gaussian filter:</p>
@@ -328,6 +328,7 @@ heatmap = np.zeros((num_bins, num_bins))
   <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_bins):
     heatmap[i,j] = similarity(rf_dict[i], rf_dict[j])
 </div></code></pre>
+<figcaption>Listing 3: Code for producing RF similarity matrix</figcaption>
 <h2 id="3-results">3. Results</h2>
 <ul>
 <li>brief look at comparison of optimisation approaches (with objective function plots)</li>
