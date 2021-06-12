@@ -79,7 +79,7 @@ pre > code.code-line > div {
 .hljs-code,
 .hljs-string,
 .hljs-title.class_.inherited__ {
-  color: #859900;
+  color: rgb(242, 114, 215);
 }
 
 .hljs-built_in,
