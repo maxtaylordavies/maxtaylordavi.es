@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -143,7 +142,8 @@ func registerRoutes() http.Handler {
 		}
 
 		b := []byte(f)
-		b = b[:882] + []byte('<link rel="stylesheet" href="styles/thesis.css"') + b[883:]
+		tmp := append(b[:882], []byte(`<link rel="stylesheet" href="styles/thesis.css"`)...)
+		b = append(tmp, b[883:]...)
 
 		w.Write(b)
 	})
