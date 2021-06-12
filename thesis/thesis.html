@@ -293,12 +293,12 @@ d_k = -\nabla f(x_k) + \beta_{k-1}d_{k-1}, &amp; k \neq 0
 <p>In order to validate the results of this optimisation procedure, we need to try estimating a known <q>ground-truth</q> RF, using a synthetic neural response. To generate the response, we return to the Poisson model described briefly in section <a href="#a-receptive-fields-and-their-estimation">1A</a>. For the first ground-truth RF, we use a purely spatial, 1-frame circular Gaussian filter:</p>
 <figure>
   <img src="./figures/template-1.svg">
-  <figcaption><i>Fig 1. The spatial receptive field of the first model neuron used for testing</i></figcaption>
+  <figcaption>Fig 1. The spatial receptive field of the first model neuron used for testing</figcaption>
 </figure>
 <p>The natural movie stimulus was then projected onto this filter, and the filter output at each time bin was squared. This produced a vector representing the number of spikes produced for each time bin (stimulus frame) by our model neuron. The stimulus and synthetic response were then used to generate RF estimates using both the optimisation algorithm and a simple implementation of the STA method outlined in section <a href="#a-receptive-fields-and-their-estimation">1A</a>, which were compared to the ground-truth. The same test was repeated with a second ground-truth RF incorporating a temporal variation over 3 frames:</p>
 <figure>
   <img src="./figures/template-2.svg">
-  <figcaption><i>Fig 2. The spatiotemporal receptive field of the second model neuron used for testing</i></figcaption>
+  <figcaption>Fig 2. The spatiotemporal receptive field of the second model neuron used for testing</figcaption>
 </figure>
 <h3 id="e-application-to-the-allen-visual-coding-dataset">E. Application to the Allen Visual Coding dataset</h3>
 <p>To provide an example of how PyQMI's RF estimator might be used in computational neuroscience research, we used it to analyse neural data from <a href="https://portal.brain-map.org/explore/circuits/visual-coding-neuropixels">the Allen Institute's Large-Scale Visual Coding dataset</a> (details of the dataset can be found in Appendix A). After loading all the data from session _ (the first session in the dataset), an RF estimate was computed for each unit in the session. The full range of probe vertical positions from the session's units was determined, and divided into bins of width 100. For each bin, the average RF estimate for all units corresponding to the bin was determined. A pairwise similarity matrix was then produced from these average RFs, with the similarity defined as</p>
@@ -337,11 +337,11 @@ heatmap = np.zeros((num_bins, num_bins))
 </ul>
 <figure>
   <img src="./figures/vertical.svg">
-  <figcaption><i>Fig 2. The vertical probe position of every unit in the session was determined. For each bin of height 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</i></figcaption>
+  <figcaption>Fig 2. The vertical probe position of every unit in the session was determined. For each bin of height 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
 </figure>
 <figure>
   <img src="./figures/left-right.svg">
-  <figcaption><i>Fig 3. The position in the left-right plane for every unit in the session was determined. For each bin of width 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</i></figcaption>
+  <figcaption>Fig 3. The position in the left-right plane for every unit in the session was determined. For each bin of width 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
 </figure>
 <h2 id="4-discussion">4. Discussion</h2>
 <ul>

@@ -3,6 +3,10 @@ hr {
   margin: 0;
 }
 
+figcaption {
+  font-style: italic;
+}
+
 code {
   background: rgb(223, 223, 223);
   padding: 3px 5px;
