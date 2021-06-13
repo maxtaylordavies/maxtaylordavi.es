@@ -341,20 +341,22 @@ heatmap = np.zeros((num_bins, num_bins))
   <img src="./figures/qmi_curves.svg">
   <figcaption>Fig 3. Change in QMI over 50 iterations of the gradient and conjugate directions algorithms</figcaption>
 </figure>
+<p>Fig. 3 shows the difference in convergence speed between the gradient and conjugate directions algorithms over 50 iterations of QMI optimisation (for the natural movie stimulus and a synthetic response produced by the first model neuron). It is evident that, as expected, the conjugate directions algorithm converges faster to the same result.</p>
 <h3 id="b-recovery-of-model-neuron-rfs">B. Recovery of model neuron RFs</h3>
+<figure>
+<img src="./figures/comparison-1.png" width="500px">
+<img src="./figures/comparison-2.png" width="500px">
+<img src="./figures/comparison-3.png" width="500px">
+<figcaption>Fig 4. Comparison between STA and QMI estimates of a model RF. Top: ground-truth RF; middle: STA estimate; bottom: QMI estimate</figcaption>
+</figure>
 <h3 id="c-analysis-of-allen-dataset">C. Analysis of Allen dataset</h3>
-<ul>
-<li>brief look at comparison of optimisation approaches (with objective function plots)</li>
-<li>results of model neuron tests</li>
-<li>results of Allen analyses</li>
-</ul>
 <figure>
   <img src="./figures/vertical.svg">
-  <figcaption>Fig 4. The vertical probe position of every unit in the session was determined. For each bin of height 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
+  <figcaption>Fig 5. The vertical probe position of every unit in the session was determined. For each bin of height 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
 </figure>
 <figure>
   <img src="./figures/left-right.svg">
-  <figcaption>Fig 5. The position in the left-right plane for every unit in the session was determined. For each bin of width 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
+  <figcaption>Fig 6. The position in the left-right plane for every unit in the session was determined. For each bin of width 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
 </figure>
 <h2 id="4-discussion">4. Discussion</h2>
 <ul>
