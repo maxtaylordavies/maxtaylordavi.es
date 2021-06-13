@@ -337,6 +337,10 @@ heatmap = np.zeros((num_bins, num_bins))
 <figcaption>Listing 3: Code for producing RF similarity matrix</figcaption>
 <h2 id="3-results">3. Results</h2>
 <h3 id="a-comparison-of-optimisation-algorithms">A. Comparison of optimisation algorithms</h3>
+<figure>
+  <img src="./figures/qmi_curves.svg">
+  <figcaption>Fig 3. Change in QMI over 50 iterations of the gradient and conjugate directions algorithms</figcaption>
+</figure>
 <h3 id="b-recovery-of-model-neuron-rfs">B. Recovery of model neuron RFs</h3>
 <h3 id="c-analysis-of-allen-dataset">C. Analysis of Allen dataset</h3>
 <ul>
@@ -346,11 +350,11 @@ heatmap = np.zeros((num_bins, num_bins))
 </ul>
 <figure>
   <img src="./figures/vertical.svg">
-  <figcaption>Fig 2. The vertical probe position of every unit in the session was determined. For each bin of height 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
+  <figcaption>Fig 4. The vertical probe position of every unit in the session was determined. For each bin of height 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
 </figure>
 <figure>
   <img src="./figures/left-right.svg">
-  <figcaption>Fig 3. The position in the left-right plane for every unit in the session was determined. For each bin of width 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
+  <figcaption>Fig 5. The position in the left-right plane for every unit in the session was determined. For each bin of width 100, the average receptive field of all neurons in that bin was computed. The similarity between every pair of average RFs was then computed as 1 - RMSE, and plotted as a heatmap.</figcaption>
 </figure>
 <h2 id="4-discussion">4. Discussion</h2>
 <ul>
