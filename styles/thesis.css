@@ -10,6 +10,11 @@ hr {
   margin: 0;
 }
 
+row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
 figcaption {
   font-style: italic;
 }
