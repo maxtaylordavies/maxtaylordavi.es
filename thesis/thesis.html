@@ -54,7 +54,7 @@
 </li>
 <li><a href="#3-results">3. Results</a>
 <ul>
-<li><a href="#a-comparison-of-optimisation-algorithms">A. Comparison of optimisation algorithms</a></li>
+<li><a href="#a-optimisation-approaches">A. Optimisation approaches</a></li>
 <li><a href="#b-recovery-of-model-neuron-rfs">B. Recovery of model neuron RFs</a></li>
 <li><a href="#c-analysis-of-allen-dataset">C. Analysis of Allen dataset</a></li>
 </ul>
@@ -365,12 +365,14 @@ heatmap = np.zeros((num_bins, num_bins))
 </div></code></pre>
 <figcaption>Listing 3: Code for producing RF similarity matrix</figcaption>
 <h2 id="3-results">3. Results</h2>
-<h3 id="a-comparison-of-optimisation-algorithms">A. Comparison of optimisation algorithms</h3>
+<h3 id="a-optimisation-approaches">A. Optimisation approaches</h3>
+<h4 id="comparing-algorithms">Comparing algorithms</h4>
 <figure>
   <img src="./figures/qmi_curves.svg">
   <figcaption>Fig 3. Change in QMI over 50 iterations of the gradient and conjugate directions algorithms</figcaption>
 </figure>
-<p>Fig. 3 shows the difference in convergence speed between the gradient and conjugate directions algorithms over 50 iterations of QMI optimisation (for the natural movie stimulus and a synthetic response produced by the first model neuron). It is evident that, as expected, the conjugate directions algorithm converges faster to the same result.</p>
+<p>Fig. 3 shows the difference in convergence speed between the gradient and conjugate directions algorithms over 50 iterations of QMI optimisation (for the natural movie stimulus and a synthetic response produced by the first model neuron). It is evident that, while both produce QMI values that increase monotonically to the same maximum, the conjugate directions algorithm achieves faster convergence.</p>
+<h4 id="incorporating-rf-smoothness">Incorporating RF smoothness</h4>
 <h3 id="b-recovery-of-model-neuron-rfs">B. Recovery of model neuron RFs</h3>
 <figure>
 <img src="./figures/comparison-1.png" width="400px">
