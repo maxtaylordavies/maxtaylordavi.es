@@ -23,37 +23,40 @@ func (pr *PostRepository) All() ([]Post, error) {
 	var posts []Post
 
 	err := filepath.Walk("./posts", func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() || info.Name() == ".DS_Store" {
+		fn := info.Name()
+
+		if fn == "posts" || strings.Contains(fn, ".") {
 			return nil
 		}
 
 		// parse id
-		fn := info.Name()
 		idStr := fn[0]
 		id, _ := strconv.Atoi(string(idStr))
 
-		b, err := ioutil.ReadFile("./posts/" + fn)
+		// get contents of main.html as string
+		b, err := ioutil.ReadFile("./posts/" + fn + "/main.html")
 		if err != nil {
 			return err
 		}
 		s := string(b)
 
 		// parse title
-		i := strings.Index(s, "<h1")
-		j := strings.Index(s, "</h1>")
-		title := strings.ToLower(s[i+23 : j])
+		i := strings.Index(s, "<title>")
+		j := strings.Index(s, "</title>")
+		title := strings.ToLower(s[i+7 : j])
 
 		// parse date
-		i = strings.Index(s, "<em>")
-		date, err := time.Parse("2006-01-02", s[i+4:i+14])
+		i = strings.Index(s, `<meta name="date"`)
+		date, err := time.Parse("Mon Jan 02 2006", s[i+27:i+42])
 		if err != nil {
 			return err
 		}
 
 		// parse tags
-		i = strings.Index(s, "<em>")
-		j = strings.Index(s, "</em>")
-		tags := strings.Split(s[i+15:j], " ")
+		// i = strings.Index(s, "<em>")
+		// j = strings.Index(s, "</em>")
+		// tags := strings.Split(s[i+15:j], " ")
+		tags := []string{}
 
 		posts = append(posts, Post{
 			id,

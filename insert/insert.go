@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/maxtaylordavies/maxtaylordavi.es/design"
+	"maxtaylordavi.es/design"
 )
 
 func ReadFileAndInjectStuff(fn, themeName string) ([]byte, error) {
@@ -16,8 +16,8 @@ func ReadFileAndInjectStuff(fn, themeName string) ([]byte, error) {
 	}
 	s := string(b)
 
-	// add tags
-	s = AddTags(s)
+	// // add tags
+	// s = AddTags(s)
 
 	// add nav links
 	s = AddNavLinks(s, strings.Contains(fn, "project"), themeName)
@@ -63,8 +63,8 @@ func AddNavLinks(s string, project bool, themeName string) string {
 
 	// add theme-specific styles
 	theme := design.GetTheme(themeName)
-	i = strings.Index(s, "</style>")
-	s = s[:i] + fmt.Sprintf("html {background: %s} .nav-link {background: %s}", theme.Background, theme.Color) + s[i:]
+	i = strings.Index(s, "</head>")
+	s = s[:i] + fmt.Sprintf("<style>body {background: %s} .nav-link {background: %s}</style>", theme.Background, theme.Color) + s[i:]
 
 	return s
 }

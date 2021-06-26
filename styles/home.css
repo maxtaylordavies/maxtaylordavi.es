@@ -152,12 +152,6 @@ summary::marker {
   /*transition: 0.5s*/
 }
 
-.contact-link:hover {
-  /*background-color: #772ce8;*/
-  background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);
-  -webkit-animation: hue 3s infinite linear;
-}
-
 .me {
   display: flex;
   flex-direction: column;
@@ -194,23 +188,6 @@ summary::marker {
 
 .list-title[descr]::after {
   content: attr(descr);
-}
-
-.list-title:hover::after {
-  content: "See more >";
-  background-image: -webkit-linear-gradient(0deg, #f35626, #feab3a);
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-animation: hue 3s infinite linear;
-}
-
-@-webkit-keyframes hue {
-  from {
-    -webkit-filter: hue-rotate(0deg);
-  }
-  to {
-    -webkit-filter: hue-rotate(-360deg);
-  }
 }
 
 .project-list {

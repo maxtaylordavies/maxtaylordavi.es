@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -10,9 +11,9 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/maxtaylordavies/maxtaylordavi.es/design"
-	"github.com/maxtaylordavies/maxtaylordavi.es/insert"
-	"github.com/maxtaylordavies/maxtaylordavi.es/repository"
+	"maxtaylordavi.es/design"
+	"maxtaylordavi.es/insert"
+	"maxtaylordavi.es/repository"
 )
 
 type Payload = struct {
@@ -33,7 +34,7 @@ func formatDate(t time.Time) string {
 }
 
 func idxToLetter(i int) string {
-	return string('A' + i)
+	return fmt.Sprint('A' + i)
 }
 
 var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter}
@@ -49,10 +50,12 @@ func registerRoutes() http.Handler {
 
 		postr := repository.PostRepository{}
 		projr := repository.ProjectRepository{}
+
 		recentPosts, err := postr.Recent()
 		if err != nil {
 			log.Fatalln("error getting recent posts: ", err)
 		}
+
 		recentProjects, err := projr.Recent()
 		if err != nil {
 			log.Fatalln("error getting recent projects: ", err)
@@ -116,7 +119,7 @@ func registerRoutes() http.Handler {
 		id := r.URL.Query().Get("id")
 		themeName := r.URL.Query().Get("theme")
 
-		b, err := insert.ReadFileAndInjectStuff("./posts/"+id+".html", themeName)
+		b, err := insert.ReadFileAndInjectStuff("./posts/"+id+"/main.html", themeName)
 
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
@@ -182,18 +185,8 @@ func registerRoutes() http.Handler {
 }
 
 func main() {
-
-	// certManager := autocert.Manager{
-	// 	Prompt: autocert.AcceptTOS,
-	// 	Cache:  autocert.DirCache("certs"),
-	// }
-
 	server := http.Server{
-		// Addr: ":https",
-		Addr: ":8000",
-		// TLSConfig: &tls.Config{
-		// 	GetCertificate: certManager.GetCertificate,
-		// },
+		Addr:         ":8000",
 		Handler:      registerRoutes(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
@@ -201,7 +194,4 @@ func main() {
 	}
 
 	server.ListenAndServe()
-
-	// go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
-	// server.ListenAndServeTLS("", "")
 }
