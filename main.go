@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -34,7 +33,7 @@ func formatDate(t time.Time) string {
 }
 
 func idxToLetter(i int) string {
-	return fmt.Sprint('A' + i)
+	return string('A' + i)
 }
 
 var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter}
