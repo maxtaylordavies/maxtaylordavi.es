@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -46,17 +47,13 @@ func (pr *PostRepository) All() ([]Post, error) {
 		title := strings.ToLower(s[i+7 : j])
 
 		// parse date
-		i = strings.Index(s, `<meta name="date"`)
-		date, err := time.Parse("Mon Jan 02 2006", s[i+27:i+42])
+		date, err := time.Parse("Mon Jan 02 2006", parseHtmlMetaContent(s, "date")[:15])
 		if err != nil {
 			return err
 		}
 
 		// parse tags
-		// i = strings.Index(s, "<em>")
-		// j = strings.Index(s, "</em>")
-		// tags := strings.Split(s[i+15:j], " ")
-		tags := []string{"neuroscience"}
+		tags := strings.Split(parseHtmlMetaContent(s, "tags"), ",")
 
 		posts = append(posts, Post{
 			id,
@@ -93,4 +90,18 @@ func reversePostSlice(slc []Post) []Post {
 		slc[i], slc[j] = slc[j], slc[i]
 	}
 	return slc
+}
+
+func parseHtmlMetaContent(html string, key string) string {
+	target := fmt.Sprintf(`<meta name="%s"`, key)
+	i := strings.Index(html, target) + 23 + len(key)
+	content := ""
+	for {
+		if string(html[i]) == `"` {
+			break
+		}
+		content += string(html[i])
+		i++
+	}
+	return content
 }

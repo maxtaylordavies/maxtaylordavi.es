@@ -1,58 +1,59 @@
 p {
-    margin-top: -17px;
+  margin-top: -17px;
 }
 
 h1 {
-    margin-bottom: 50px !important;
+  margin-bottom: 50px !important;
 }
 
 em {
-    font-style: normal !important;
-    color: black;
-    opacity: 30%;
-    font-size: 20px;
+  font-style: normal !important;
+  color: black;
+  opacity: 30%;
+  font-size: 20px;
 }
 
 .tags {
-    padding: 0;
-    display: flex;
-    flex-direction: row;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
 }
 
 .tag {
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-left: 5px;
-    box-shadow: 2px 2px 0 lightgrey;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 5px;
+  box-shadow: 2px 2px 0 lightgrey;
 }
 
 .tag:hover {
-    cursor: pointer;
-    box-shadow: 3.5px 3.5px 0 lightgrey;
+  cursor: pointer;
+  box-shadow: 3.5px 3.5px 0 lightgrey;
 }
 
 .tag.university {
-    
+  color: #21ab5f;
+  background-color: #d6ffe8;
+}
+
+.tag.neuroscience {
+  color: #dd00d4;
+  background-color: #ffeae3;
 }
 
 .tag.side {
-    color: #E44E4E;
-    background-color: #FFD2D2;
+  color: #e44e4e;
+  background-color: #ffd2d2;
 }
 
 .tag.tech {
-    color: #606EE3;
-    background-color: #C6CCFF;
-}
-
-.tag.culture {
-    color: #21AB5F;
-    background-color: #D6FFE8;
+  color: #606ee3;
+  background-color: #c6ccff;
 }
 
 .tag.personal {
-    color: #FFAA00;
-    background-color: #FFE0A1;
+  color: #ffaa00;
+  background-color: #ffe0a1;
 }
