@@ -56,7 +56,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 		// i = strings.Index(s, "<em>")
 		// j = strings.Index(s, "</em>")
 		// tags := strings.Split(s[i+15:j], " ")
-		tags := []string{}
+		tags := []string{"neuroscience"}
 
 		posts = append(posts, Post{
 			id,
