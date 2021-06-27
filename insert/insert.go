@@ -59,7 +59,7 @@ func AddNavLinks(s string, project bool, themeName string) string {
 
 	// add css
 	i = strings.Index(s, "</head>")
-	s = s[:i] + "<link rel='stylesheet' href='/styles/links.css'/>" + s[i:]
+	s = s[:i] + "<link rel='stylesheet' href='/styles/post.css'/>" + s[i:]
 
 	// add theme-specific styles
 	theme := design.GetTheme(themeName)
