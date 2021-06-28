@@ -11,11 +11,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    # The type of runner that the job will run on
+  deployment:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
     - name: Deploy Stage
       uses: fjogeleit/http-request-action@master
       with:
