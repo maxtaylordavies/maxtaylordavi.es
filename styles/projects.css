@@ -78,19 +78,6 @@ hr {
   justify-content: space-between;
   align-items: flex-start;
 }
-@-webkit-keyframes hue {
-  from {
-    -webkit-filter: hue-rotate(0deg);
-  }
-  to {
-    -webkit-filter: hue-rotate(-360deg);
-  }
-}
-.nav-link:hover {
-  background-image: -webkit-linear-gradient(0deg, #9147ff, #e466bb);
-  -webkit-animation: hue 3s infinite linear;
-  text-decoration: none;
-}
 .nav-link {
   display: inline-block;
   padding-top: 10px;
