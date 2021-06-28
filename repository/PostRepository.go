@@ -26,7 +26,7 @@ func (pr *PostRepository) All() ([]Post, error) {
 	err := filepath.Walk("./posts", func(path string, info os.FileInfo, err error) error {
 		fn := info.Name()
 
-		if fn == "posts" || strings.Contains(fn, ".") {
+		if fn == "posts" || fn == "media" || strings.Contains(fn, ".") {
 			return nil
 		}
 

@@ -136,38 +136,23 @@ func registerRoutes() http.Handler {
 		w.Write([]byte(f))
 	})
 
-	mux.HandleFunc("/thesis", func(w http.ResponseWriter, r *http.Request) {
-		f, err := ioutil.ReadFile("./thesis/thesis.html")
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			return
+	mux.HandleFunc("/media/", func(w http.ResponseWriter, r *http.Request) {
+		path := strings.TrimPrefix(r.URL.Path, "/media/")
+		parts := strings.Split(path, "/")
+
+		ct := "image/png"
+		if strings.Contains(parts[1], ".svg") {
+			ct = "image/svg+xml"
 		}
+		w.Header().Set("Content-Type", ct)
 
-		b := []byte(f)
-		tmp := append(b[:882], []byte(`<link rel="stylesheet" href="styles/thesis.css"`)...)
-		b = append(tmp, b[883:]...)
-
-		w.Write(b)
-	})
-
-	mux.HandleFunc("/figures/", func(w http.ResponseWriter, r *http.Request) {
-		img, err := os.Open("./thesis" + strings.TrimSuffix(r.URL.Path, "/"))
+		f, err := os.Open("./posts/" + parts[0] + "/media/" + parts[1])
 		if err != nil {
 			log.Fatal(err) // perhaps handle this nicer
 		}
-		defer img.Close()
-		w.Header().Set("Content-Type", "image/svg+xml")
-		io.Copy(w, img)
-	})
 
-	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
-		img, err := os.Open("." + strings.TrimSuffix(r.URL.Path, "/"))
-		if err != nil {
-			log.Fatal(err) // perhaps handle this nicer
-		}
-		defer img.Close()
-		w.Header().Set("Content-Type", "image/png")
-		io.Copy(w, img)
+		defer f.Close()
+		io.Copy(w, f)
 	})
 
 	mux.HandleFunc("/styles/", func(w http.ResponseWriter, r *http.Request) {
