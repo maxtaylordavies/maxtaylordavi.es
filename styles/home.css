@@ -129,13 +129,13 @@ summary::marker {
 
 .name {
   font-size: 60px;
-  font-weight: 450;
+  font-weight: 600;
   margin-bottom: 0;
 }
 
 .bio {
   color: #808080;
-  font-size: 28px;
+  font-size: 26px;
   margin-top: 10px;
 }
 
