@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,8 +14,8 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy Stage
-      uses: fjogeleit/http-request-action@master
-      with:
-        url: 'http://93.96.115.81:9000/'
-        method: 'POST'
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "http://93.96.115.81:9000/deploy?repo=maxtaylordavi.es"
+          method: "POST"

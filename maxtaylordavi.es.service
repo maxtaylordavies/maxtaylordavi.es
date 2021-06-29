@@ -1,14 +1,12 @@
 [Unit]
-Description=personal site
-After=network.target
+Description=maxtaylordavi.es
 
 [Service]
-ExecStart=/usr/bin/go build && /home/pi/go/src/github.com/maxtaylordavies/maxtaylordavi.es/maxtaylordavi.es
-WorkingDirectory=/home/pi/go/src/github.com/maxtaylordavies/maxtaylordavi.es/
-StandardOutput=inherit
-StandardError=inherit
+Type=simple
 Restart=always
-User=pi
+RestartSec=5s
+ExecStart=/home/pi/code/maxtaylordavi.es/maxtaylordavi.es
+WorkingDirectory=/home/pi/code/maxtaylordavi.es/
 
 [Install]
 WantedBy=multi-user.target
