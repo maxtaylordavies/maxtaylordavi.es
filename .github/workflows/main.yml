@@ -17,5 +17,6 @@ jobs:
       - name: Deploy Stage
         uses: fjogeleit/http-request-action@master
         with:
-          url: "http://93.96.115.81:9000/deploy?repo=maxtaylordavi.es"
+          url: "http://93.96.115.81:9000/deploy"
           method: "POST"
+          data: "{'repo': 'maxtaylordavi.es'}"
