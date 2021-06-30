@@ -19,4 +19,4 @@ jobs:
         with:
           url: "http://93.96.115.81:9000/deploy"
           method: "POST"
-          data: "{repo: maxtaylordavi.es}"
+          data: '{"repo": "maxtaylordavi.es"}'
