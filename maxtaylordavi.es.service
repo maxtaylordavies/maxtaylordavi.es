@@ -6,7 +6,7 @@ User=pi
 Type=simple
 Restart=always
 RestartSec=5s
-ExecStartPre=/bin/sh -c 'go build'
+ExecStartPre=/bin/sh -c '/usr/local/go/bin/go build'
 ExecStart=/home/pi/code/maxtaylordavi.es/maxtaylordavi.es
 WorkingDirectory=/home/pi/code/maxtaylordavi.es/
 
