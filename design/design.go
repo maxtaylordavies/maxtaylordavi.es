@@ -50,5 +50,5 @@ func GetTheme(name string) Theme {
 		}
 	}
 
-	return themes[0]
+	return themes[2]
 }

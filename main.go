@@ -135,6 +135,16 @@ func registerRoutes() http.Handler {
 		io.Copy(w, css)
 	})
 
+	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
+		img, err := os.Open("." + strings.TrimSuffix(r.URL.Path, "/"))
+		if err != nil {
+			log.Fatal(err) // perhaps handle this nicer
+		}
+		defer img.Close()
+		// w.Header().Set("Content-Type", "text/css")
+		io.Copy(w, img)
+	})
+
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
