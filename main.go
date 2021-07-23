@@ -41,36 +41,6 @@ var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter}
 func registerRoutes() http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/html")
-
-		allThemes := design.GetAllThemes()
-		theme := design.GetTheme(r.URL.Query().Get("theme"))
-
-		postr := repository.PostRepository{}
-		projr := repository.ProjectRepository{}
-
-		recentPosts, err := postr.Recent()
-		if err != nil {
-			log.Fatalln("error getting recent posts: ", err)
-		}
-
-		recentProjects, err := projr.Recent()
-		if err != nil {
-			log.Fatalln("error getting recent projects: ", err)
-		}
-
-		data := Payload{
-			Posts:     recentPosts,
-			Projects:  recentProjects,
-			Theme:     theme,
-			AllThemes: allThemes,
-		}
-
-		// serve the homepage
-		_ = tpl.ExecuteTemplate(w, "home.gohtml", data)
-	})
-
 	mux.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
@@ -163,6 +133,36 @@ func registerRoutes() http.Handler {
 		defer css.Close()
 		w.Header().Set("Content-Type", "text/css")
 		io.Copy(w, css)
+	})
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+
+		allThemes := design.GetAllThemes()
+		theme := design.GetTheme(r.URL.Query().Get("theme"))
+
+		postr := repository.PostRepository{}
+		projr := repository.ProjectRepository{}
+
+		recentPosts, err := postr.Recent()
+		if err != nil {
+			log.Fatalln("error getting recent posts: ", err)
+		}
+
+		recentProjects, err := projr.Recent()
+		if err != nil {
+			log.Fatalln("error getting recent projects: ", err)
+		}
+
+		data := Payload{
+			Posts:     recentPosts,
+			Projects:  recentProjects,
+			Theme:     theme,
+			AllThemes: allThemes,
+		}
+
+		// serve the homepage
+		_ = tpl.ExecuteTemplate(w, "home.gohtml", data)
 	})
 
 	return mux
