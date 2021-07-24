@@ -57,3 +57,8 @@ em {
   color: #ffaa00;
   background-color: #ffe0a1;
 }
+
+.tag.web {
+  background-color: #1df4c1;
+  color: #007458;
+}
