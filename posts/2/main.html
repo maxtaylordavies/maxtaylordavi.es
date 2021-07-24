@@ -406,14 +406,14 @@ heatmap = np.zeros((num_bins, num_bins))
 </figure>
 <p>Fig. 5 shows a comparison between the performance of the STA and QMI methods on recovery of a simple spatial RF from a Poisson model neuron. The STA method performs very poorly, due to the natural movie stimulus being highly non-Gaussian, with significant spatiotemporal correlation. The QMI method is not perfect, producing a not-entirely-spherical estimate with slightly overestimated radius, but it has clearly done a good job of recovering the essential structure of the ground-truth RF.</p>
 <figure>
-    <img src="/media/2/spatiotemporal.png" width="400px">
+    <img src="/media/2/spatiotemporal.png" width="600px">
     <figcaption>Fig 6. Recovery of 3-frame spatiotemporal RF from model neuron by QMI optimiser</figcaption>
 </figure>
 <p>Fig. 6 illustrates that the QMI method is not limited to purely spatial RFs, but can also recover spatiotemporal RFs at the cost of only slightly increased noise.</p>
 <h3 id="c-analysis-of-allen-dataset">C. Analysis of Allen dataset</h3>
 <p>Having validated the estimator on model neurons, we applied it to mapping a selection of units from the Allen dataset. Fig. 7 shows, as an example, the estimated RFs of two dLGN neurons taken from the first session of the dataset. Although these estimates are difficult to assess on account of not having access to ground truth values, we note that they do exhibit the typical centre-surround structure that would be expected of a neuron from the dLGN.</p>
 <figure>
-    <img src="/media/2/dlgn.png" width="400px">
+    <img src="/media/2/dlgn.png" width="600px">
     <figcaption>Fig 7. Estimated RFs of two dLGN neurons taken from the Allen dataset</figcaption>
 </figure>
 <p>In order to demonstrate the applicability of the QMI method to analyses over neural populations, rather than just single cells, we produced two simple heatmaps. The first of these, given in Fig. 8, illustrates how the similarity between the average RFs for neural populations recorded by two given probes changes as a function of the vertical separation between the probes. As we might expect, in general, the similarity decreases as the probes become further vertically separated from one another. Fig. 9 shows the presence of a similar albeit weaker trend for separation along the left-right axis.</p>
