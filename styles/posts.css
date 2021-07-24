@@ -89,6 +89,9 @@ hr {
     Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   margin-right: 10px;
 }
+.nav-link:hover {
+  transform: scale(1.1);
+}
 .nav-links {
   position: fixed;
   top: 0px;
