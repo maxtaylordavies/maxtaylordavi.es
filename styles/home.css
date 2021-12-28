@@ -131,10 +131,16 @@ summary::marker {
   font-size: 60px;
   font-weight: 600;
   margin-bottom: 0;
+  display: inherit;
+}
+
+.waving-hand {
+  margin-left: 6px;
+  transition: all 200ms;
 }
 
 .waving-hand:hover {
-  transform: rotate(45deg);
+  transform: rotate(60deg);
 }
 
 .bio {
