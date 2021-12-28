@@ -139,6 +139,15 @@ summary::marker {
   margin-top: 10px;
 }
 
+.bio-link {
+  color: blue;
+  text-decoration: none;
+}
+
+.bio-link:hover {
+  font-weight: bold;
+}
+
 .contact-link {
   display: inline-block;
   padding-top: 8px;
