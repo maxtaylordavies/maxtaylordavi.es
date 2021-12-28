@@ -133,6 +133,10 @@ summary::marker {
   margin-bottom: 0;
 }
 
+.waving-hand:hover {
+  transform: rotate(45deg);
+}
+
 .bio {
   color: #808080;
   font-size: 26px;
