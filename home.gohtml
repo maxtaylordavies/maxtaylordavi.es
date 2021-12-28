@@ -60,37 +60,12 @@
             <h3 class="name">Hi, I'm Max 👋</h3>
             <p class="bio">
                 I am a recent MEng graduate of the <a href="https://www.imperial.ac.uk/bioengineering" class="bio-link">Imperial College London bioengineering department</a> and a former software engineer at <a href="https://www.polyai.com/" class="bio-link">PolyAI</a> and <a href="https://www.medengine.co" class="bio-link">MedEngine</a>. 
-                I am interested in neuro-AI, multi-agent reinforcement learning, AI alignment, and human-computer interaction. Feel free to reach out!
+                I am interested in neuro-AI, multi-agent reinforcement learning, AI alignment, and human-computer interaction. Take a look at my <ahref="/projects?theme={{ .Theme.Name }}>projects</a> or <a href="/posts?theme={{ .Theme.Name }}">posts</a>, or feel free to reach out!
             </p>
             <div>
                 <a class="contact-link" href="mailto:root@maxtaylordavi.es" target="_blank">📧</a>
                 <a class="contact-link" href="https://github.com/maxtaylordavies" target="_blank">👨‍💻</a>
                 <a class="contact-link" href="/cv" target="_blank">📜</a>
-            </div>
-        </div>
-        {{$theme := .Theme.Name}}
-        <div class="stuff">
-            <div class="recent-projects">
-                <a href="/projects?theme={{ .Theme.Name }}" class="list-title" descr="Recent Projects"></a>
-                <ul class="project-list">
-                    {{range .Projects}}
-                    <li class="list-item">
-                        <div class="list-item-title">
-                            <a class="list-item-link" href="{{.Link}}">{{.Title}}</a>
-                        </div>
-                    </li>
-                    {{end}}
-                </ul>
-            </div>
-            <div class="recent-posts">
-                <a href="/posts?theme={{ .Theme.Name }}" class="list-title" descr="Recent Posts"></a>
-                <ul class="post-list">
-                    {{range .Posts}}
-                        <li class="post-list-item">
-                            <a class="post-list-item-link" href="/post?id={{.Id}}&theme={{$theme}}">{{.Title}}</a>
-                        </li>
-                    {{end}}
-                </ul>
             </div>
         </div>
     </div>
