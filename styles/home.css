@@ -158,8 +158,8 @@ summary::marker {
   background: #007458;
   color: #48ff5b;
   text-decoration: none;
-  padding: 4px;
-  padding-top: 0;
+  padding: 0px 10px 4px 10px;
+  border-radius: 20px;
 }
 
 .contact-link {
