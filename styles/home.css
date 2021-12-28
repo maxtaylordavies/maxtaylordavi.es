@@ -140,7 +140,7 @@ summary::marker {
 }
 
 .waving-hand:hover {
-  transform: rotate(60deg);
+  transform: rotate(80deg);
 }
 
 .bio {
