@@ -154,6 +154,11 @@ summary::marker {
   text-decoration: none;
 }
 
+.page-link {
+  background: #007458;
+  color: #48ff5b;
+}
+
 .contact-link {
   display: inline-block;
   padding-top: 4px;
