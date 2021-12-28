@@ -155,6 +155,7 @@ summary::marker {
 }
 
 .page-link {
+  display: inline-block;
   background: #007458;
   color: #48ff5b;
   text-decoration: none;
