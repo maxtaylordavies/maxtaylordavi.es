@@ -157,6 +157,9 @@ summary::marker {
 .page-link {
   background: #007458;
   color: #48ff5b;
+  text-decoration: none;
+  padding: 4px;
+  padding-top: 0;
 }
 
 .contact-link {
