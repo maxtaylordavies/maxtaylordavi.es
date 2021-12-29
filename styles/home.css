@@ -152,6 +152,12 @@ summary::marker {
 .bio-link {
   color: blue;
   text-decoration: none;
+  font-size: 22px;
+  transition: all 200ms;
+}
+
+.bio-link:hover {
+  transform: scale(1.1);
 }
 
 .page-link {
