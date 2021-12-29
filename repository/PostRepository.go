@@ -85,6 +85,23 @@ func (pr *PostRepository) Recent() ([]Post, error) {
 	return recentPosts, nil
 }
 
+func (pr *PostRepository) WithTag(tag string) ([]Post, error) {
+	var posts []Post
+
+	allPosts, err := pr.All()
+	if err != nil {
+		return posts, err
+	}
+
+	for _, p := range allPosts {
+		if contains(p.Tags, tag) {
+			posts = append(posts, p)
+		}
+	}
+
+	return posts, nil
+}
+
 func reversePostSlice(slc []Post) []Post {
 	for i, j := 0, len(slc)-1; i < j; i, j = i+1, j-1 {
 		slc[i], slc[j] = slc[j], slc[i]
@@ -104,4 +121,13 @@ func parseHtmlMetaContent(html string, key string) string {
 		i++
 	}
 	return content
+}
+
+func contains(slc []string, s string) bool {
+	for _, a := range slc {
+		if a == s {
+			return true
+		}
+	}
+	return false
 }

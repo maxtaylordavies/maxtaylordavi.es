@@ -20,9 +20,14 @@
 </head>
 <body>
 <div class="container">
-    <div class='nav-links'><a class='nav-link' href='/?theme={{ .Theme.Name }}'>home</a></div>
+    <div class='nav-links'>
+        <a class='nav-link posts' href='/?theme={{ .Theme.Name }}'>home</a>
+        {{if .Filtered}}
+            <a class='nav-link' href='/posts?theme={{ .Theme.Name }}'>all posts</a>
+        {{end}}
+    </div>
     <div class="body">
-        <p class="title">All Posts</p>
+        <p class="title">{{.Title}}</p>
         <ul class="list">
             {{$theme := .Theme.Name}}
             {{range .Posts}}
@@ -33,7 +38,7 @@
                     </div>
                     <ul class="tags">
                         {{range .Tags}}
-                            <div class="tag {{.}}">{{.}}</div>
+                            <a href="/posts?tag={{.}}&theme={{$theme}}" class="tag {{.}}">{{.}}</a>
                         {{end}}
                     </ul>
                 </div>

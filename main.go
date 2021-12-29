@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -20,6 +21,8 @@ type Payload = struct {
 	Projects  []repository.Project
 	Theme     design.Theme
 	AllThemes []design.Theme
+	Filtered  bool
+	Title     string
 }
 
 var tpl *template.Template
@@ -44,10 +47,21 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
+		tag := r.URL.Query().Get("tag")
 		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
 		postr := repository.PostRepository{}
-		posts, err := postr.All()
+
+		var posts []repository.Post
+		var title string
+		var err error
+		if tag == "" {
+			posts, err = postr.All()
+			title = "All posts"
+		} else {
+			posts, err = postr.WithTag(tag)
+			title = fmt.Sprintf("Posts tagged <a href='/posts?tag=%s&theme=%s' class='tag %s title'>%s</a>", tag, theme.Name, tag, tag)
+		}
 
 		if err != nil {
 			log.Fatalln("error getting recent projects: ", err)
@@ -55,8 +69,10 @@ func registerRoutes() http.Handler {
 
 		// serve the posts page
 		data := Payload{
-			Posts: posts,
-			Theme: theme,
+			Posts:    posts,
+			Theme:    theme,
+			Title:    title,
+			Filtered: tag != "",
 		}
 
 		_ = tpl.ExecuteTemplate(w, "posts.gohtml", data)
