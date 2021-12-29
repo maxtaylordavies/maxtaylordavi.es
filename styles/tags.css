@@ -26,6 +26,16 @@ em {
   font-weight: 600;
   margin-left: 5px;
   box-shadow: 2px 2px 0 lightgrey;
+  text-decoration: none;
+}
+
+.tag.title {
+  display: inline-block;
+  transform: scale(1.15);
+  border: none;
+  margin: 0 0 0 8px;
+  position: relative;
+  bottom: 10px;
 }
 
 .tag:hover {

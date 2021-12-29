@@ -88,6 +88,9 @@ hr {
   margin-right: 10px;
   transition: all 200ms;
 }
+.nav-link.posts {
+  margin-right: 6px;
+}
 .nav-link:hover {
   transform: scale(1.05);
 }
