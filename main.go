@@ -81,10 +81,22 @@ func registerRoutes() http.Handler {
 	mux.HandleFunc("/projects", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
+		tag := r.URL.Query().Get("tag")
 		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
 		projr := repository.ProjectRepository{}
-		projects, err := projr.All()
+
+		var projects []repository.Project
+		var title string
+		var err error
+		if tag == "" {
+			projects, err = projr.All()
+			title = "All projects"
+		} else {
+			projects, err = projr.WithTag(tag)
+			title = fmt.Sprintf("Projects tagged <a href='/projects?tag=%s&theme=%s' class='tag %s title'>%s</a>", tag, theme.Name, tag, tag)
+		}
+
 		if err != nil {
 			log.Fatalln("error getting recent projects: ", err)
 		}
@@ -93,6 +105,8 @@ func registerRoutes() http.Handler {
 		data := Payload{
 			Projects: projects,
 			Theme:    theme,
+			Title:    title,
+			Filtered: tag != "",
 		}
 
 		_ = tpl.ExecuteTemplate(w, "projects.gohtml", data)

@@ -130,7 +130,7 @@ summary::marker {
 .name {
   font-size: 60px;
   font-weight: 600;
-  margin-bottom: 0;
+  margin: 0;
   display: inherit;
 }
 
@@ -190,110 +190,4 @@ summary::marker {
   flex-direction: column;
   width: 60%;
   margin-bottom: 25px;
-}
-
-.stuff {
-  display: flex;
-  width: 60%;
-}
-
-.recent-projects {
-  margin-bottom: 126px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: 40px;
-}
-
-.recent-posts {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.list-title {
-  font-size: 40px;
-  font-weight: 450;
-  text-decoration: none;
-  margin-top: 16px;
-  min-width: 275px;
-}
-
-.list-title[descr]::after {
-  content: attr(descr);
-}
-
-.project-list {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  width: 100%;
-}
-
-.post-list {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  width: 100%;
-}
-
-.list-item {
-  font-size: 28px;
-  color: #808080;
-}
-
-.list-item-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #808080;
-  margin-bottom: 4px;
-  margin-top: 4px;
-  text-decoration: none;
-}
-
-.post-list-item {
-  color: #808080;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 28px;
-}
-
-.post-list-item-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #808080;
-  margin-bottom: 4px;
-  margin-top: 4px;
-  text-decoration: none;
-}
-
-.see-more {
-  font-size: 10pt;
-  color: black;
-  margin-top: 10px;
-}
-
-.copyright {
-  position: absolute;
-  bottom: 0;
-  font-size: 10pt;
-  color: #808080;
-  margin: 0;
-}
-
-.list-item-title {
-  display: flex;
-  flex-direction: row;
-  /*justify-content: space-between;*/
-  align-items: flex-start;
-}
-
-.dashes {
-  color: grey;
 }

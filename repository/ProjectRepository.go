@@ -41,3 +41,20 @@ func (pr *ProjectRepository) Recent() ([]Project, error) {
 
 	return recentProjects, nil
 }
+
+func (pr *ProjectRepository) WithTag(tag string) ([]Project, error) {
+	var projects []Project
+
+	allProjects, err := pr.All()
+	if err != nil {
+		return projects, err
+	}
+
+	for _, p := range allProjects {
+		if contains(p.Tags, tag) {
+			projects = append(projects, p)
+		}
+	}
+
+	return projects, nil
+}
