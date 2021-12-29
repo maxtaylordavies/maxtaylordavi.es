@@ -20,16 +20,22 @@
 </head>
 <body>
 <div class="container">
-    <div class='nav-links'><a class='nav-link' href='/?theme={{ .Theme.Name }}'>home</a></div>
+    <div class='nav-links'>
+        <a class='nav-link projects' href='/?theme={{ .Theme.Name }}'>home</a>
+        {{if .Filtered}}
+            <a class='nav-link' href='/projects?theme={{ .Theme.Name }}'>all projects</a>
+        {{end}}
+    </div>
     <div class="body">
-        <p class="title">All Projects</p>
+        <p class="title">{{.Title}}</p>
         <ul class="list">
+            {{$theme := .Theme.Name}}
             {{range .Projects}}
                 <div class="list-item">
                     <a class="project-title" href="{{.Link}}">{{.Title}}</a>
                     <ul class="tags">
                         {{range .Tags}}
-                            <div class="tag {{.}}">{{.}}</div>
+                            <a href="/projects?tag={{.}}&theme={{$theme}}" class="tag {{.}}">{{.}}</a>
                         {{end}}
                     </ul>
                 </div>
