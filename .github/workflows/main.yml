@@ -25,10 +25,10 @@ jobs:
             if [[ $cf == *.service ]]; then changed=true; fi
           done
           echo $changed
-          echo "::set-output name=changed::$changed\n"
+          echo "::set-output name=changed::$changed"
       - name: Deploy Stage
         uses: fjogeleit/http-request-action@master
         with:
           url: "https://deploy.fun/deploy"
           method: "POST"
-          data: '{"repo": "maxtaylordavi.es", "service_file_changed": "${{steps.changed.outputs}}"}'
+          data: '{"repo": "maxtaylordavi.es", "service_file_changed": "${{steps.changed.outputs.changed}}"}'
