@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no">
+<meta name="description" content="Self-hosting for fun and profit - microjam page">
+<meta name="author" content="Max Taylor-Davies">
+<meta name="date" content="Thu Dec 30 2021 00:00:00 GMT+0100 (British Summer Time)">
+<meta name="tags" content="tech">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/goessner/mdmath/themes/publication/style.css">
+<style>
+h4 {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 1.05em;
+  margin: 2em 0 0.75em 0;
+}
+
+hr {
+  width: 100%;
+  margin: 0;
+}
+
+row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+figcaption {
+  font-style: italic;
+  color: #737373;
+}
+
+pre > code > div,
+pre > code.code-line > div {
+  background: #151144;
+  border-radius: 15px;
+  padding: 25px;
+  color: #00ff92;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.hljs ::selection {
+  color: #586e75;
+}
+
+.hljs-comment {
+  color: #657b83;
+}
+
+.hljs-tag {
+  color: #839496;
+}
+
+.hljs-operator,
+.hljs-punctuation,
+.hljs-subst {
+  color: #93a1a1;
+}
+
+.hljs-operator {
+  opacity: 0.7;
+}
+
+.hljs-bullet,
+.hljs-deletion,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+  color: #dc322f;
+}
+
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+  color: #ff9c7b;
+}
+
+.hljs-class .hljs-title,
+.hljs-title,
+.hljs-title.class_ {
+  color: #b58900;
+}
+
+.hljs-strong {
+  font-weight: 700;
+  color: #b58900;
+}
+
+.hljs-addition,
+.hljs-code,
+.hljs-string,
+.hljs-title.class_.inherited__ {
+  color: rgb(242, 114, 215);
+}
+
+.hljs-built_in,
+.hljs-doctag,
+.hljs-keyword.hljs-atrule,
+.hljs-quote,
+.hljs-regexp {
+  color: #bbf;
+}
+
+.hljs-attribute,
+.hljs-function .hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.ruby .hljs-property {
+  color: #d33682;
+}
+
+.diff .hljs-meta,
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-type {
+  color: #d2a700;
+}
+
+.hljs-emphasis {
+  color: #6c71c4;
+  font-style: italic;
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: #d33682;
+}
+
+.hljs-meta .hljs-keyword,
+.hljs-meta-keyword {
+  font-weight: 700;
+}
+
+figure {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+figcaption {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.divider-top {
+  margin-top: 50px;
+}
+
+.divider-bottom {
+  margin-bottom: 50px;
+}
+
+.jikji-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Helvetica, sans-serif;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: transparent;
+  transition: all 500ms;
+}
+
+.jikji-logo-container:hover {
+  color: grey;
+  transform: scale(1.05)
+}
+
+.jikji-logo {
+  cursor: pointer;
+  margin-right: 5px;
+}
+</style>
+<title>Self-hosting for fun and profit</title>
+</head>
+<body id="top">
+<header>
+<h1>Self-hosting for fun and profit</h1>
+
+<h4>Max Taylor-Davies</h4>
+
+<h5>December 2021</h5>
+<h5><b>Keywords:</b> tech</h5>
+</header>
+<main>
+<p>When I first started out messing around with web projects, I used Heroku for everything. This was a good choice - I knew virtually nothing about infrastructure, devops or anything like that, and for the reasonable price of $9/month, Heroku let me focus on what I was actually interested in learning - writing code. However, while $9/month is not a ton of money, it isn't zero, and as a pretty broke student I had to cut costs where I could. I considered moving to a simpler, more do-it-yourself hosting option like DigitalOcean or Linode - but eventually thought, why not just go all the way and start hosting everything myself? Yeah, there would likely be some sort of upfront cost, but I figured I would save money in the long run by getting rid of any monthly fee. Plus, I would probably learn something along the way.</p>
+<h3>Hardware</h3>
+<p>My server hardware is a single Raspberry Pi 3 with 1GB RAM and a 32GB sd card. This is connected by ethernet to my home network, and there is a rule in my router config that allows external requests to the pi's IP on ports 80 and 443.</p>
+<h3>Systemd</h3>
+<p>Every piece of custom code that runs on my pi is managed using systemd. This lets me start, restart or stop any application with a single command - it also lets me start everything automatically on boot, which is handy for when the pi is accidentally unplugged and has to reboot. 😬</p>
+<h3>Switchboard</h3>
+<p>Running on ports 80 and 443 is a small piece of Go software I wrote called <a href="https://github.com/maxtaylordavies/switchboard">switchboard</a>. Switchboard is basically a simple reverse proxy - it handles every incoming request to the pi, and redirects it to a different port on localhost depending on the <code>request</code> object's <code>Host</code> field. The mapping between hosts and ports is defined in a small YAML file, which is parsed into a <code>map[string]int</code> when the service starts up. There are a couple of advantages to this approach. First, it means that the domain names for all my projects (which I manage through GoDaddy) can point to exactly the same IP. Second, it means that I only have to worry about TLS for Switchboard itself - for everything else I can use a simple <code>server.ListenAndServe()</code> on whatever port I want while still benefitting from https.</p>
+<h3>Applications</h3>
+<p>All of the web applications running on the pi have a backend written in Go, using a similar template that relies only on the standard library's <code>net/http</code> package - no third-party server code required. For simple sites like this one, that backend just serves straightforward templated html + css using Go's <code>template/html</code>. For more complex sites that need a bit more interactivity, I write a separate frontend in React (typescript), and the Go backend serves the static files output by <code>yarn build</code>. Using systemd means that I can build and restart both the Go backend and React frontend with a single command, so managing these applications isn't really any more complicated than the simple static ones.</p>
+<h3>Deployer</h3>
+<p>The last major component of the setup is a custom CI/CD service running on the pi that I call <a href="https://github.com/maxtaylordavies/deployer">deployer</a>. Deployer accepts a POST request containing the name of one of my repos - it then pulls the latest version of the repo from Github, and rebuilds + restarts it using <code>systemctl restart</code>. A second field in the request body conveys whether or not the repo's systemd service file has itself been modified - in this case Deployer has to also replace the old service file and run <code>systemctl daemon-reload</code> before restarting the application. As well as the Go code, the Github repo for Deployer also contains a reusable Github Actions workflow that handles calling the service. This workflow is then imported by all my other repos in their own minimal workflows - so anytime I push a commit to the master branch of a project, it gets automatically rebuilt + redeployed on the pi without me having to do anything.</p>
+
+</main>
+</body>
+</html>

@@ -181,22 +181,7 @@ func registerRoutes() http.Handler {
 		allThemes := design.GetAllThemes()
 		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
-		postr := repository.PostRepository{}
-		projr := repository.ProjectRepository{}
-
-		recentPosts, err := postr.Recent()
-		if err != nil {
-			log.Fatalln("error getting recent posts: ", err)
-		}
-
-		recentProjects, err := projr.Recent()
-		if err != nil {
-			log.Fatalln("error getting recent projects: ", err)
-		}
-
 		data := Payload{
-			Posts:     recentPosts,
-			Projects:  recentProjects,
 			Theme:     theme,
 			AllThemes: allThemes,
 		}
