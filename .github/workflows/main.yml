@@ -31,4 +31,4 @@ jobs:
         with:
           url: "https://deploy.fun/deploy"
           method: "POST"
-          data: '{"repo": "maxtaylordavi.es", "service_file_changed": "${{steps.changed.output.changed}}"}'
+          data: '{"repo": "maxtaylordavi.es", "service_file_changed": "${{steps.files.outputs.all}}"}'
