@@ -8,7 +8,6 @@ Restart=always
 RestartSec=5s
 ExecStartPre=/bin/sh -c '/usr/local/go/bin/go build'
 ExecStart=/home/pi/code/maxtaylordavi.es/maxtaylordavi.es
-ExecStartPost=/bin/sh -c 'echo hooray > hooray.txt'
 WorkingDirectory=/home/pi/code/maxtaylordavi.es/
 
 [Install]
