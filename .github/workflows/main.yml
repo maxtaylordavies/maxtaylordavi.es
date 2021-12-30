@@ -17,6 +17,8 @@ jobs:
       - name: Changed Files
         id: files
         uses: jitterbit/get-changed-files@v1
+      - name: Service File Modified
+        id: changed
         run: |
           changed=false
           for cf in ${{ steps.files.outputs.all }}; do
@@ -29,4 +31,4 @@ jobs:
         with:
           url: "https://deploy.fun/deploy"
           method: "POST"
-          data: '{"repo": "maxtaylordavi.es", "service_file_changed": ${{steps.files.output.changed}}}'
+          data: '{"repo": "maxtaylordavi.es", "service_file_changed": ${{steps.changed.output.changed}}}'
