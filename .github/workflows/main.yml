@@ -12,6 +12,6 @@ on:
 
 jobs:
   deployment:
-    uses: maxtaylordavies/deployer/.github/workflows/main.yml
+    uses: maxtaylordavies/deployer/.github/workflows/main.yml@master
     with:
       repo: maxtaylordavi.es
