@@ -33,38 +33,101 @@ figcaption {
   color: #737373;
 }
 
+pre > code {
+  padding: 0;
+  background: transparent;
+}
+
 pre > code > div,
 pre > code.code-line > div {
-  background: #151144;
+  color: #93a1a1;
+  background: #002b36;
   border-radius: 15px;
   padding: 25px;
-  color: #00ff92;
   margin-top: 15px;
   margin-bottom: 15px;
+  position: relative;
 }
 
-.hljs ::selection {
-  color: #586e75;
+.inner-code-container {
+  overflow-x: scroll;
 }
 
+.language-selector {
+  height: 20px;
+  width: 100px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fdf5f1;
+  color: #444;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.language-selector.expanded {
+  height: 150px;
+}
+
+.select-language-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 100px;
+}
+
+.language-options {
+  height: 130px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.language-option {
+  height: 20px;
+  color: #4b4b4b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  cursor: pointer;
+}
+
+.language-option:hover {
+  background: #dfdfdf;
+}
+
+.language-option.selected {
+  background: #dfdfdf;
+}
+
+.hljs {
+  color: #93a1a1;
+  background: #002b36;
+}
+.hljs ::selection,
+.hljs::selection {
+  background-color: #586e75;
+  color: #93a1a1;
+}
 .hljs-comment {
   color: #657b83;
 }
-
 .hljs-tag {
   color: #839496;
 }
-
 .hljs-operator,
 .hljs-punctuation,
 .hljs-subst {
   color: #93a1a1;
 }
-
 .hljs-operator {
   opacity: 0.7;
 }
-
 .hljs-bullet,
 .hljs-deletion,
 .hljs-name,
@@ -73,68 +136,58 @@ pre > code.code-line > div {
 .hljs-variable {
   color: #dc322f;
 }
-
 .hljs-attr,
 .hljs-link,
 .hljs-literal,
 .hljs-number,
 .hljs-symbol,
 .hljs-variable.constant_ {
-  color: #ff9c7b;
+  color: #cb4b16;
 }
-
 .hljs-class .hljs-title,
 .hljs-title,
 .hljs-title.class_ {
   color: #b58900;
 }
-
 .hljs-strong {
   font-weight: 700;
   color: #b58900;
 }
-
 .hljs-addition,
 .hljs-code,
 .hljs-string,
 .hljs-title.class_.inherited__ {
-  color: rgb(242, 114, 215);
+  color: #859900;
 }
-
 .hljs-built_in,
 .hljs-doctag,
 .hljs-keyword.hljs-atrule,
 .hljs-quote,
 .hljs-regexp {
-  color: #bbf;
+  color: #2aa198;
 }
-
 .hljs-attribute,
 .hljs-function .hljs-title,
 .hljs-section,
 .hljs-title.function_,
 .ruby .hljs-property {
-  color: #d33682;
+  color: #268bd2;
 }
-
 .diff .hljs-meta,
 .hljs-keyword,
 .hljs-template-tag,
 .hljs-type {
-  color: #d2a700;
+  color: #6c71c4;
 }
-
 .hljs-emphasis {
   color: #6c71c4;
   font-style: italic;
 }
-
 .hljs-meta,
 .hljs-meta .hljs-keyword,
 .hljs-meta .hljs-string {
   color: #d33682;
 }
-
 .hljs-meta .hljs-keyword,
 .hljs-meta-keyword {
   font-weight: 700;
@@ -200,11 +253,69 @@ figcaption {
 <h3>Systemd</h3>
 <p>Every piece of custom code that runs on my pi is managed using systemd. This lets me start, restart or stop any application with a single command - it also lets me start everything automatically on boot, which is handy for when the pi is accidentally unplugged and has to reboot. 😬</p>
 <h3>Switchboard</h3>
-<p>Running on ports 80 and 443 is a small piece of Go software I wrote called <a href="https://github.com/maxtaylordavies/switchboard">switchboard</a>. Switchboard is basically a simple reverse proxy - it handles every incoming request to the pi, and redirects it to a different port on localhost depending on the <code>request</code> object's <code>Host</code> field. The mapping between hosts and ports is defined in a small YAML file, which is parsed into a <code>map[string]int</code> when the service starts up. There are a couple of advantages to this approach. First, it means that the domain names for all my projects (which I manage through GoDaddy) can point to exactly the same IP. Second, it means that I only have to worry about TLS for Switchboard itself - for everything else I can use a simple <code>server.ListenAndServe()</code> on whatever port I want while still benefitting from https.</p>
+<p>Running on ports 80 and 443 is a small piece of Go software I wrote called <a href="https://github.com/maxtaylordavies/switchboard">switchboard</a>. Switchboard is basically a simple reverse proxy - it handles every incoming request to the pi, and redirects it to a different port on localhost depending on the <code>request</code> object's <code>Host</code> field.</p>
+<pre><code class="language-golang"><div><div id=code-block-func(s*Server)Ser><div id="language-selector-func(s*Server)Ser" class="language-selector" data-reactroot=""><div class="select-language-button" style="border-bottom:">golang</div></div></div><div class="inner-code-container"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s *Server)</span> <span class="hljs-title">ServeReverseProxy</span><span class="hljs-params">(port <span class="hljs-keyword">int</span>, w http.ResponseWriter, r *http.Request)</span></span> {
+    <span class="hljs-comment">// create the reverse proxy</span>
+    proxy := httputil.NewSingleHostReverseProxy(&amp;url.URL{
+        Scheme: <span class="hljs-string">&quot;http&quot;</span>,
+        Host:   fmt.Sprintf(<span class="hljs-string">&quot;localhost:%d&quot;</span>, port),
+        Path:   <span class="hljs-string">&quot;/&quot;</span>,
+    })
+    r.Header.Set(<span class="hljs-string">&quot;X-Forwarded-Host&quot;</span>, r.Header.Get(<span class="hljs-string">&quot;Host&quot;</span>))
+    proxy.ServeHTTP(w, r)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s *Server)</span> <span class="hljs-title">RegisterRoutes</span><span class="hljs-params">()</span></span> {
+    mux := http.NewServeMux()
+    mux.HandleFunc(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+        port := s.Switchboard[strings.TrimPrefix(r.Host, <span class="hljs-string">&quot;www.&quot;</span>)]
+        s.ServeReverseProxy(port, w, r)
+    })
+    s.Handler = mux
+}
+</div></div></code></pre>
+<p>The mapping between hosts and ports is defined in a small YAML file, which is parsed into a <code>map[string]int</code> when the service starts up. This is what that file currently looks like:</p>
+<pre><code class="language-yaml"><div><div id=code-block----maxtaylordavi.es><div id="language-selector----maxtaylordavi.es" class="language-selector" data-reactroot=""><div class="select-language-button" style="border-bottom:">yaml</div></div></div><div class="inner-code-container"><span class="hljs-meta">---</span>
+<span class="hljs-attr">maxtaylordavi.es:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">products.gallery:</span> <span class="hljs-number">8001</span>
+<span class="hljs-attr">jikji.club:</span> <span class="hljs-number">8002</span>
+<span class="hljs-attr">solitary.studio:</span> <span class="hljs-number">8003</span>
+<span class="hljs-attr">subprime.fun:</span> <span class="hljs-number">8004</span>
+<span class="hljs-attr">deploy.fun:</span> <span class="hljs-number">9000</span>
+</div></div></code></pre>
+<p>There are a couple of advantages to this approach. First, it means that the domain names for all my projects (which I manage through GoDaddy) can point to exactly the same IP. Second, it means that I only have to worry about TLS for Switchboard itself - for everything else I can use a simple <code>server.ListenAndServe()</code> on whatever port I want while still benefitting from https.</p>
 <h3>Applications</h3>
 <p>All of the web applications running on the pi have a backend written in Go, using a similar template that relies only on the standard library's <code>net/http</code> package - no third-party server code required. For simple sites like this one, that backend just serves straightforward templated html + css using Go's <code>template/html</code>. For more complex sites that need a bit more interactivity, I write a separate frontend in React (typescript), and the Go backend serves the static files output by <code>yarn build</code>. Using systemd means that I can build and restart both the Go backend and React frontend with a single command, so managing these applications isn't really any more complicated than the simple static ones.</p>
 <h3>Deployer</h3>
-<p>The last major component of the setup is a custom CI/CD service running on the pi that I call <a href="https://github.com/maxtaylordavies/deployer">deployer</a>. Deployer accepts a POST request containing the name of one of my repos - it then pulls the latest version of the repo from Github, and rebuilds + restarts it using <code>systemctl restart</code>. A second field in the request body conveys whether or not the repo's systemd service file has itself been modified - in this case Deployer has to also replace the old service file and run <code>systemctl daemon-reload</code> before restarting the application. As well as the Go code, the Github repo for Deployer also contains a reusable Github Actions workflow that handles calling the service. This workflow is then imported by all my other repos in their own minimal workflows - so anytime I push a commit to the master branch of a project, it gets automatically rebuilt + redeployed on the pi without me having to do anything.</p>
+<p>The last major component of the setup is a custom CI/CD service running on the pi that I call <a href="https://github.com/maxtaylordavies/deployer">deployer</a>. Deployer accepts a POST request containing the name of one of my repos - it then pulls the latest version of the repo from Github, and rebuilds + restarts it using <code>systemctl restart</code>. A second field in the request body conveys whether or not the repo's systemd service file has itself been modified - in this case Deployer has to also replace the old service file and run <code>systemctl daemon-reload</code> before restarting the application.</p>
+<pre><code class="language-golang"><div><div id=code-block-mux.HandleFunc("/dep><div id="language-selector-mux.HandleFunc(&quot;/dep" class="language-selector" data-reactroot=""><div class="select-language-button" style="border-bottom:">golang</div></div></div><div class="inner-code-container">mux.HandleFunc(<span class="hljs-string">&quot;/deploy&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+    decoder := json.NewDecoder(r.Body)
+    <span class="hljs-keyword">var</span> data data
+    err := decoder.Decode(&amp;data)
+
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        <span class="hljs-keyword">return</span>
+    }
+
+    <span class="hljs-comment">// if the service file has been modified, we need to replace it and reload the systemctl daemon</span>
+    <span class="hljs-keyword">var</span> cmd *exec.Cmd
+    <span class="hljs-keyword">if</span> data.ServiceFileChanged {
+        cmd = exec.Command(<span class="hljs-string">&quot;/bin/sh&quot;</span>, <span class="hljs-string">&quot;-c&quot;</span>, fmt.Sprintf(<span class="hljs-string">&quot;git pull &amp;&amp; sudo cp %s.service /etc/systemd/system/%s.service &amp;&amp; sudo systemctl daemon-reload &amp;&amp; sudo systemctl restart %s.service&quot;</span>, data.Repo, data.Repo, data.Repo))
+    } <span class="hljs-keyword">else</span> {
+        cmd = exec.Command(<span class="hljs-string">&quot;/bin/sh&quot;</span>, <span class="hljs-string">&quot;-c&quot;</span>, fmt.Sprintf(<span class="hljs-string">&quot;git pull &amp;&amp; sudo systemctl restart %s.service&quot;</span>, data.Repo))
+    }
+
+    cmd.Dir = fmt.Sprintf(<span class="hljs-string">&quot;/home/pi/code/%s&quot;</span>, data.Repo)
+    err = cmd.Run()
+
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        <span class="hljs-keyword">return</span>
+    }
+})
+</div></div></code></pre>
+<p>As well as the Go code, the Github repo for Deployer also contains a reusable Github Actions workflow that handles calling the service. This workflow is then imported by all my other repos in their own minimal workflows - so anytime I push a commit to the master branch of a project, it gets automatically rebuilt + redeployed on the pi without me having to do anything.</p>
 
 </main>
 </body>
