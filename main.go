@@ -41,6 +41,15 @@ func idxToLetter(i int) string {
 
 var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter}
 
+func serveImage(path string, w http.ResponseWriter) {
+	img, err := os.Open(path)
+	if err != nil {
+		log.Fatal(err) // perhaps handle this nicer
+	}
+	defer img.Close()
+	io.Copy(w, img)
+}
+
 func registerRoutes() http.Handler {
 	mux := http.NewServeMux()
 
@@ -166,13 +175,12 @@ func registerRoutes() http.Handler {
 	})
 
 	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
-		img, err := os.Open("." + strings.TrimSuffix(r.URL.Path, "/"))
-		if err != nil {
-			log.Fatal(err) // perhaps handle this nicer
-		}
-		defer img.Close()
-		// w.Header().Set("Content-Type", "text/css")
-		io.Copy(w, img)
+		serveImage("."+strings.TrimSuffix(r.URL.Path, "/"), w)
+	})
+
+	mux.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "image/x-icon")
+		serveImage("./favicon.ico", w)
 	})
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
