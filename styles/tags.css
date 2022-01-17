@@ -72,3 +72,8 @@ em {
   color: #1df4c1;
   background-color: #007458;
 }
+
+.tag.ml {
+  background-color: #ffd7af;
+  color: #b87b40;
+}

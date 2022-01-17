@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no">
+<meta name="description" content="Social learning for single-agent generalisation - microjam page">
+<meta name="author" content="Max Taylor-Davies">
+<meta name="date" content="Sun Jan 16 2022 00:00:00 GMT+0100 (British Summer Time)">
+<meta name="tags" content="ml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/goessner/mdmath/themes/publication/style.css">
+<style>
+h4 {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 1.05em;
+  margin: 2em 0 0.75em 0;
+}
+
+hr {
+  width: 100%;
+  margin: 0;
+}
+
+row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+figcaption {
+  font-style: italic;
+  color: #737373;
+}
+
+pre > code {
+  padding: 0;
+  background: transparent;
+}
+
+pre > code > div,
+pre > code.code-line > div {
+  color: #93a1a1;
+  background: #002b36;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.inner-code-container {
+  overflow-x: scroll;
+}
+
+.language-selector {
+  height: 20px;
+  width: 100px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fdf5f1;
+  color: #444;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.language-selector.expanded {
+  height: 150px;
+}
+
+.select-language-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 100px;
+}
+
+.language-options {
+  height: 130px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.language-option {
+  height: 20px;
+  color: #4b4b4b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  cursor: pointer;
+}
+
+.language-option:hover {
+  background: #dfdfdf;
+}
+
+.language-option.selected {
+  background: #dfdfdf;
+}
+
+.hljs {
+  color: #93a1a1;
+  background: #002b36;
+}
+.hljs ::selection,
+.hljs::selection {
+  background-color: #586e75;
+  color: #93a1a1;
+}
+.hljs-comment {
+  color: #657b83;
+}
+.hljs-tag {
+  color: #839496;
+}
+.hljs-operator,
+.hljs-punctuation,
+.hljs-subst {
+  color: #93a1a1;
+}
+.hljs-operator {
+  opacity: 0.7;
+}
+.hljs-bullet,
+.hljs-deletion,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+  color: #dc322f;
+}
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+  color: #cb4b16;
+}
+.hljs-class .hljs-title,
+.hljs-title,
+.hljs-title.class_ {
+  color: #b58900;
+}
+.hljs-strong {
+  font-weight: 700;
+  color: #b58900;
+}
+.hljs-addition,
+.hljs-code,
+.hljs-string,
+.hljs-title.class_.inherited__ {
+  color: #859900;
+}
+.hljs-built_in,
+.hljs-doctag,
+.hljs-keyword.hljs-atrule,
+.hljs-quote,
+.hljs-regexp {
+  color: #2aa198;
+}
+.hljs-attribute,
+.hljs-function .hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.ruby .hljs-property {
+  color: #268bd2;
+}
+.diff .hljs-meta,
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-type {
+  color: #6c71c4;
+}
+.hljs-emphasis {
+  color: #6c71c4;
+  font-style: italic;
+}
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: #d33682;
+}
+.hljs-meta .hljs-keyword,
+.hljs-meta-keyword {
+  font-weight: 700;
+}
+
+figure {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+figcaption {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.divider-top {
+  margin-top: 50px;
+}
+
+.divider-bottom {
+  margin-bottom: 50px;
+}
+
+.jikji-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Helvetica, sans-serif;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: transparent;
+  transition: all 500ms;
+}
+
+.jikji-logo-container:hover {
+  color: grey;
+  transform: scale(1.05)
+}
+
+.jikji-logo {
+  cursor: pointer;
+  margin-right: 5px;
+}
+</style>
+<title>Social learning for single-agent generalisation</title>
+</head>
+<body id="top">
+<header>
+<h1>Social learning for single-agent generalisation</h1>
+
+<h4>Max Taylor-Davies</h4>
+
+<h5>May 2021</h5>
+<h5><b>Keywords: </b>ml</h5>
+</header>
+<main>
+<p>The phenomenon of social learning, where agents learn from other agents in their environment, is observed throughout the animal kingdom from insects to primates [1-2]. It is argued that the ability of humans to learn socially is a significant driving factor behind key elements of our differentiated intelligence, such as our ability to quickly learn new tasks, cooperate on large scales, and construct and communicate knowledge that can persist and evolve over generations [3-5]. Social learning in the human brain is even invoked as a potential origin of conscious experience [6]. More specifically, we can group the benefits of social learning into two key categories. The first is in coordinating actions and decisions between multiple agents, who are all engaging socially with each other. The second is in improving the ability of a single agent to learn and adapt to new tasks and environments; i.e. using social learning as a tool to improve single-agent generalisation. While this first category has attracted a good deal of interest [18, 21, 25], with lots of work being published on multi-agent coordination problems [26], the second has been less explored - and could be significant in improving the generalisation abilities of reinforcement learning (RL) agents, especially for tasks/environments where individual exploration is expensive or dangerous, such as with autonomous driving, or where reward signals are sparse. In this proposal, I argue for a psychology-based approach to investigating and realising the single-agent benefits of social learning.</p>
+<p>Over the last 5-10 years, the field of deep reinforcement learning (DRL) has demonstrated success in building artificial agents that can learn to solve specific tasks (typically games) by interacting with their environment [7-9]. More recently, DRL has begun to be extended to the multi-agent setting, where the task to be solved involves cooperating with (or competing against) other agents sharing the same environment [10]. However, even in these collaborative settings, agents still do not generally engage in what we might properly consider social learning. In contrast to RL, where an agent learns solely through interaction with its environment, imitation learning (IL) [11-12, 19-20] is a paradigm for agent learning where a policy is learned from demonstrations provided by an expert or 'teacher', which may be either a human or another agent. Algorithms for IL attempt to use the dataset of examples to derive a policy that can reproduce the demonstrated behaviour. Although IL might appear in some sense as a form of social learning, the scenario it envisages is unrealistic - in the real world, a novice agent wanting to learn some task  is unlikely to be presented with an obvious, accessible expert motivated to provide them with plentiful demonstrations of successful behaviour. In real-world scenarios, a learning agent will be sharing the environment with a large number of other agents, which vary in both their goals and their competence/ability. In such situations, we want our agent to be able to identify which other agent(s) would be most useful to learn from, and then actively engage in learning from them. Furthermore, even in pursuing an approach of learning from other agents, we don’t want to cast aside the advances made in RL - an agent engaging in social learning should still be able to learn from individual interaction with the environment; especially in environments without other agents to learn from, or where social learning is otherwise impossible or undesirable.</p>
+<p>To begin bridging the social intelligence gap, we must first ask what cognitive machinery underlies the social learning abilities of humans. Just as early deep learning researchers took inspiration from neuroscience in the form of neural networks and convolutional architectures, so can we look to the literature of cognitive science and social psychology for ideas. An example of one such idea is Theory of Mind (ToM) [13-14]. ToM refers to the ability of humans to model the internal mental states of others, such as their beliefs and goals. It enables us to predict the actions of others in our environment, and to plan successful interactions with them. Another example is humans’ ability to understand the structure of social networks - in particular, which agents within a shared social environment occupy the positions of highest status or prestige [15-16, 24]. These judgements may use explicit signals such as total accumulated reward (if observable), or take cues from who other agents are focusing on and learning from (which can tie into ToM through modelling of others’ attention). There is evidence that humans prefer learning from individuals they perceive to be of higher social status or prestige (termed “prestige bias”), and that this preference develops at an early age [15-16, 24].</p>
+<p>Rabinowitz et al [23] investigated building a theory of mind system for autonomous agents, creating a neural network called the ToMnet that learned to build models of agents through a meta-learning process. One of the abilities the ToMnet learned was to predict the objectives of the agents it observed solving tasks in gridworld environments, where each agent had a distinct goal expressed as a vector of scalar reward values over a set of consumable objects in the world. We can build on this by instantiating a form of the ToMnet within an agent <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> learning to solve a difficult, sparse-reward task in an environment populated by multiple other agents <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">A_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> with varying goals. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>, while conducting its own exploration, can use its ToMnet to infer the utility vector of each agent <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">A_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> . Based on these estimates, it can determine which agents are most closely aligned to its own goal.</p>
+<p>There are various approaches we might take to implement a prestige bias in our socially learning agent. Jimenez and Mesoudi [24] separate first-order and second-order prestige cues. First-order cues are explicitly signalled by an agent, such as wealth, clothing, assertiveness - we could simulate these signals by e.g. having agents change colour or size as a function of accumulated reward. Second-order cues are based on the behaviours of other agents - for example, the amount of attention paid by others to a particular agent. Second-order cues have the advantage of generalising better over different domains, where the ways that agents explicitly signal their prestige may vary. The disadvantage of second-order cues is that they necessitate a socially learning agent to maintain models of all other agents' attention, and they only make sense if all agents in the environment are social learners, rather than just our single <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> - while this is obviously representative of the real world, it does introduce additional complexity for simulation. Finally, a third option might be to just use the uncertainty associated with each goal estimate - it seems reasonable to expect that the goal estimate for a more competent agent (which by definition is more successful at achieving its objective) will carry less uncertainty than the estimate for an agent that continually fails to achieve its objective. The limit of this approach is that by coupling goal and prestige estimation, it could lead to unreliable prestige estimates when goal signals are difficult to acquire - the point at which prestige information may be most useful.</p>
+<p>Assuming that <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> can estimate both goals and prestige, it can combine them to compute an &quot;informativeness ranking&quot; over the agents <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{A_i\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></eq>, where the most informative agents are those that are both closely aligned to <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>’s goal and have high prestige. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> can then use some form of social learning mechanism to learn from the behaviour of each <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">A_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> to an extent proportional to <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">A_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>’s position in the informativeness ranking. The social learning mechanism used could be something as simple as incentivising the learning agent to occupy states near the model agent (so that it explores the same region of state space), or it could be based on maximising mutual information between the behaviour of learning agent and target agent [21]. To assess the usefulness of this targeted social learning approach, we can create three different types of agent, and have them attempt the same multi-agent gridworld tasks: a vanilla DRL agent that does not engage in any form of social learning, an agent that engages in indiscriminate social learning, and an agent that learns from others based on their estimated informativeness. We can compare the ability of the three agent types in generalising to novel environments by measuring their few-shot or one-shot transfer performance.</p>
+<p>Although this proposal is principally concerned with the potential boost to single-agent generalisation offered by social learning, it is also important to consider other benefits. There likely exist certain types of knowledge or belief that can only be learned socially, and not through solipsistic interaction with a static environment. An obvious example of this is learning of moral/ethical values - in order to trade off between the welfare of different individual agents or groups, it is necessary to learn from observing and interacting with those agents what they value or desire [17]. Children learn about morality through the actions of other moral beings (such as their parents), and then adjust their own behaviour to increase alignment with the inferred moral principles of those that they value the most (or those within their social group) [17]. As we think about creating generally intelligent artificial agents that act with us or on our behalf, it is important to ensure that they are aligned with the values of their human creators. One way to achieve this may be to train agents to infer the moral values of other agents through social learning, and then employ some form of transfer learning over relevant human examples. More specifically, we could consider the problem of learning which agents in a multi-agent environment are most valued by some other agent. This might be viewed as an extension of inferring other agents’ goals/utilities, where those utilities are now defined recursively to include terms representing the utilities of other agents. Social agents might then be incentivised through a meta-reward to increase the alignment over time between their values. A possible extension of this would be to populate an environment with agents that are both ‘prosocial’ and ‘antisocial’ with respect to a particular socially learning agent, and see if the agent can learn to discriminate between the two, so as to maximise value alignment with the prosocial agents but not the antisocial.</p>
+<h2>References</h2>
+<p>[1] Dawson, E.H., Avarguès-Weber, A., Chittka, L., &amp; Leadbeater, E. (2013). Learning by Observation Emerges from Simple Associations in an Insect Model. Current Biology, 23, 727-730.</p>
+<p>[2] Heyes, C., &amp; Galef, B.G. (1996). Social learning in animals : the roots of culture.</p>
+<p>[3] Bandura, A. (1977). Social learning theory. Canadian Journal of Sociology-cahiers Canadiens De Sociologie, 2, 321.</p>
+<p>[4] van Schaik, C.P., &amp; Burkart, J.M. (2011). Social learning and evolution: the cultural intelligence hypothesis. Philosophical Transactions of the Royal Society B: Biological Sciences, 366, 1008 - 1016.</p>
+<p>[5] Cosmides, L., &amp; Tooby, J. (1992). Cognitive adaptations for social exchange.</p>
+<p>[6] Graziano, M.S., &amp; Kastner, S. (2011). Human consciousness and its relationship to social neuroscience: A novel hypothesis. Cognitive Neuroscience, 2, 113 - 98.</p>
+<p>[7] Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., &amp; Riedmiller, M.A. (2013). Playing Atari with Deep Reinforcement Learning. ArXiv, abs/1312.5602.</p>
+<p>[8] Silver, D., Huang, A., Maddison, C.J., Guez, A., Sifre, L., Driessche, G.V., Schrittwieser, J., Antonoglou, I., Panneershelvam, V., Lanctot, M., Dieleman, S., Grewe, D., Nham, J., Kalchbrenner, N., Sutskever, I., Lillicrap, T.P., Leach, M., Kavukcuoglu, K., Graepel, T., &amp; Hassabis, D. (2016). Mastering the game of Go with deep neural networks and tree search. Nature, 529, 484-489.</p>
+<p>[9] Silver, D., Hubert, T., Schrittwieser, J., Antonoglou, I., Lai, M., Guez, A., Lanctot, M., Sifre, L., Kumaran, D., Graepel, T., Lillicrap, T.P., Simonyan, K., &amp; Hassabis, D. (2018). A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play. Science, 362, 1140 - 1144.</p>
+<p>[10] Hernandez-Leal, P., Kartal, B., &amp; Taylor, M.E. (2019). A survey and critique of multiagent deep reinforcement learning. Autonomous Agents and Multi-Agent Systems, 33, 750 - 797.</p>
+<p>[11] Argall, B., Chernova, S., Veloso, M.M., &amp; Browning, B. (2009). A survey of robot learning from demonstration. Robotics Auton. Syst., 57, 469-483.</p>
+<p>[12] Schaal, S. (1999). Is imitation learning the route to humanoid robots? Trends in Cognitive Sciences, 3, 233-242.</p>
+<p>[13] Premack, D., &amp; Woodruff, G. (1978). Does the chimpanzee have a theory of mind? behavioral &amp; brain sciences.</p>
+<p>[14] Gopnik, A., &amp; Wellman, H.M. (1992). Why the Child's Theory of Mind Really Is a Theory. Mind &amp; Language, 7, 145-171.</p>
+<p>[15] Chudek, M., Heller, S., Birch, S.A., &amp; Henrich, J. (2012). Prestige-biased cultural learning: bystander's differential attention to potential models influences children's learning. Evolution and Human Behavior, 33, 46-56.</p>
+<p>[16] Heyes, C. (2016). Who Knows? Metacognitive Social Learning Strategies. Trends in Cognitive Sciences, 20, 204-213.</p>
+<p>[17] Kleiman-Weiner, M., Saxe, R., &amp; Tenenbaum, J.B. (2017). Learning a commonsense moral theory. Cognition, 167, 107-123.</p>
+<p>[18] Kleiman-Weiner, M., Ho, M.K., Austerweil, J.L., Littman, M.L., &amp; Tenenbaum, J.B. (2016). Coordinate to cooperate or compete: Abstract goals and joint intentions in social interaction. Cognitive Science.</p>
+<p>[19] Duan, Y., Andrychowicz, M., Stadie, B.C., Ho, J., Schneider, J., Sutskever, I., Abbeel, P., &amp; Zaremba, W. (2017). One-Shot Imitation Learning. ArXiv, abs/1703.07326.</p>
+<p>[20] Ho, J., &amp; Ermon, S. (2016). Generative Adversarial Imitation Learning. NIPS.</p>
+<p>[21] Jaques, N., Lazaridou, A., Hughes, E., Gülçehre, Ç., Ortega, P.A., Strouse, D., Leibo, J.Z., &amp; Freitas, N.D. (2019). Social Influence as Intrinsic Motivation for Multi-Agent Deep Reinforcement Learning. ICML.</p>
+<p>[22] Filos, A., Lyle, C., Gal, Y., Levine, S., Jaques, N., &amp; Farquhar, G. (2021). PsiPhi-Learning: Reinforcement Learning with Demonstrations using Successor Features and Inverse Temporal Difference Learning. ICML.</p>
+<p>[23] Rabinowitz, N.C., Perbet, F., Song, H.F., Zhang, C., Eslami, S.M., &amp; Botvinick, M.M. (2018). Machine Theory of Mind. ArXiv, abs/1802.07740.</p>
+<p>[24] Jiménez, Á.V., &amp; Mesoudi, A. (2019). Prestige-biased social learning: current evidence and outstanding questions. Palgrave Communications, 5, 1-12.</p>
+<p>[25] Papoudakis, G., Christianos, F., &amp; Albrecht, S.V. (2020). Agent Modelling under Partial Observability for Deep Reinforcement Learning.</p>
+<p>[26] Papoudakis, G., Christianos, F., Schäfer, L., &amp; Albrecht, S.V. (2020). Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks.</p>
+
+</main>
+</body>
+</html>
