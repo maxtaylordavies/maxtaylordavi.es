@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -52,6 +53,17 @@ func serveImage(path string, w http.ResponseWriter) {
 
 func registerRoutes() http.Handler {
 	mux := http.NewServeMux()
+
+	mux.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+
+		payload := struct {
+			Status string `json:"status"`
+		}{
+			Status: "ok",
+		}
+		json.NewEncoder(w).Encode(payload)
+	})
 
 	mux.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
