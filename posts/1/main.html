@@ -1,67 +1,261 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no"
-    />
-    <meta name="description" content="Simulating simple visual neurons" />
-    <meta name="author" content="Max Taylor-Davies<sup>1</sup>" />
-    <meta name="date" content="Sat May 15 2021 00:00:00 GMT+0100 (British Summer Time)"/>
-    <meta name="tags" content="neuroscience,university" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/highlight.js/styles/vs.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/goessner/mdmath/themes/publication/style.css"
-    />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no">
+<meta name="description" content="Simulating simple visual neurons - microjam page">
+<meta name="author" content="Max Taylor-Davies">
+<meta name="date" content="Sat May 15 2021 00:00:00 GMT+0100 (British Summer Time)">
+<meta name="tags" content="neuroscience, university">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/goessner/mdmath/themes/publication/style.css">
+<style>
+h4 {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 1.05em;
+  margin: 2em 0 0.75em 0;
+}
 
-    <title>Simulating simple visual neurons</title>
-  </head>
-  <body id="top">
-    <header>
-      <h1>Simulating simple visual neurons</h1>
+hr {
+  width: 100%;
+  margin: 0;
+}
 
-      <h4>Max Taylor-Davies<sup>1</sup></h4>
-      <h5><sup>1</sup>Imperial College London</h5>
-      <h5>May 2021</h5>
-      <h5><b>Keywords:</b> neuroscience, university</h5>
-    </header>
-    <main>
-      <h3 id="abstract">Abstract</h3>
-      <p>
-        We can simulate simple visual neurons using the linear-nonlinear Poisson
-        model
-      </p>
-      <h2 id="1-introduction">1. Introduction</h2>
-      <h2 id="2-choosing-a-model-receptive-field">
-        2. Choosing a model receptive field
-      </h2>
-      <h2 id="3-generating-spikes">3. Generating spikes</h2>
-      <p>
-        It has been shown, how Euler's identity makes a valid formula from five
-        mathematical constants.
-      </p>
-      <h3 id="references">References</h3>
-      <p>
-        <span id="1"
-          >[1]
-          <a href="https://en.wikipedia.org/wiki/Euler%27s_identity"
-            >Euler's identity</a
-          ></span
-        >
-      </p>
-    </main>
-  </body>
+row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+figcaption {
+  font-style: italic;
+  color: #737373;
+}
+
+pre > code {
+  padding: 0;
+  background: transparent;
+}
+
+pre > code > div,
+pre > code.code-line > div {
+  color: #93a1a1;
+  background: #002b36;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.inner-code-container {
+  overflow-x: scroll;
+}
+
+.language-selector {
+  height: 20px;
+  width: 100px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fdf5f1;
+  color: #444;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.language-selector.expanded {
+  height: 150px;
+}
+
+.select-language-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 100px;
+}
+
+.language-options {
+  height: 130px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.language-option {
+  height: 20px;
+  color: #4b4b4b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  cursor: pointer;
+}
+
+.language-option:hover {
+  background: #dfdfdf;
+}
+
+.language-option.selected {
+  background: #dfdfdf;
+}
+
+.hljs {
+  color: #93a1a1;
+  background: #002b36;
+}
+.hljs ::selection,
+.hljs::selection {
+  background-color: #586e75;
+  color: #93a1a1;
+}
+.hljs-comment {
+  color: #657b83;
+}
+.hljs-tag {
+  color: #839496;
+}
+.hljs-operator,
+.hljs-punctuation,
+.hljs-subst {
+  color: #93a1a1;
+}
+.hljs-operator {
+  opacity: 0.7;
+}
+.hljs-bullet,
+.hljs-deletion,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+  color: #dc322f;
+}
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+  color: #cb4b16;
+}
+.hljs-class .hljs-title,
+.hljs-title,
+.hljs-title.class_ {
+  color: #b58900;
+}
+.hljs-strong {
+  font-weight: 700;
+  color: #b58900;
+}
+.hljs-addition,
+.hljs-code,
+.hljs-string,
+.hljs-title.class_.inherited__ {
+  color: #859900;
+}
+.hljs-built_in,
+.hljs-doctag,
+.hljs-keyword.hljs-atrule,
+.hljs-quote,
+.hljs-regexp {
+  color: #2aa198;
+}
+.hljs-attribute,
+.hljs-function .hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.ruby .hljs-property {
+  color: #268bd2;
+}
+.diff .hljs-meta,
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-type {
+  color: #6c71c4;
+}
+.hljs-emphasis {
+  color: #6c71c4;
+  font-style: italic;
+}
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: #d33682;
+}
+.hljs-meta .hljs-keyword,
+.hljs-meta-keyword {
+  font-weight: 700;
+}
+
+figure {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+figcaption {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.divider-top {
+  margin-top: 50px;
+}
+
+.divider-bottom {
+  margin-bottom: 50px;
+}
+
+.jikji-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Helvetica, sans-serif;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: transparent;
+  transition: all 500ms;
+}
+
+.jikji-logo-container:hover {
+  color: grey;
+  transform: scale(1.05)
+}
+
+.jikji-logo {
+  cursor: pointer;
+  margin-right: 5px;
+}
+</style>
+<title>Simulating simple visual neurons</title>
+</head>
+<body id="top">
+<header>
+<h1>Simulating simple visual neurons</h1>
+
+<h4>Max Taylor-Davies</h4>
+<h5></h5>
+<h5>May 2021</h5>
+<h5><b>Keywords:</b> neuroscience, university</h5>
+</header>
+<main>
+<p>In computational neuroscience, we sometimes want to have a simple computational model of a sensory neuron that we can use to generate synthetic spike trains. This could be because we have some real spiking data and we want to see if we can create a model that (approximately) reproduces it, or we might want to test some new spike-based analysis algorithm on data for which we know the ground truth parameters.</p>
+<p>A very straightforward but effective way to do this with visual neurons is to use a linear-nonlinear Poisson model. Assuming we have a visual stimulus, a (2D) model receptive field (RF), and some nonlinear function, the approach consists of three steps:</p>
+<ol>
+<li>We first project the visual stimulus onto our model RF. This is a linear filtering operation and yields a scalar value for each frame of the stimulus</li>
+<li>Next, we pass the filter output from step (1) through our nonlinear function. This produces a non-negative instantaneous spike rate for each frame of the visual stimulus</li>
+<li>Finally, we use our instantaneous spike rates to generate a series of discrete spikes through a Poisson point process</li>
+</ol>
+<p>The receptive field can be thought of as a 2D filter that determines how our model neuron integrates visual information across space; the first step of the process is then essentially a dimensionality reduction. The nonlinearity serves a couple of different purposes - firstly, it ensures that our spike rates are all non-negative (since a spike rate less than zero isn't physically meaningful); and secondly it can account for real sources of nonlinearity in neural spiking (such as thresholding and saturation). The Poisson point process in the third step is just a way for us to convert continuous spike rates into actual  discrete spikes.</p>
+
+</main>
+</body>
 </html>
