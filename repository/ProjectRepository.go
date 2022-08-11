@@ -15,6 +15,20 @@ func (pr *ProjectRepository) All() ([]Project, error) {
 	projects := []Project{
 		{
 			ID:     1,
+			Title:  "deployer",
+			Status: "finished",
+			Tags:   []string{"side", "web"},
+			Link:   "https://github.com/maxtaylordavies/deployer",
+		},
+		{
+			ID:     2,
+			Title:  "switchboard",
+			Status: "finished",
+			Tags:   []string{"side", "web"},
+			Link:   "https://github.com/maxtaylordavies/switchboard",
+		},
+		{
+			ID:     3,
 			Title:  "products.gallery",
 			Status: "finished",
 			Tags:   []string{"side", "web"},
