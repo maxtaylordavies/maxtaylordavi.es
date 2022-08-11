@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no">
+<meta name="description" content="Building a theme selector without JavaScript - microjam page">
+<meta name="author" content="Max Taylor-Davies">
+<meta name="date" content="Sun Apr 10 2022 00:00:00 GMT+0100 (British Summer Time)">
+<meta name="tags" content="tech">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/goessner/mdmath/themes/publication/style.css">
+<style>
+h4 {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 1.05em;
+  margin: 2em 0 0.75em 0;
+}
+
+hr {
+  width: 100%;
+  margin: 0;
+}
+
+row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+figcaption {
+  font-style: italic;
+  color: #737373;
+}
+
+pre > code {
+  padding: 0;
+  background: transparent;
+}
+
+pre > code > div,
+pre > code.code-line > div {
+  color: #93a1a1;
+  background: #002b36;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.inner-code-container {
+  overflow-x: scroll;
+}
+
+.language-selector {
+  height: 20px;
+  width: 100px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fdf5f1;
+  color: #444;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.language-selector.expanded {
+  height: 150px;
+}
+
+.select-language-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 100px;
+}
+
+.language-options {
+  height: 130px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.language-option {
+  height: 20px;
+  color: #4b4b4b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  cursor: pointer;
+}
+
+.language-option:hover {
+  background: #dfdfdf;
+}
+
+.language-option.selected {
+  background: #dfdfdf;
+}
+
+.hljs {
+  color: #93a1a1;
+  background: #002b36;
+}
+.hljs ::selection,
+.hljs::selection {
+  background-color: #586e75;
+  color: #93a1a1;
+}
+.hljs-comment {
+  color: #657b83;
+}
+.hljs-tag {
+  color: #839496;
+}
+.hljs-operator,
+.hljs-punctuation,
+.hljs-subst {
+  color: #93a1a1;
+}
+.hljs-operator {
+  opacity: 0.7;
+}
+.hljs-bullet,
+.hljs-deletion,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+  color: #dc322f;
+}
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+  color: #cb4b16;
+}
+.hljs-class .hljs-title,
+.hljs-title,
+.hljs-title.class_ {
+  color: #b58900;
+}
+.hljs-strong {
+  font-weight: 700;
+  color: #b58900;
+}
+.hljs-addition,
+.hljs-code,
+.hljs-string,
+.hljs-title.class_.inherited__ {
+  color: #859900;
+}
+.hljs-built_in,
+.hljs-doctag,
+.hljs-keyword.hljs-atrule,
+.hljs-quote,
+.hljs-regexp {
+  color: #2aa198;
+}
+.hljs-attribute,
+.hljs-function .hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.ruby .hljs-property {
+  color: #268bd2;
+}
+.diff .hljs-meta,
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-type {
+  color: #6c71c4;
+}
+.hljs-emphasis {
+  color: #6c71c4;
+  font-style: italic;
+}
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: #d33682;
+}
+.hljs-meta .hljs-keyword,
+.hljs-meta-keyword {
+  font-weight: 700;
+}
+
+figure {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+figcaption {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.divider-top {
+  margin-top: 50px;
+}
+
+.divider-bottom {
+  margin-bottom: 50px;
+}
+
+.jikji-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Helvetica, sans-serif;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: transparent;
+  transition: all 500ms;
+}
+
+.jikji-logo-container:hover {
+  color: grey;
+  transform: scale(1.05)
+}
+
+.jikji-logo {
+  cursor: pointer;
+  margin-right: 5px;
+}
+</style>
+<title>Building a theme selector without JavaScript</title>
+</head>
+<body id="top">
+<header>
+<h1>Building a theme selector without JavaScript</h1>
+
+<h4>Max Taylor-Davies</h4>
+<h5></h5>
+<h5>April 2022</h5>
+<h5><b>Keywords:</b> tech</h5>
+</header>
+<main>
+<p>When I first created this site a couple of years back, I spent quite a while deciding on what stack to use. At that point I'd just finished an internship where I'd spent a lot of time writing React, and so my first impulse was to reach for this tool that felt comfortable and familiar. But for a minimal personal/portfolio website, a framework like React had a heaviness that felt hard to justify. I considered using a SSG like Hugo (which by that point seemed to be becoming the standard for personal sites in academia / research), but eventually decided to just DIY it and go for plain old html/css served up by a few lines of Go.</p>
+<p>I'm glad I went that way, as I think it's constrained me from making the site too complicated / fancy, but there is one feature where I struggled not having any client-side scripting. I have a bad habit of being really indecisive on questions of visual design / aesthetics, and I got to the point where I had a bunch of different colour scehemes for the site that I couldn't choose between. I figured it would be fun to add a little theme selector where visitors to the site could choose for themselves.</p>
+<h3>Frontend</h3>
+<p>The whole selector is a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details">HTML details element</a>. The <code>&lt;details&gt;</code> tag is used to achieve this kind of behaviour:</p>
+<details>
+  <summary>System Requirements</summary>
+  <p>Requires a computer running an operating system. The computer
+  must have some memory and ideally some kind of long-term storage.
+  An input device as well as some form of output device is
+  recommended.</p>
+</details>
+<p>In my case, the <code>&lt;summary&gt;</code> tag houses the theme button itself - when this is toggled to its <code>open</code> state, the other contents of the <code>&lt;details&gt;</code> tag are revealed. In this case, the revealed contents are six <code>&lt;anchor&gt;</code> elements, each styled as a different coloured square and pointing to a URL of the form <code>https://maxtaylordavi.es/?theme=x</code>. When the button is toggled again to its <code>closed</code> state, the six squares are hidden.</p>
+<h3>Backend</h3>
+<p>Since the backend is written in Go, I'm making use of the excellent <a href="https://pkg.go.dev/html/template">html/template</a> package. When the server receives a request for <code>https://maxtaylordavi.es/?theme=x</code>, it extracts the theme name <code>x</code> from the query, and uses it to index into a mapping of theme names to (background, foreground) colour pairs. The correct colour pair is then passed into the homepage html template, and the result is served. I also pass in a slice of all the 6 theme objects in order to populate the contents of the <code>&lt;details&gt;</code> element discussed above. Here's what the whole function looks like:</p>
+<pre><code class="language-go"><div><div id=code-block-mux.HandleFunc("/",><div id="language-selector-mux.HandleFunc(&quot;/&quot;," class="language-selector" data-reactroot=""><div class="select-language-button" style="border-bottom:">go</div></div></div><div class="inner-code-container">mux.HandleFunc(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+    w.Header().Set(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;text/html&quot;</span>)
+
+    allThemes := design.GetAllThemes()
+    theme := design.GetTheme(r.URL.Query().Get(<span class="hljs-string">&quot;theme&quot;</span>))
+
+    data := Payload{
+        Theme:     theme,
+        AllThemes: allThemes,
+    }
+
+    <span class="hljs-comment">// serve the homepage</span>
+    _ = tpl.ExecuteTemplate(w, <span class="hljs-string">&quot;home.gohtml&quot;</span>, data)
+})
+</div></div></code></pre>
+
+</main>
+</body>
+</html>
