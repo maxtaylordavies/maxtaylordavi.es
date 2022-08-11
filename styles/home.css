@@ -185,6 +185,7 @@ summary::marker {
   text-align: center;
   text-decoration: none;
   transition: all 200ms;
+  margin-right: 5px;
 }
 
 .contact-link:hover {
