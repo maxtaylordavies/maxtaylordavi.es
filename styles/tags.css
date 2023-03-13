@@ -43,7 +43,7 @@ em {
   box-shadow: 3.5px 3.5px 0 lightgrey;
 }
 
-.tag.university {
+.tag.research {
   color: #21ab5f;
   background-color: #acffd0;
 }
@@ -71,9 +71,4 @@ em {
 .tag.web {
   color: #1df4c1;
   background-color: #007458;
-}
-
-.tag.ml {
-  background-color: #ffd7af;
-  color: #b87b40;
 }
