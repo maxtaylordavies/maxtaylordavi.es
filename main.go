@@ -18,18 +18,19 @@ import (
 )
 
 type Payload = struct {
-	Posts     []repository.Post
-	Projects  []repository.Project
-	Theme     design.Theme
-	AllThemes []design.Theme
-	Filtered  bool
-	Title     string
+	Posts        []repository.Post
+	Projects     []repository.Project
+	Publications []repository.PublicationYear
+	Theme        design.Theme
+	AllThemes    []design.Theme
+	Filtered     bool
+	Title        string
 }
 
 var tpl *template.Template
 
 func init() {
-	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("home.gohtml", "projects.gohtml", "posts.gohtml"))
+	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("home.gohtml", "projects.gohtml", "posts.gohtml", "publications.gohtml"))
 }
 
 func formatDate(t time.Time) string {
@@ -131,6 +132,40 @@ func registerRoutes() http.Handler {
 		}
 
 		_ = tpl.ExecuteTemplate(w, "projects.gohtml", data)
+	})
+
+	mux.HandleFunc("/publications", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+
+		tag := r.URL.Query().Get("tag")
+		theme := design.GetTheme(r.URL.Query().Get("theme"))
+
+		pubr := repository.PublicationRepository{}
+
+		var publications []repository.PublicationYear
+		var title string
+		var err error
+		if tag == "" {
+			publications, err = pubr.All()
+			title = "All publications"
+		} else {
+			publications, err = pubr.WithTag(tag)
+			title = fmt.Sprintf("Publications tagged <a href='/publications?tag=%s&theme=%s' class='tag %s title'>%s</a>", tag, theme.Name, tag, tag)
+		}
+
+		if err != nil {
+			log.Fatalln("error getting publications: ", err)
+		}
+
+		// serve the publications page
+		data := Payload{
+			Publications: publications,
+			Theme:        theme,
+			Title:        title,
+			Filtered:     tag != "",
+		}
+
+		err = tpl.ExecuteTemplate(w, "publications.gohtml", data)
 	})
 
 	mux.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {

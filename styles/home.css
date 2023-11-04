@@ -131,6 +131,7 @@ summary::marker {
   font-size: 60px;
   font-weight: 600;
   margin: 0;
+  margin-bottom: 10px;
   display: inherit;
 }
 
@@ -145,8 +146,9 @@ summary::marker {
 
 .bio {
   color: #808080;
-  font-size: 26px;
-  margin-top: 10px;
+  font-size: 25px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .bio-link {
@@ -172,6 +174,10 @@ summary::marker {
 
 .page-link:hover {
   transform: scale(1.05);
+}
+
+.footer-links {
+  margin-top: 20px;
 }
 
 .contact-link {

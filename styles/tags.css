@@ -33,7 +33,7 @@ em {
   display: inline-block;
   transform: scale(1.15);
   border: none;
-  margin: 0 0 0 8px;
+  margin: 0 0 0 8px !important;
   position: relative;
   bottom: 10px;
 }
@@ -71,4 +71,21 @@ em {
 .tag.web {
   color: #1df4c1;
   background-color: #007458;
+}
+
+/* ------ */
+
+.tag.conference {
+  color: #dd00d4;
+  background-color: #fdccbc;
+}
+
+.tag.workshop {
+  color: #21ab5f;
+  background-color: #acffd0;
+}
+
+.tag.spotlight {
+  color: #dd9300;
+  background-color: #ffe0a1;
 }
