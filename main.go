@@ -50,7 +50,7 @@ func oddOrEven(i int) string {
 
 var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter, "oddOrEven": oddOrEven}
 
-func serveImage(path string, w http.ResponseWriter) {
+func serveFile(path string, w http.ResponseWriter) {
 	img, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err) // perhaps handle this nicer
@@ -229,12 +229,16 @@ func registerRoutes() http.Handler {
 	})
 
 	mux.HandleFunc("/images/", func(w http.ResponseWriter, r *http.Request) {
-		serveImage("."+strings.TrimSuffix(r.URL.Path, "/"), w)
+		serveFile("."+strings.TrimSuffix(r.URL.Path, "/"), w)
+	})
+
+	mux.HandleFunc("/files/", func(w http.ResponseWriter, r *http.Request) {
+		serveFile("."+strings.TrimSuffix(r.URL.Path, "/"), w)
 	})
 
 	mux.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "image/x-icon")
-		serveImage("./favicon.ico", w)
+		serveFile("./favicon.ico", w)
 	})
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
