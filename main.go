@@ -41,7 +41,14 @@ func idxToLetter(i int) string {
 	return string('A' + i)
 }
 
-var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter}
+func oddOrEven(i int) string {
+	if i%2 == 0 {
+		return "even"
+	}
+	return "odd"
+}
+
+var fm = template.FuncMap{"fdate": formatDate, "i2l": idxToLetter, "oddOrEven": oddOrEven}
 
 func serveImage(path string, w http.ResponseWriter) {
 	img, err := os.Open(path)

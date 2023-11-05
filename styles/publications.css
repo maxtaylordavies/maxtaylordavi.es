@@ -59,6 +59,12 @@ html {
     display: flex;
     flex-direction: column;
   }
+  .publication.even {
+    transform: rotate(-1deg);
+  }
+  .publication.odd {
+    transform: rotate(1deg);
+  }
   .publication-link {
     color: #303030;
     font-weight: bold;

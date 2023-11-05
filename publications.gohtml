@@ -32,13 +32,13 @@
             {{$theme := .Theme.Name}}
             {{range .Publications}}
                 <span class="year">{{.Year}}</span>
-                {{range .Pubs}}
-                    <div class="publication">
-                        <a class="publication-link" href="{{.URL}}" target="_blank">{{.Title}}</a>
-                        <span class="publication-authors">{{.Authors}}</span>
-                        <i class="publication-venue">{{.Venue}}</i>
+                {{range $i, $p := .Pubs}}
+                    <div class="publication {{$i | oddOrEven}}">
+                        <a class="publication-link" href="{{$p.URL}}" target="_blank">{{$p.Title}}</a>
+                        <span class="publication-authors">{{$p.Authors}}</span>
+                        <i class="publication-venue">{{$p.Venue}}</i>
                         <ul class="tags">
-                            {{range .Tags}}
+                            {{range $p.Tags}}
                                 <a href="/publications?tag={{.}}&theme={{$theme}}" class="tag {{.}}">{{.}}</a>
                             {{end}}
                         </ul>
