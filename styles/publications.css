@@ -55,7 +55,7 @@ html {
   }
   .publication {
     max-width: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
     flex-direction: column;
   }
