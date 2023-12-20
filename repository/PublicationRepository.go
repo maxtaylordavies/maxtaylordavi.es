@@ -41,7 +41,7 @@ func (pr *PublicationRepository) All() ([]PublicationYear, error) {
 				{
 					ID:      2,
 					Title:   "Is feedback all you need? leveraging natural language feedback in goal-conditioned reinforcement learning",
-					URL:     "",
+					URL:     "https://arxiv.org/abs/2312.04736",
 					Authors: "Sabrina McCallum, Max Taylor Davies, Stefano Albrecht + Alessandro Suglia",
 					Venue:   "Goal-Conditioned Reinforcement Learning Workshop, NeurIPS 2023",
 					Tags:    []string{"workshop", "spotlight"},
