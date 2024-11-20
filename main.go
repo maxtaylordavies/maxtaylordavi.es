@@ -18,19 +18,19 @@ import (
 )
 
 type Payload = struct {
-	Posts        []repository.Post
-	Projects     []repository.Project
-	Publications []repository.PublicationYear
-	Theme        design.Theme
-	AllThemes    []design.Theme
-	Filtered     bool
-	Title        string
+	Posts     []repository.Post
+	Projects  []repository.Project
+	Papers    []repository.PaperBatch
+	Theme     design.Theme
+	AllThemes []design.Theme
+	Filtered  bool
+	Title     string
 }
 
 var tpl *template.Template
 
 func init() {
-	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("home.gohtml", "projects.gohtml", "posts.gohtml", "publications.gohtml"))
+	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("home.gohtml", "projects.gohtml", "posts.gohtml", "papers.gohtml"))
 }
 
 func formatDate(t time.Time) string {
@@ -141,38 +141,39 @@ func registerRoutes() http.Handler {
 		_ = tpl.ExecuteTemplate(w, "projects.gohtml", data)
 	})
 
-	mux.HandleFunc("/publications", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/papers", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
 		tag := r.URL.Query().Get("tag")
 		theme := design.GetTheme(r.URL.Query().Get("theme"))
 
-		pubr := repository.PublicationRepository{}
+		pr := repository.PaperRepository{}
 
-		var publications []repository.PublicationYear
+		var papers []repository.PaperBatch
 		var title string
 		var err error
+
 		if tag == "" {
-			publications, err = pubr.All()
-			title = "All publications"
+			papers, err = pr.All()
+			title = "All papers"
 		} else {
-			publications, err = pubr.WithTag(tag)
-			title = fmt.Sprintf("Publications tagged <a href='/publications?tag=%s&theme=%s' class='tag %s title'>%s</a>", tag, theme.Name, tag, tag)
+			papers, err = pr.WithTag(tag)
+			title = fmt.Sprintf("Papers tagged <a href='/papers?tag=%s&theme=%s' class='tag %s title'>%s</a>", tag, theme.Name, tag, tag)
 		}
 
 		if err != nil {
-			log.Fatalln("error getting publications: ", err)
+			log.Fatalln("error getting papers: ", err)
 		}
 
-		// serve the publications page
+		// serve the papers page
 		data := Payload{
-			Publications: publications,
-			Theme:        theme,
-			Title:        title,
-			Filtered:     tag != "",
+			Papers:   papers,
+			Theme:    theme,
+			Title:    title,
+			Filtered: tag != "",
 		}
 
-		err = tpl.ExecuteTemplate(w, "publications.gohtml", data)
+		err = tpl.ExecuteTemplate(w, "papers.gohtml", data)
 	})
 
 	mux.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {

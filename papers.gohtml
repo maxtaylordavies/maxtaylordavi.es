@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Publications</title>
-    <link rel="stylesheet" href="/styles/publications.css">
+    <title>Papers</title>
+    <link rel="stylesheet" href="/styles/papers.css">
     <link rel="stylesheet" href="/styles/tags.css">
     <style>
         html {
@@ -23,23 +23,23 @@
     <div class='nav-links'>
         <a class='nav-link posts' href='/?theme={{ .Theme.Name }}'>home</a>
         {{if .Filtered}}
-            <a class='nav-link' href='/publications?theme={{ .Theme.Name }}'>all</a>
+            <a class='nav-link' href='/papers?theme={{ .Theme.Name }}'>all</a>
         {{end}}
     </div>
     <div class="body">
         <p class="title">{{.Title}}</p>
         <ul class="list">
             {{$theme := .Theme.Name}}
-            {{range .Publications}}
-                <span class="year">{{.Year}}</span>
-                {{range $i, $p := .Pubs}}
-                    <div class="publication {{$i | oddOrEven}}">
-                        <a class="publication-link" href="{{$p.URL}}" target="_blank">{{$p.Title}}</a>
-                        <span class="publication-authors">{{$p.Authors}}</span>
-                        <i class="publication-venue">{{$p.Venue}}</i>
+            {{range .Papers}}
+                <span class="year">{{.Key}}</span>
+                {{range $i, $p := .Papers}}
+                    <div class="paper {{$p.ID | oddOrEven}}">
+                        <a class="paper-link" href="{{$p.URL}}" target="_blank">{{$p.Title}}</a>
+                        <span class="paper-authors">{{$p.Authors}}</span>
+                        <i class="paper-venue">{{$p.Venue}}</i>
                         <ul class="tags">
                             {{range $p.Tags}}
-                                <a href="/publications?tag={{.}}&theme={{$theme}}" class="tag {{.}}">{{.}}</a>
+                                <a href="/papers?tag={{.}}&theme={{$theme}}" class="tag {{.}}">{{.}}</a>
                             {{end}}
                         </ul>
                     </div>

@@ -53,31 +53,31 @@ html {
     margin-left: -85px;
     padding-bottom: 0;
   }
-  .publication {
+  .paper {
     max-width: 600px;
     margin-bottom: 25px;
     display: flex;
     flex-direction: column;
   }
-  .publication.even {
+  .paper.even {
     transform: rotate(-1deg);
   }
-  .publication.odd {
+  .paper.odd {
     transform: rotate(1deg);
   }
-  .publication-link {
+  .paper-link {
     color: #303030;
     font-weight: bold;
     text-decoration: none;
   }
-  .publication-link:hover {
+  .paper-link:hover {
     font-style: italic;
     text-decoration: underline;
   }
-  .publication-authors {
+  .paper-authors {
     color: #808080;
   }
-  .publication-venue {
+  .paper-venue {
     color: #808080;
     margin-bottom: 5px;
   }

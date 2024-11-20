@@ -6,7 +6,7 @@
 "adresses": ["<sup>1</sup>Hochschule Gartenstadt","<sup>2</sup>Universität Übersee"],
 "date": "May 2021",
 "description": "mdmath LaTeX demo site",
-"tags": ["markdown+math","VSCode","static page","publication","LaTeX","math"]
+"tags": ["markdown+math","VSCode","static page","paper","LaTeX","math"]
 ---
 
 ### Abstract
