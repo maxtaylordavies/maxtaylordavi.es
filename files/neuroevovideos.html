@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="images/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="images/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta charset="UTF-8" />
+        <title>Videos</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 20px;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                /* align-items: center;
+                justify-content: center; */
+                height: 100vh;
+                padding: 20px;
+            }
+            .description {
+                margin-top: 20px;
+                max-width: 650px;
+            }
+            .key {
+                margin-top: 20px;
+            }
+            .parameter-section {
+                margin-top: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                /* align-items: center; */
+                width: fit-content;
+            }
+            .videos-row {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .video-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-right: 20px;
+            }
+            h3 {
+                margin: 0;
+                margin-bottom: 5px;
+                /* font-weight: normal; */
+            }
+            h4 {
+                margin: 0;
+                margin-bottom: 5px;
+                font-style: italic;
+                font-weight: normal;
+            }
+            b {
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <span>
+                Supplementary agent-environment videos for
+                <a href="https://arxiv.org/abs/2411.10536" target="_blank"
+                    >arxiv.org/abs/2411.10536</a
+                >
+            </span>
+            <span class="description">
+                This page shows a few example videos of the environment used in
+                our paper. Specifically, we show brief snapshots (500 timesteps)
+                from the end of our 500k simulation runs over three seeds for
+                two different values of the 'infant move success probability'
+                parameter (which controls how easy it is for infant agents to
+                move).
+            </span>
+            <div class="key">
+                Key: <b style="color: rgb(0, 153, 38)">food resource</b>,
+                <b style="color: rgb(25, 25, 204)">adult agent</b>,
+                <b style="color: rgb(0, 230, 180)">infant agent</b>,
+                <b style="color: rgb(255, 0, 0)"
+                    >agent using altruistic 'feed' action</b
+                >
+            </div>
+            <div class="parameter-section">
+                <h3>
+                    Infant move success probability = 0.3 (more feeding
+                    observed):
+                </h3>
+                <div class="videos-row">
+                    <div class="video-container">
+                        <video
+                            class="video"
+                            width="400px"
+                            height="400px"
+                            autoplay
+                            loop
+                            muted
+                        >
+                            <source
+                                src="/files/neuroevovideos/move_prob_0.2/1.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-container">
+                        <video
+                            class="video"
+                            width="400px"
+                            height="400px"
+                            autoplay
+                            loop
+                            muted
+                        >
+                            <source
+                                src="/files/neuroevovideos/move_prob_0.2/2.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-container">
+                        <video
+                            class="video"
+                            width="400px"
+                            height="400px"
+                            autoplay
+                            loop
+                            muted
+                        >
+                            <source
+                                src="/files/neuroevovideos/move_prob_0.2/3.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="parameter-section">
+                <h3>
+                    Infant move success probability = 1.0 (less feeding
+                    observed):
+                </h3>
+                <div class="videos-row">
+                    <div class="video-container">
+                        <video
+                            class="video"
+                            width="400px"
+                            height="400px"
+                            autoplay
+                            loop
+                            muted
+                        >
+                            <source
+                                src="/files/neuroevovideos/move_prob_1.0/1.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-container">
+                        <video
+                            class="video"
+                            width="400px"
+                            height="400px"
+                            autoplay
+                            loop
+                            muted
+                        >
+                            <source
+                                src="/files/neuroevovideos/move_prob_1.0/2.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-container">
+                        <video
+                            class="video"
+                            width="400px"
+                            height="400px"
+                            autoplay
+                            loop
+                            muted
+                        >
+                            <source
+                                src="/files/neuroevovideos/move_prob_1.0/3.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

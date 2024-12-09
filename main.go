@@ -242,6 +242,10 @@ func registerRoutes() http.Handler {
 		serveFile("./favicon.ico", w)
 	})
 
+	mux.HandleFunc("/nevideos", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./files/neuroevovideos.html")
+	})
+
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 
