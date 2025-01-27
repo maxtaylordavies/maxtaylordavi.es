@@ -28,15 +28,15 @@ func reverse(in []Paper) []Paper {
 func (pr *PaperRepository) All() ([]PaperBatch, error) {
 	data := []PaperBatch{
 		{
-			Key: "Preprints",
+			Key: "2025",
 			Papers: reverse([]Paper{
 				{
 					ID:      4,
 					Title:   "Emergent kin selection of altruistic feeding via non-episodic neuroevolution",
 					URL:     "https://arxiv.org/abs/2411.10536",
 					Authors: "Max Taylor-Davies, Gautier Hamon, Timothé Boulet + Clément Moulin-Frier",
-					Venue:   "",
-					Tags:    []string{},
+					Venue:   "28th International Conference on the Applications of Evolutionary Computation",
+					Tags:    []string{"conference", "talk"},
 				},
 			}),
 		},
