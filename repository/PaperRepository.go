@@ -28,15 +28,44 @@ func reverse(in []Paper) []Paper {
 func (pr *PaperRepository) All() ([]PaperBatch, error) {
 	data := []PaperBatch{
 		{
+			Key: "Preprints",
+			Papers: reverse([]Paper{
+				{
+					ID:      7,
+					Title:   "Factive mindreading reflects the optimal use of limited cognitive resources",
+					URL:     "https://osf.io/preprints/psyarxiv/wzbcs_v1",
+					Authors: "Tadeg Quillien + Max Taylor-Davies",
+					Venue:   "",
+					Tags:    []string{},
+				},
+			}),
+		},
+		{
 			Key: "2025",
 			Papers: reverse([]Paper{
 				{
 					ID:      4,
 					Title:   "Emergent kin selection of altruistic feeding via non-episodic neuroevolution",
-					URL:     "https://arxiv.org/abs/2411.10536",
+					URL:     "https://link.springer.com/chapter/10.1007/978-3-031-90062-4_31",
 					Authors: "Max Taylor-Davies, Gautier Hamon, Timothé Boulet + Clément Moulin-Frier",
-					Venue:   "28th International Conference on the Applications of Evolutionary Computation",
+					Venue:   "28th International Conference on the Applications of Evolutionary Computation (✨best paper✨)",
+					Tags:    []string{"conference", "talk", "award"},
+				},
+				{
+					ID:      5,
+					Title:   "An information bottleneck view of social stereotype use",
+					URL:     "",
+					Authors: "Max Taylor-Davies + Tadeg quillien",
+					Venue:   "Proceedings of the Annual Meeting of the Cognitive Science Society 2025",
 					Tags:    []string{"conference", "talk"},
+				},
+				{
+					ID:      6,
+					Title:   "A rational framework for group-based selective social learning",
+					URL:     "",
+					Authors: "Max Taylor Davies, Neil Bramley + Christopher G. Lucas",
+					Venue:   "Open Mind (forthcoming)",
+					Tags:    []string{"journal"},
 				},
 			}),
 		},

@@ -75,22 +75,32 @@ em {
 
 /* ------ */
 
+.tag.journal {
+    color: #AA00A3;
+    background-color: #FDBCF8;
+}
+
 .tag.conference {
-    color: #dd00d4;
-    background-color: #fdccbc;
+    color: #13944D;
+    background-color: #ADFFAC;
 }
 
 .tag.workshop {
-    color: #21ab5f;
-    background-color: #acffd0;
+    color: #FF6051;
+    background-color: #FFB5AE;
 }
 
 .tag.talk {
-    color: #dd9300;
-    background-color: #ffe0a1;
+    color: #2855E9;
+    background-color: #C6CCFF;
 }
 
 .tag.poster {
-    color: #606ee3;
-    background-color: #c6ccff;
+    color: #CD8C00;
+    background-color: #FFE0A1;
+}
+
+.tag.award {
+    color: #13777E;
+    background-color: #93FFD2;
 }
