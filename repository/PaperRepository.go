@@ -54,7 +54,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				{
 					ID:      5,
 					Title:   "An information bottleneck view of social stereotype use",
-					URL:     "",
+					URL:     "https://osf.io/preprints/psyarxiv/k53tz_v1",
 					Authors: "Max Taylor-Davies + Tadeg quillien",
 					Venue:   "Proceedings of the Annual Meeting of the Cognitive Science Society 2025",
 					Tags:    []string{"conference", "talk"},
