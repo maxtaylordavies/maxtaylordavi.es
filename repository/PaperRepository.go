@@ -38,6 +38,14 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 					Venue:   "",
 					Tags:    []string{},
 				},
+				{
+					ID:      8,
+					Title:   "Partner modelling emerges in recurrent agents (but only when it matters)",
+					URL:     "https://arxiv.org/abs/2505.17323",
+					Authors: "Ruaridh Mon-Williams, Max Taylor-Davies, Elizabeth Mieczkowski, Natalia Velez, Neil R. Bramley, Yanwei Wang, Thomas L. Griffiths + Christopher G. Lucas",
+					Venue:   "",
+					Tags:    []string{},
+				},
 			}),
 		},
 		{
@@ -62,9 +70,9 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				{
 					ID:      6,
 					Title:   "A rational framework for group-based selective social learning",
-					URL:     "",
-					Authors: "Max Taylor Davies, Neil Bramley + Christopher G. Lucas",
-					Venue:   "Open Mind (forthcoming)",
+					URL:     "https://direct.mit.edu/opmi/article/doi/10.1162/opmi_a_00205/131045/A-Rational-Framework-for-Group-Based-Selective",
+					Authors: "Max Taylor Davies, Neil R. Bramley + Christopher G. Lucas",
+					Venue:   "Open Mind",
 					Tags:    []string{"journal"},
 				},
 			}),
