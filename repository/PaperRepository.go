@@ -31,12 +31,33 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 			Key: "Preprints",
 			Papers: reverse([]Paper{
 				{
+					ID:      9,
+					Title:   "Learning When to Cooperate Under Heterogeneous Goals",
+					URL:     "",
+					Authors: "Max Taylor Davies, Neil R. Bramley + Christopher G. Lucas",
+					Venue:   "",
+					Tags:    []string{},
+				},
+				{
+					ID:      10,
+					Title:   "Cognitive capacity shapes both the \"whether\" and \"how\" of social learning",
+					URL:     "",
+					Authors: "Max Taylor-Davies",
+					Venue:   "",
+					Tags:    []string{},
+				},
+			}),
+		},
+		{
+			Key: "2026",
+			Papers: reverse([]Paper{
+				{
 					ID:      8,
 					Title:   "Factive mindreading reflects the optimal use of limited cognitive resources",
 					URL:     "https://osf.io/preprints/psyarxiv/wzbcs_v1",
 					Authors: "Tadeg Quillien + Max Taylor-Davies",
-					Venue:   "",
-					Tags:    []string{},
+					Venue:   "Proceedings of the Royal Society B",
+					Tags:    []string{"journal"},
 				},
 			}),
 		},
