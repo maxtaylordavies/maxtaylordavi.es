@@ -33,7 +33,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				{
 					ID:      9,
 					Title:   "Learning When to Cooperate Under Heterogeneous Goals",
-					URL:     "",
+					URL:     "https://arxiv.org/abs/2603.07253",
 					Authors: "Max Taylor Davies, Neil R. Bramley + Christopher G. Lucas",
 					Venue:   "",
 					Tags:    []string{},
@@ -41,7 +41,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				{
 					ID:      10,
 					Title:   "Cognitive capacity shapes both the \"whether\" and \"how\" of social learning",
-					URL:     "",
+					URL:     "https://www.biorxiv.org/content/10.64898/2026.03.07.710273v1",
 					Authors: "Max Taylor-Davies",
 					Venue:   "",
 					Tags:    []string{},
