@@ -73,11 +73,11 @@ hr {
 }
 
 .paper.even {
-    transform: rotate(-1deg);
+    transform: rotate(-0.75deg);
 }
 
 .paper.odd {
-    transform: rotate(1deg);
+    transform: rotate(0.75deg);
 }
 
 .paper-link {
