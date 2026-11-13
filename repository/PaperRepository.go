@@ -58,7 +58,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 			Papers: reverse([]Paper{
 				{
 					ID:      8,
-					Title:   "Factive mindreading reflects the optimal use of limited cognitive resources",
+					Title:   "Factive Mindreading Reflects the Optimal Use of Limited Cognitive Resources",
 					URL:     "https://osf.io/preprints/psyarxiv/wzbcs_v1",
 					Authors: "Tadeg Quillien, Me",
 					Venue:   "Proceedings of the Royal Society B",
@@ -66,7 +66,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				},
 				{
 					ID:      9,
-					Title:   "Representational capacity shapes both the \"whether\" and \"how\" of social learning",
+					Title:   "Representational Capacity Shapes Both the \"Whether\" and \"How\" of Social Learning",
 					URL:     "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1014504",
 					Authors: "Me",
 					Venue:   "PLOS Computational Biology",
@@ -79,7 +79,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 			Papers: reverse([]Paper{
 				{
 					ID:      4,
-					Title:   "Emergent kin selection of altruistic feeding via non-episodic neuroevolution",
+					Title:   "Emergent Kin Selection of Altruistic Feeding via Non-episodic Neuroevolution",
 					URL:     "https://link.springer.com/chapter/10.1007/978-3-031-90062-4_31",
 					Authors: "Me, Gautier Hamon, Timothé Boulet, Clément Moulin-Frier",
 					Venue:   "28th International Conference on the Applications of Evolutionary Computation (✨best paper✨)",
@@ -87,7 +87,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				},
 				{
 					ID:      5,
-					Title:   "An information bottleneck view of social stereotype use",
+					Title:   "An Information Bottleneck View of Social Stereotype Use",
 					URL:     "https://osf.io/preprints/psyarxiv/k53tz_v1",
 					Authors: "Me, Tadeg quillien",
 					Venue:   "Proceedings of the Annual Meeting of the Cognitive Science Society 2025",
@@ -95,7 +95,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				},
 				{
 					ID:      6,
-					Title:   "A rational framework for group-based selective social learning",
+					Title:   "A Rational Framework for Group-Based Selective Social Learning",
 					URL:     "https://direct.mit.edu/opmi/article/doi/10.1162/opmi_a_00205/131045/A-Rational-Framework-for-Group-Based-Selective",
 					Authors: "Me, Neil R. Bramley, Christopher G. Lucas",
 					Venue:   "Open Mind",
@@ -103,7 +103,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				},
 				{
 					ID:      7,
-					Title:   "Partner modelling emerges in recurrent agents (but only when it matters)",
+					Title:   "Partner Modelling Emerges in Recurrent Agents (But Only When it Matters)",
 					URL:     "https://arxiv.org/abs/2505.17323",
 					Authors: "Ruaridh Mon-Williams*, Me*, Elizabeth Mieczkowski, Natalia Velez, Neil R. Bramley, Yanwei Wang, Thomas L. Griffiths, Christopher G. Lucas<br/>(* co-first authors)",
 					Venue:   "39th Annual Conference on Neural Information Processing Systems",
@@ -116,7 +116,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 			Papers: reverse([]Paper{
 				{
 					ID:      3,
-					Title:   "Rational compression in choice prediction",
+					Title:   "Rational Compression in Choice Prediction",
 					URL:     "/files/iccm-paper.pdf",
 					Authors: "Me, Christopher G. Lucas",
 					Venue:   "22nd International Conference on Cognitive Modeling (ICCM), 2024",
@@ -129,7 +129,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 			Papers: reverse([]Paper{
 				{
 					ID:      0,
-					Title:   "Selective imitation on the basis of reward function similarity",
+					Title:   "Selective Imitation on the Basis of Reward Function Similarity",
 					URL:     "https://escholarship.org/uc/item/8x3072nr",
 					Authors: "Me, Stephanie Droop, Christopher G. Lucas",
 					Venue:   "Proceedings of the Annual Meeting of the Cognitive Science Society 2023",
@@ -137,7 +137,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				},
 				{
 					ID:      1,
-					Title:   "Is feedback all you need? leveraging natural language feedback in goal-conditioned reinforcement learning",
+					Title:   "Is Feedback All You Need? Leveraging Natural Language Feedback in Goal-Conditioned Reinforcement Learning",
 					URL:     "https://arxiv.org/abs/2312.04736",
 					Authors: "Sabrina McCallum, Me, Stefano Albrecht, Alessandro Suglia",
 					Venue:   "Goal-Conditioned Reinforcement Learning Workshop, NeurIPS 2023 (spotlight)",
@@ -145,7 +145,7 @@ func (pr *PaperRepository) All() ([]PaperBatch, error) {
 				},
 				{
 					ID:      2,
-					Title:   "Balancing utility and cognitive cost in social representation",
+					Title:   "Balancing Utility and Cognitive Cost in Social Representation",
 					URL:     "https://arxiv.org/abs/2310.04852",
 					Authors: "Me, Christopher G. Lucas",
 					Venue:   "Information-Theoretic Principles in Cognitive Systems Workshop, NeurIPS 2023",
