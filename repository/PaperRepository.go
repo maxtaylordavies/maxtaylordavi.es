@@ -28,6 +28,19 @@ func reverse(in []Paper) []Paper {
 func (pr *PaperRepository) All() ([]PaperBatch, error) {
 	data := []PaperBatch{
 		{
+			Key: "Working papers",
+			Papers: reverse([]Paper{
+				{
+					ID:      11,
+					Title:   "Aligning Incentives in Cumulative Cultural Evolution",
+					URL:     "/files/cce-working-paper.pdf",
+					Authors: "Me, Anil Yaman",
+					Venue:   "",
+					Tags:    []string{},
+				},
+			}),
+		},
+		{
 			Key: "Preprints",
 			Papers: reverse([]Paper{
 				{
